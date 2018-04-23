@@ -1,0 +1,113 @@
+body{
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+hr{
+	border: 0; 
+	border-top: 4px double black; 
+	width: 100%;
+}
+
+table{
+    table-layout: fixed;/* Para que las columnas de la tabla sean fijas al valor definido */
+}
+
+.columna10{
+	overflow: hidden;
+    width: 10%;
+    white-space:nowrap;/* Para poner puntos suspensivos si falta espacio */
+    text-overflow: ellipsis;/* Para poner puntos suspensivos si falta espacio */
+}
+.columna20{
+	overflow: hidden;
+    width: 20%;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+.columna30{
+	overflow: hidden;
+    width: 30%;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+.columna40{
+	overflow: hidden;
+    width: 40%;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+.columna50{
+	overflow: hidden;
+    width: 50%;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+.columna60{
+	overflow: hidden;
+    width: 60%;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+.columna70{
+	overflow: hidden;
+    width: 70%;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+.columna8{
+	overflow: hidden;
+    width: 80%;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+.columna90{
+	overflow: hidden;
+    width: 90%;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+
+.cabeceraTabla{
+	background-color: grey;
+	font-weight: bold;
+	color: white;
+}
+
+.margenIzquierdo{
+	margin-left: 10px;
+}
+
+.botonEditar{
+	background-image: url(../docs/img/editar.png);
+	width: 28px;
+    height: 28px;
+    background-repeat:no-repeat;
+}
+.botonConsultar{
+	background-image: url(../docs/img/consultar.png);
+	width: 28px;
+    height: 28px;
+    background-repeat:no-repeat;
+}
+.botonEliminar{
+	background-image: url(../docs/img/eliminar.png);
+	width: 28px;
+    height: 28px;
+    background-repeat:no-repeat;
+}
+
+.mensaje{
+	position:fixed;/* Para posicionar el mensaje en un punto fijo de la ventana */
+  	top :  50px; 
+}
+
+.divCentrado{
+	text-align:center;
+}
+
+.botonCabecera{
+	padding-top: 20px;
+}
+
+
