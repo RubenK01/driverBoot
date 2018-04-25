@@ -16,8 +16,10 @@ public class Usuario {
 	@NotNull
 	private String apellido;
 	@NotNull
+	@Column(unique=true)
 	private String telefono;
 	@NotNull
+	@Column(unique=true)
 	private String email;
 	@NotNull
 	@Column(unique=true)
