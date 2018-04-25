@@ -8,26 +8,38 @@ import javax.validation.constraints.*;
 public class Coche {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	long id;
+	private long id;
 	@NotNull
-	String nombre;
+	private String nombre;
+	@Lob
+	private byte[] foto;
 	@NotNull
-	String matricula;
+	private String matricula;
 	@NotNull
-	String modelo;
+	private String modelo;
 	@NotNull
-	String color;
-	//foto
+	private String color;
 	@NotNull
 	@ManyToOne
-	Usuario dueño;
-	public Coche(String nombre, String matricula, String modelo, String color, Usuario dueño) {
+	private Usuario conductor;
+	/**
+	 * @param nombre
+	 * @param foto
+	 * @param sexo
+	 * @param matricula
+	 * @param modelo
+	 * @param color
+	 * @param conductor
+	 */
+	public Coche(String nombre, byte[] foto, String matricula, String modelo, String color,
+			Usuario conductor) {
 		super();
 		this.nombre = nombre;
+		this.foto = foto;
 		this.matricula = matricula;
 		this.modelo = modelo;
 		this.color = color;
-		this.dueño = dueño;
+		this.conductor = conductor;
 	}
 	public long getId() {
 		return id;
@@ -40,6 +52,12 @@ public class Coche {
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	public byte[] getFoto() {
+		return foto;
+	}
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
 	}
 	public String getMatricula() {
 		return matricula;
@@ -59,12 +77,13 @@ public class Coche {
 	public void setColor(String color) {
 		this.color = color;
 	}
-	public Usuario getDueño() {
-		return dueño;
+	public Usuario getConductor() {
+		return conductor;
 	}
-	public void setDueño(Usuario dueño) {
-		this.dueño = dueño;
+	public void setConductor(Usuario conductor) {
+		this.conductor = conductor;
 	}
-
+	
+	
 	
 }

@@ -10,20 +10,26 @@ import javax.validation.constraints.*;
 public class Mensaje {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	long id;
+	private long id;
 	@NotNull
-	String texto;
+	private String texto;
 	@NotNull
-	Date fecha;
+	private Date fecha;
 	@NotNull
-	Boolean leido;
-	@NotNull
-	@ManyToOne
-	Usuario emisor;
+	private Boolean leido;
 	@NotNull
 	@ManyToOne
-	Usuario receptor;
-	
+	private Usuario emisor;
+	@NotNull
+	@ManyToOne
+	private Usuario receptor;
+	/**
+	 * @param texto
+	 * @param fecha
+	 * @param leido
+	 * @param emisor
+	 * @param receptor
+	 */
 	public Mensaje(String texto, Date fecha, Boolean leido, Usuario emisor, Usuario receptor) {
 		super();
 		this.texto = texto;
@@ -68,5 +74,6 @@ public class Mensaje {
 	public void setReceptor(Usuario receptor) {
 		this.receptor = receptor;
 	}
+	
 	
 }

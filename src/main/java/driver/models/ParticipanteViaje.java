@@ -1,24 +1,23 @@
 package driver.models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@Entity(name = "ParticipanteViaje")
+@Table(name = "ParticipanteViaje")
 public class ParticipanteViaje {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	long id;
+	private long id;
 	@NotNull
 	@ManyToOne
-	Usuario usuario;
+	private Usuario usuario;
 	@NotNull
 	@ManyToOne
-	Viaje viaje;
+	private Viaje viaje;
 	@NotNull
-	String rol;
+	private String rol;
 	/**
 	 * @param usuario
 	 * @param viaje
@@ -54,4 +53,5 @@ public class ParticipanteViaje {
 	public void setRol(String rol) {
 		this.rol = rol;
 	}
+	
 }

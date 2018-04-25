@@ -10,19 +10,26 @@ import javax.validation.constraints.*;
 public class Valoracion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	long id;
+	private long id;
 	@NotNull
-	String texto;
+	private String texto;
 	@NotNull
-	double puntuacion;
+	private double puntuacion;
 	@NotNull
-	Date fecha;
-	@NotNull
-	@ManyToOne
-	Usuario emisor;
+	private Date fecha;
 	@NotNull
 	@ManyToOne
-	Usuario receptor;
+	private Usuario emisor;
+	@NotNull
+	@ManyToOne
+	private Usuario receptor;
+	/**
+	 * @param texto
+	 * @param puntuacion
+	 * @param fecha
+	 * @param emisor
+	 * @param receptor
+	 */
 	public Valoracion(String texto, double puntuacion, Date fecha, Usuario emisor, Usuario receptor) {
 		super();
 		this.texto = texto;
@@ -67,5 +74,6 @@ public class Valoracion {
 	public void setReceptor(Usuario receptor) {
 		this.receptor = receptor;
 	}
+	
 	
 }
