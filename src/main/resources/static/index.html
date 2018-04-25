@@ -38,6 +38,9 @@
 
 </head>
 <body ng-controller="PrincipalCtrl">
+	<div >
+    <div ng-view></div> <!-- para route de angular (PLANTILLAS) -->
+  	</div>
 	<div ng-if="showLogin">
 		<div w3-include-html="/html/loginForm.html"></div>
 	</div>
