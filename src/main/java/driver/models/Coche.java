@@ -9,8 +9,6 @@ public class Coche {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@NotNull
-	private String nombre;
 	@Lob
 	private byte[] foto;
 	@NotNull
@@ -23,7 +21,6 @@ public class Coche {
 	@ManyToOne
 	private Usuario conductor;
 	/**
-	 * @param nombre
 	 * @param foto
 	 * @param sexo
 	 * @param matricula
@@ -31,10 +28,9 @@ public class Coche {
 	 * @param color
 	 * @param conductor
 	 */
-	public Coche(String nombre, byte[] foto, String matricula, String modelo, String color,
+	public Coche(byte[] foto, String matricula, String modelo, String color,
 			Usuario conductor) {
 		super();
-		this.nombre = nombre;
 		this.foto = foto;
 		this.matricula = matricula;
 		this.modelo = modelo;
@@ -46,12 +42,6 @@ public class Coche {
 	}
 	public void setId(long id) {
 		this.id = id;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 	public byte[] getFoto() {
 		return foto;
