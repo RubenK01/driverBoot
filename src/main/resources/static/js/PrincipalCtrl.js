@@ -1,8 +1,8 @@
-var myApp = angular.module('DriverApp',['restPruebaApp','ngAnimate','ui.bootstrap']);
+var myApp = angular.module('DriverApp',['restPruebaApp', 'ngRoute','ngAnimate','ui.bootstrap']);
 
 myApp.controller('PrincipalCtrl',['$scope','$http','mantenimientoSrv',function($scope,$http,mantenimientoSrv){
-	$scope.showSignUp = false;
-	$scope.showLogin = true;
+	$scope.showSignUp = true;
+	$scope.showLogin = false;
 
 	$scope.doSignUp = function(){
 	    $scope.showSignUp = true;
@@ -13,6 +13,18 @@ myApp.controller('PrincipalCtrl',['$scope','$http','mantenimientoSrv',function($
 }]);
 
 
+myApp.config(function($routeProvider) {
+    $routeProvider
+    .when("/", {
+        templateUrl :"html/loginForm.html"
+    })
+    .when("/signUp", {
+        templateUrl :"html/signUpForm.html"
+    })
+    .when("/menu", {
+        templateUrl :"html/menu.html"
+    })
+});
 
 
 //directiva necesaria para hacer funcionar el input type="file", si se usa ng-model en lugar de esta directiva el fichero no se seta en el scope

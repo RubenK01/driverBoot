@@ -1,53 +1,77 @@
-<form class="login100-form validate-form form-group">
-	<span class="login100-form-title p-b-34">
-		Sign Up
-	</span>
-	
-	<div class="wrap-input100 validate-input m-b-20" data-validate="Type email">
-		<input id="email" class="input100" type="text" name="email" placeholder="Email">
-		<span class="focus-input100"></span>
+<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form form-group" style="margin-top: -250px;">
+					<span class="login100-form-title p-b-34">
+						Sign Up
+					</span>
+					
+					<div class="wrap-input100 validate-input m-b-20" data-validate="Type email">
+						<input id="email" class="input100" type="text" name="email" placeholder="Email">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-20" data-validate="Type password">
+						<input class="input100" type="password" name="pass" placeholder="Password">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-20" data-validate="Type password">
+						<input class="input100" type="password" name="confirmPass" placeholder="Confirm password">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-20" data-validate="Type your name">
+						<input id="name" class="input100" type="text" name="name" placeholder="Name">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-20" data-validate="Type your last name">
+						<input id="lastName" class="input100" type="text" name="lastName" placeholder="Last name">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-20" data-validate="Type your DNI">
+						<input id="dni" class="input100" type="text" maxlength="9" name="dni" placeholder="DNI">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-20" data-validate="Type your expiration date driver's license">
+						<input id="fExpLicense" class="input100" type="date" name="fExpLicense" placeholder="Expiration date driver's license">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-20" data-validate="Type your phone number">
+						<input id="phone" class="input100" type="text" maxlength="9" name="phone" placeholder="Phone number">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-20" data-validate="Type your birth date">
+						<input id="birthDate" class="input100" type="date" name="birthDate" placeholder="birthDate">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 m-b-20">
+						<div >
+							<label class="radio-inline input100-radio">Gender:</label>
+							<label class="radio-inline input100-radio">
+								<input type="radio" name="gender" value="m" checked> Male
+							</label>
+							
+							<label class="radio-inline input100-radio">
+								<input type="radio" name="gender" value="f"> Female
+							</label>
+						</div>
+						
+						<span class="focus-input100"></span>
+					</div>
+					<div class="row wrap-input100 validate-input m-b-20" style="margin-left: 0px;">
+						<label class="col-sm-2  radio-inline input100-radio">Foto:</label>
+						<input class="col-sm-10 input100-radio" type="file" style="margin-bottom: 7px;margin-top: 5px;" name="fotoUser" accept="image/*" />
+						<span class="focus-input100"></span>
+					</div>
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Sign Up
+						</button>
+					</div>
+					
+				</form>
+
+				<div class="login100-more" style="background-image: url('images/bg-01.jpg');"></div>
+			</div>
+		</div>
 	</div>
-	<div class="wrap-input100 validate-input m-b-20" data-validate="Type password">
-		<input class="input100" type="password" name="pass" placeholder="Password">
-		<span class="focus-input100"></span>
-	</div>
-	<div class="wrap-input100 validate-input m-b-20" data-validate="Type password">
-		<input class="input100" type="password" name="confirmPass" placeholder="Confirm password">
-		<span class="focus-input100"></span>
-	</div>
-	<div class="wrap-input100 validate-input m-b-20" data-validate="Type your name">
-		<input id="name" class="input100" type="text" name="name" placeholder="Name">
-		<span class="focus-input100"></span>
-	</div>
-	<div class="wrap-input100 validate-input m-b-20" data-validate="Type your last name">
-		<input id="lastName" class="input100" type="text" name="lastName" placeholder="Last name">
-		<span class="focus-input100"></span>
-	</div>
-	<div class="wrap-input100 validate-input m-b-20" data-validate="Type your DNI">
-		<input id="dni" class="input100" type="text" maxlength="9" name="dni" placeholder="DNI">
-		<span class="focus-input100"></span>
-	</div>
-	<div class="wrap-input100 validate-input m-b-20" data-validate="Type your phone number">
-		<input id="phone" class="input100" type="text" maxlength="9" name="phone" placeholder="Phone number">
-		<span class="focus-input100"></span>
-	</div>
-	<div class="wrap-input100 validate-input m-b-20" data-validate="Type your birth date">
-		<input id="birthday" class="input100" type="date" name="birthDate" placeholder="Birthday">
-		<span class="focus-input100"></span>
-	</div>
-	<div class="wrap-input100 validate-input m-b-20" data-validate="Type your gender">
-		<input class="input100" type="radio" name="gender" value="m" checked> Male<br>
-		<input class="input100" type="radio" name="gender" value="f"> Female<br>
-		<span class="focus-input100">Gender:</span>
-	</div>
-	<div class="wrap-input100 validate-input m-b-20">
-		<input class="input100" type="file" name="fotoUser" accept="image/*" />
-		<span class="focus-input100"></span>
-	</div>
-	<div class="container-login100-form-btn">
-		<button class="login100-form-btn">
-			Sign Up
-		</button>
-	</div>
-	
-</form>
+
+
