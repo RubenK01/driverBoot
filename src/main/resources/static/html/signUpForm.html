@@ -2,6 +2,7 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form form-group" style="margin-top: -250px;">
+					<a title="Go back" href="#/"><img src="images/icons/back.png" style="margin-top: -30px;width: 45px;height: 45px;margin-bottom: 17px;" alt="Go back"  /></a>
 					<span class="login100-form-title p-b-34">
 						Sign Up
 					</span>
@@ -30,8 +31,9 @@
 						<input id="dni" class="input100" type="text" maxlength="9" name="dni" placeholder="DNI">
 						<span class="focus-input100"></span>
 					</div>
-					<div class="wrap-input100 validate-input m-b-20" data-validate="Type your expiration date driver's license">
-						<input id="fExpLicense" class="input100" type="date" name="fExpLicense" placeholder="Expiration date driver's license">
+					<div class="wrap-input100 validate-input m-b-20" data-validate="Type your driver's license expiraty date">
+						<label class="input100-radio">Driver's license expiry date:</label>
+						<input id="fExpLicense" class="input100-radio" type="date" name="fExpLicense" placeholder="Expiry driver's license date">
 						<span class="focus-input100"></span>
 					</div>
 					<div class="wrap-input100 validate-input m-b-20" data-validate="Type your phone number">
@@ -39,7 +41,8 @@
 						<span class="focus-input100"></span>
 					</div>
 					<div class="wrap-input100 validate-input m-b-20" data-validate="Type your birth date">
-						<input id="birthDate" class="input100" type="date" name="birthDate" placeholder="birthDate">
+						<label class="input100-radio">Birth date:</label>
+						<input id="birthDate" class="input100-radio" type="date" name="birthDate" placeholder="birthDate">
 						<span class="focus-input100"></span>
 					</div>
 					<div class="wrap-input100 m-b-20">
@@ -59,6 +62,10 @@
 					<div class="row wrap-input100 validate-input m-b-20" style="margin-left: 0px;">
 						<label class="col-sm-2  radio-inline input100-radio">Foto:</label>
 						<input class="col-sm-10 input100-radio" type="file" style="margin-bottom: 7px;margin-top: 5px;" name="fotoUser" accept="image/*" />
+						<span class="focus-input100"></span>
+					</div>
+					<div class="row wrap-input100 validate-input m-b-20" style="margin-left: 0px;">
+						<div ng-include="'html/addCar.htm'"></div>
 						<span class="focus-input100"></span>
 					</div>
 					<div class="container-login100-form-btn">

@@ -1,7 +1,9 @@
- var myApp = angular.module('MyApp',[]);
+'use strict';
+
+var myApp = angular.module('MyApp',[]);
 
 myApp.controller('MyAppCrtl',['$scope','$http',function($scope,$http){
-	$scope.message = "¡Hola Mundo!";
+	$scope.message = "ï¿½Hola Mundo!";
 	
 	$scope.showMessage = function (message){
 		alert("Valor del mensaje: " + message);
