@@ -2,11 +2,11 @@
 
 myApp.controller('MenuCtrl',['$scope','$http','mantenimientoSrv',function($scope,$http,mantenimientoSrv){
 	$scope.pestaniasMenu = [
-					{name: 'Viajes', style: 'active'},
-					{name: 'Crear Viaje', style: 'tablinks'},
-					{name: 'Mis Viajes', style: 'tablinks'},
-					{name: 'Mensajes', style: 'tablinks'},
-					{name: 'Mi Cuenta', style: 'tablinks'} ];
+					{name: 'Map', style: 'active'},
+					{name: 'New Trip', style: 'tablinks'},
+					{name: 'My Trips', style: 'tablinks'},
+					{name: 'Inbox', style: 'tablinks'},
+					{name: 'Profile', style: 'tablinks'} ];
 	
 	
 	$scope.addActivo = function(name){
