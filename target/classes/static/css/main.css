@@ -1,5 +1,36 @@
+/* mapas */
+div.map_container {
+    position: relative;
+    float: left;
+    width: 70%;
+    height: 80%
+}
+
+.angular-google-map-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;    
+}
+
+div.controls {
+    float: right;
+    width: 30%;
+}
+
+.markerlabel {
+    font-weight: bold;
+    font-size: 13px;
+    border: 1px solid #333;
+    padding: 2px;
+    background: #fff;
+    color: #333;
+}
+
+
+
 /* Footer */
-@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 section {
     padding: 60px 0;
 }
@@ -172,7 +203,6 @@ section .section-title {
 
 
 html, body {
-	position: relative;
   font-family: Poppins-Regular, sans-serif;
   margin: 0;
   

@@ -55,7 +55,7 @@
 
 	//////Comprobación NIF/////
 	/*
-	 * Funcion para que validar si es NIF
+	 * Funcion para  validar si es NIF
 	 */
 	function esNIF(a) {
 		var campo = a;
@@ -70,7 +70,7 @@
 		return b;
 	}
 	/*
-	 * Funcion para que validar si es un NIF correcto
+	 * Funcion para  validar si es un NIF correcto
 	 */
 	function vNIF(d) {
 		var c = 'TRWAGMYFPDXBNJZSQVHLCKET',
