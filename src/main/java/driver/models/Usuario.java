@@ -42,6 +42,8 @@ public class Usuario {
 	private Date fechaNacimiento;
 	@NotNull
 	private char sexo;
+//	@NotNull
+//	private char rol;
 	
 	@OneToMany(mappedBy="emisor")
 	private List<Mensaje> enviados;

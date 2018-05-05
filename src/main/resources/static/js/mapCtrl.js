@@ -61,6 +61,14 @@ myApp.factory('MarkerCreatorService', function () {
 
 });
 
+//myApp.controller('MapCtrl', [ '$ngMap', function(NgMap) {
+//	  NgMap.getMap().then(function(map) {
+//	    console.log(map.getCenter());
+//	    console.log('markers', map.markers);
+//	    console.log('shapes', map.shapes);
+//	  });
+//	}]);
+
 myApp.controller('MapCtrl', ['MarkerCreatorService', '$scope', function (MarkerCreatorService, $scope) {
 
         MarkerCreatorService.createByCoords(40.454018, -3.509205, function (marker) {
