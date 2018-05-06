@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.controller('MenuCtrl',['$scope','$http','mantenimientoSrv',function($scope,$http,mantenimientoSrv){
+myApp.controller('menuCtrl',['$scope','$http','mantenimientoSrv',function($scope,$http,mantenimientoSrv){
 	$scope.pestaniasMenu = [
 					{name: 'Map', style: 'active', ico: 'fa fa-globe fa-lg '},
 					{name: 'New Trip', style: '', ico: 'fa fa-map-marker fa-lg'},
@@ -8,15 +8,38 @@ myApp.controller('MenuCtrl',['$scope','$http','mantenimientoSrv',function($scope
 					{name: 'Inbox', style: '', ico: 'fa fa-envelope fa-lg'},
 					{name: 'Profile', style: 'collapsed', ico: 'fa fa-user fa-lg', submenu: [{name: 'My Account', style:''}, {name: 'Settings', style:''}, {name: 'Logout', style:''} ]} ];
 	
-	
-	$scope.addActivo = function(name){
+	$scope.selectedName = 'map';
+
+	$scope.addActivo = function(name, subName){
+		//limpia estilos
 		$scope.pestaniasMenu.forEach(function(p){
-			if(p.name === name){
-				p.style = 'active';
+			p.style = '';
+
+			if(p.submenu){
+				p.submenu.forEach(function(s){
+					s.style = '';
+				});
 			}
-			else{
-				p.style = '';
-			}
+
 		});
+
+		$scope.pestaniasMenu.forEach(function(p){
+			if(p.name === name && !p.submenu){
+				p.style = 'active';
+				$scope.selectedName = p.name.toLowerCase() ;
+			}
+			else if(p.name === name && p.submenu && subName){
+				p.style = 'active';
+				p.submenu.forEach(function(s){
+					if(s.name === subName){
+						s.style = 'active';
+						$scope.selectedName = s.name.toLowerCase();
+					}
+				});
+			}
+
+		});
+
+
 	};
 }]);

@@ -8,7 +8,7 @@ header {
     position: fixed;
     width:100%;
     z-index: 1;
-    height: 25%;
+    height: 210px;
     overflow: hidden;
     top: 0;
     left: 0;
@@ -16,7 +16,7 @@ header {
 
 .content-wrapper{
     background-color: white;
-    top: 25%;
+    top: 210px;
     min-height: 12%;
     position:absolute;
     z-index: 2;

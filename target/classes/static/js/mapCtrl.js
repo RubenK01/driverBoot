@@ -69,7 +69,7 @@ myApp.factory('MarkerCreatorService', function () {
 //	  });
 //	}]);
 
-myApp.controller('MapCtrl', ['MarkerCreatorService', '$scope', function (MarkerCreatorService, $scope) {
+myApp.controller('mapCtrl', ['MarkerCreatorService', '$scope', function (MarkerCreatorService, $scope) {
 
         MarkerCreatorService.createByCoords(40.454018, -3.509205, function (marker) {
             marker.options.labelContent = 'Autentia';

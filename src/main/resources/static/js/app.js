@@ -10,10 +10,10 @@ myApp.config(function($routeProvider) {
     })
     .when("/menu", {
         templateUrl :"html/menu.html",
-        controller: "MenuCtrl"
+        controller: "menuCtrl"
     })
 	.when("/map", {
         templateUrl :"html/map.html",
-        controller: "MapCtrl"
+        controller: "mapCtrl"
     })
 });

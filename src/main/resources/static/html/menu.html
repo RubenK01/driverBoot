@@ -5,7 +5,7 @@
 	</div>
 </div>
 -->
-<div class="row" style="margin: 0px">
+<div class="row" style="margin: 0px; height: -webkit-fill-available;">
 	<div class="col-sm-3 nav-side-menu">
 	    <div class="brand">Brand Logo</div>
 	    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
@@ -20,74 +20,26 @@
 		                  </a>
 		                </li>
 
-                  		<li ng-if="item.submenu" ng-class="item.style" data-toggle="collapse" data-target="#profile" >
+                  		<li ng-if="item.submenu"  data-toggle="collapse" ng-class="item.style" data-target="#profile" >
 		                  <a><i style="margin-right: 6px;" ng-class="item.ico"></i> {{ item.name }} <span class="arrow"></span></a>
 		                </li>
-		                <ul class="sub-menu collapse" id="profile">
-		                	<li><a>My Account</a></li>
-		                    <li><a>Settings</a></li>
-		                    <li><a>Logout</a></li>
+		                <ul ng-if="item.submenu" class="sub-menu collapse" id="profile">
+		                	<div ng-repeat='subItem in item.submenu'>
+		                		<li ng-class="subItem.style" ng-click="addActivo(item.name, subItem.name)"><a>{{ subItem.name }}</a></li>
+		                	</div>
 		                </ul>
+		               
 	            	</div>
 
-	                <li>
-	                  <a href="#">
-	                  <i class="fa fa-dashboard fa-lg"></i> Dashboard
-	                  </a>
-	                </li>
 
-	                <li  data-toggle="collapse" data-target="#products" class="collapsed active">
-	                  <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
-	                </li>
-	                <ul class="sub-menu collapse" id="products">
-	                    <li class="active"><a href="#">CSS3 Animation</a></li>
-	                    <li><a href="#">General</a></li>
-	                    <li><a href="#">Buttons</a></li>
-	                    <li><a href="#">Tabs & Accordions</a></li>
-	                    <li><a href="#">Typography</a></li>
-	                    <li><a href="#">FontAwesome</a></li>
-	                    <li><a href="#">Slider</a></li>
-	                    <li><a href="#">Panels</a></li>
-	                    <li><a href="#">Widgets</a></li>
-	                    <li><a href="#">Bootstrap Model</a></li>
-	                </ul>
-
-	                <li data-toggle="collapse" data-target="#service" class="" aria-expanded="true">
-	                  <a><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
-	                </li> 
-	                <ul class="sub-menu collapse" id="service">
-	                  <li>New Service 1</li>
-	                  <li>New Service 2</li>
-	                  <li>New Service 3</li>
-	                </ul>
-
-
-	                <li data-toggle="collapse" data-target="#new" class="collapsed">
-	                  <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
-	                </li>
-	                <ul class="sub-menu collapse" id="new">
-	                  <li>New New 1</li>
-	                  <li>New New 2</li>
-	                  <li>New New 3</li>
-	                </ul>
-
-
-	                 <li>
-	                  <a href="#">
-	                  <i class="fa fa-user fa-lg"></i> Profile
-	                  </a>
-	                  </li>
-
-	                 <li>
-	                  <a href="#">
-	                  <i class="fa fa-users fa-lg"></i> Users
-	                  </a>
-	                </li>
-	            </ul>
 	     </div>
 	</div>
-	<div col-sm-1></div>
-	<div col-sm-8>
-		<p> HOLA BOLA caracola</p>
+	<div class="col-sm-9">
+		<div ng-switch="selectedName">
+			<div ng-switch-when="map">
+				<menu-selected ctrl="mapCtrl" ></menu-selected>
+			</div>
+		</div>
+		
 	</div>
 </div>
