@@ -26,14 +26,14 @@ myApp.controller('menuCtrl',['$scope','$http','mantenimientoSrv',function($scope
 		$scope.pestaniasMenu.forEach(function(p){
 			if(p.name === name && !p.submenu){
 				p.style = 'active';
-				$scope.selectedName = p.name.toLowerCase() ;
+				$scope.selectedName = p.name.toLowerCase().replace(' ','');
 			}
 			else if(p.name === name && p.submenu && subName){
 				p.style = 'active';
 				p.submenu.forEach(function(s){
 					if(s.name === subName){
 						s.style = 'active';
-						$scope.selectedName = s.name.toLowerCase();
+						$scope.selectedName = s.name.toLowerCase().replace(' ','');
 					}
 				});
 			}
