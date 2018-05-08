@@ -52,6 +52,30 @@
 	  }
 	}
 	includeHTML();
+	
+	//DATE
+	function dateToString(date){
+        var fecha = '';
+        var dd = date.getDate();
+        var mm = date.getMonth() + 1; // Enero = 0
+        var yyyy = date.getFullYear();
+        if(dd < 10) {
+            dd = '0' + dd;
+        }
+        if(mm < 10) {
+            mm = '0' + mm;
+        }
+        fecha = dd + '/' + mm + '/' + yyyy;
+
+        return fecha;
+    }
+	function stringToDate(fecha) {
+        if(campoVacio(fecha)){
+            return "";
+        }
+        var array = fecha.split('/');
+        return new Date(parseInt(array[2],10), parseInt(array[1],10) - 1, parseInt(array[0],10));
+    }
 
 	//////Comprobación NIF/////
 	/*
