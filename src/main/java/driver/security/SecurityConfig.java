@@ -10,42 +10,51 @@ import org.springframework.security.web.authentication.*;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-//	@Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//     
-//        http.authorizeRequests().antMatchers("/**").hasRole("BASICO").and()
-//        .formLogin(); // default is /login with an HTTP post
+	@Override
+    protected void configure(HttpSecurity http) throws Exception {
+     
+        http.csrf().disable().authorizeRequests()
+        .antMatchers("/**").permitAll() 
+        .anyRequest().authenticated()
+        .and()
+        .formLogin() // default is /login with an HTTP post
+	        .loginPage("/index.html")
+	        .loginProcessingUrl("/login")
+	        .permitAll();
+        
+        super.configure(http);
+    }
+     
+     @Autowired
+        public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+            auth
+                .inMemoryAuthentication()
+                    .withUser("cecilio").password("miclave").roles("BASICO");
+        }
+//	 @Override
+//	 protected void configure(HttpSecurity http) throws Exception {
+//	        http.csrf().disable().authorizeRequests()
+//	            .antMatchers("/*").permitAll() //permitimos el acceso a /login a cualquiera
+//	            .anyRequest().authenticated() //cualquier otra peticion requiere autenticacion
+//	            .and()
+//	            .formLogin()
+////		             .loginPage("/login")
+////		             .loginProcessingUrl("/html/login.html")
+////		             .permitAll()
+//		        .and()
+//	            // Las peticiones /login pasaran previamente por este filtro
+//	            //.addFilterBefore(new LoginFilter("/", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
 //
-//        super.configure(http);
-//    }
-//     
-//     @Autowired
-//        public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//            auth
-//                .inMemoryAuthentication()
-//                    .withUser("cecilio").password("miclave").roles("BASICO");
-//        }
-	 @Override
-	    protected void configure(HttpSecurity http) throws Exception {
-	        http.csrf().disable().authorizeRequests()
-	            .antMatchers("/").permitAll() //permitimos el acceso a /login a cualquiera
-	            .anyRequest().authenticated() //cualquier otra peticion requiere autenticacion
-	            .and()
-	            // Las peticiones /login pasaran previamente por este filtro
-	            .addFilterBefore(new LoginFilter("/", authenticationManager()),
-	                    UsernamePasswordAuthenticationFilter.class)
+//	            // Las demás peticiones pasarán por este filtro para validar el token
+//	            .addFilterBefore(new JwtFilter(), UsernamePasswordAuthenticationFilter.class);
+//	    }
 
-	            // Las demás peticiones pasarán por este filtro para validar el token
-	            .addFilterBefore(new JwtFilter(),
-	                    UsernamePasswordAuthenticationFilter.class);
-	    }
-
-	    @Override
-	    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-	        // Creamos una cuenta de usuario por default
-	        auth.inMemoryAuthentication()
-	                .withUser("ask")
-	                .password("123")
-	                .roles("ADMIN");
-	    }
+//	    @Override
+//	    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//	        // Creamos una cuenta de usuario por default
+//	        auth.inMemoryAuthentication()
+//	                .withUser("ask")
+//	                .password("123")
+//	                .roles("ADMIN");
+//	    }
 }
