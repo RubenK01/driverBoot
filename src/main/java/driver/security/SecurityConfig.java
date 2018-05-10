@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.*;
 import org.springframework.security.web.authentication.*;
 import org.springframework.security.web.util.matcher.*;
 
+import driver.*;
 import driver.models.*;
 
 @Configuration
@@ -17,7 +18,7 @@ import driver.models.*;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-    private Usuario userService;
+    private UserService userService;
 	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
