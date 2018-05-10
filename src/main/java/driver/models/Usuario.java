@@ -12,9 +12,10 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@NotNull
-	private String nombre;
+	private String firstName;
 	@NotNull
-	private String apellido;
+	private String lastName;
+	
 	@NotNull
 	@Column(unique=true)
 	private String telefono;
@@ -45,6 +46,17 @@ public class Usuario {
 //	@NotNull
 //	private char rol;
 	
+	 @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	    @JoinTable(
+	            name = "users_roles",
+	            joinColumns = @JoinColumn(
+	                    name = "user_id", referencedColumnName = "id"),
+	            inverseJoinColumns = @JoinColumn(
+	                    name = "role_id", referencedColumnName = "id"))
+	    private Collection<Role> roles;
+	
+
+
 	@OneToMany(mappedBy="emisor")
 	private List<Mensaje> enviados;
 	
@@ -62,11 +74,62 @@ public class Usuario {
 	
 	@OneToMany(mappedBy="emisor")
 	private List<Valoracion> valoracionesEnviadas;
-
 	
+		/**
+	 * @param firstName
+	 * @param lastName
+	 * @param telefono
+	 * @param email
+	 * @param dni
+	 * @param nickUsuario
+	 * @param minutos
+	 * @param password
+	 * @param foto
+	 * @param activo
+	 * @param fechaAlta
+	 * @param fechaExpCarnet
+	 * @param fechaNacimiento
+	 * @param sexo
+	 * @param roles
+	 * @param enviados
+	 * @param recibidos
+	 * @param coches
+	 * @param valoracionesRecibidas
+	 * @param viajes
+	 * @param valoracionesEnviadas
+	 */
+	public Usuario(String firstName, String lastName, String telefono, String email, String dni, String nickUsuario,
+			int minutos, String password, byte[] foto, Boolean activo, Date fechaAlta, Date fechaExpCarnet,
+			Date fechaNacimiento, char sexo, Collection<Role> roles, List<Mensaje> enviados, List<Mensaje> recibidos,
+			List<Coche> coches, List<Valoracion> valoracionesRecibidas, List<ParticipanteViaje> viajes,
+			List<Valoracion> valoracionesEnviadas) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.telefono = telefono;
+		this.email = email;
+		this.dni = dni;
+		this.nickUsuario = nickUsuario;
+		this.minutos = minutos;
+		this.password = password;
+		this.foto = foto;
+		this.activo = activo;
+		this.fechaAlta = fechaAlta;
+		this.fechaExpCarnet = fechaExpCarnet;
+		this.fechaNacimiento = fechaNacimiento;
+		this.sexo = sexo;
+		this.roles = roles;
+		this.enviados = enviados;
+		this.recibidos = recibidos;
+		this.coches = coches;
+		this.valoracionesRecibidas = valoracionesRecibidas;
+		this.viajes = viajes;
+		this.valoracionesEnviadas = valoracionesEnviadas;
+	}
+
 	/**
-	 * @param nombre
-	 * @param apellido
+	 * @param firstName
+	 * @param lastName
 	 * @param telefono
 	 * @param email
 	 * @param dni
@@ -86,14 +149,14 @@ public class Usuario {
 	 * @param viajes
 	 * @param valoracionesEnviadas
 	 */
-	public Usuario(String nombre, String apellido, String telefono, String email, String dni, String nickUsuario,
-			int minutos, String password, byte[] foto, Boolean activo, Date fechaAlta, Date fechaExpCarnet,
-			Date fechaNacimiento, char sexo, List<Mensaje> enviados, List<Mensaje> recibidos, List<Coche> coches,
-			List<Valoracion> valoracionesRecibidas, List<ParticipanteViaje> viajes,
+	public Usuario(String firstName, String lastName, String telefono, String email, String dni,
+			String nickUsuario, int minutos, String password, byte[] foto, Boolean activo, Date fechaAlta,
+			Date fechaExpCarnet, Date fechaNacimiento, char sexo, List<Mensaje> enviados, List<Mensaje> recibidos,
+			List<Coche> coches, List<Valoracion> valoracionesRecibidas, List<ParticipanteViaje> viajes,
 			List<Valoracion> valoracionesEnviadas) {
 		super();
-		this.nombre = nombre;
-		this.apellido = apellido;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.telefono = telefono;
 		this.email = email;
 		this.dni = dni;
@@ -114,6 +177,9 @@ public class Usuario {
 		this.valoracionesEnviadas = valoracionesEnviadas;
 	}
 
+	public Usuario() {
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -122,20 +188,20 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getApellido() {
-		return apellido;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getTelefono() {
@@ -226,6 +292,14 @@ public class Usuario {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
+	public char getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(char sexo) {
+		this.sexo = sexo;
+	}
+
 	public List<Mensaje> getEnviados() {
 		return enviados;
 	}
@@ -274,15 +348,14 @@ public class Usuario {
 		this.valoracionesEnviadas = valoracionesEnviadas;
 	}
 
-	public char getSexo() {
-		return sexo;
+	public Collection<Role> getRoles() {
+		return roles;
 	}
 
-	public void setSexo(char sexo) {
-		this.sexo = sexo;
+	public void setRoles(Collection<Role> roles) {
+		this.roles = roles;
 	}
+
 	
-
-
-
+	
 }

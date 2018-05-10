@@ -6,7 +6,7 @@ myApp.controller('menuCtrl',['$scope','$http','mantenimientoSrv',function($scope
 					{name: 'New Trip', style: '', ico: 'fa fa-map-marker fa-lg'},
 					{name: 'My Trips', style: '', ico: 'fa fa-car fa-lg'},
 					{name: 'Inbox', style: '', ico: 'fa fa-envelope fa-lg'},
-					{name: 'Profile', style: 'collapsed', ico: 'fa fa-user fa-lg', submenu: [{name: 'My Account', style:''}, {name: 'Settings', style:''}, {name: 'Logout', style:''} ]} ];
+					{name: 'Profile', style: 'collapsed', ico: 'fa fa-user fa-lg', submenu: [{name: 'My Account', style:''}, {name: 'Settings', style:''}, {name: 'Log Out', style:''} ]} ];
 	
 	$scope.selectedName = 'map';
 
