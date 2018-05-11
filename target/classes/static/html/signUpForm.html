@@ -1,33 +1,37 @@
 <div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form form-group" style="margin-top: -250px;">
+				<form  action='/registration' method='POST'  class="login100-form validate-form form-group" style="margin-top: -250px;">
 					<a title="Go back" href="#/"><img src="images/icons/back.png" style="margin-top: -30px;width: 45px;height: 45px;margin-bottom: -34px;" alt="Go back"  /></a>
 					<span class="login100-form-title p-b-34">
 						Sign Up
 					</span>
 					
-					<div class="wrap-input100 validate-input m-b-20" data-validate="Type email">
-						<input id="email" class="input100" type="email" name="email" placeholder="Email">
-						<span class="focus-input100"></span>
-					</div>
-					<div class="wrap-input100 validate-input m-b-20" data-validate="Type password">
-						<input class="input100" type="password" name="pass" placeholder="Password">
-						<span class="focus-input100"></span>
-					</div>
-					<div class="wrap-input100 validate-input m-b-20" data-validate="Type password">
-						<input class="input100" type="password" name="confirmPass" placeholder="Confirm password">
-						<span class="focus-input100"></span>
-					</div>
 					<div class="wrap-input100 validate-input m-b-20" data-validate="Type your name">
-						<input id="name" class="input100" type="text" name="name" placeholder="Name">
+						<input id="firstName" class="input100" type="text" name="firstName" placeholder="First Name">
 						<span class="focus-input100"></span>
 					</div>
 					<div class="wrap-input100 validate-input m-b-20" data-validate="Type your last name">
 						<input id="lastName" class="input100" type="text" name="lastName" placeholder="Last name">
 						<span class="focus-input100"></span>
 					</div>
-					<div class="wrap-input100 validate-input m-b-20" data-validate="Type your DNI">
+					<div class="wrap-input100 validate-input m-b-20" data-validate="Type email">
+						<input id="email" class="input100" type="email" name="email" placeholder="Email">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-20" data-validate="Type email">
+						<input id="confirmEmail" class="input100" type="email" name="confirmEmail" placeholder="Email">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-20" data-validate="Type password">
+						<input class="input100" type="password" name="password" id="password" placeholder="Password">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-20" data-validate="Type password">
+						<input class="input100" type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password">
+						<span class="focus-input100"></span>
+					</div>					
+					<!-- <div class="wrap-input100 validate-input m-b-20" data-validate="Type your DNI">
 						<input id="dni" class="input100" type="text" maxlength="9" name="dni" placeholder="DNI">
 						<span class="focus-input100"></span>
 					</div>
@@ -65,9 +69,9 @@
 					<div class="row wrap-input100 validate-input m-b-20" style="margin-left: 0px;">
 						<div ng-include="'html/addCar.htm'"></div>
 						<span class="focus-input100"></span>
-					</div>
+					</div> -->
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button type="submit" class="login100-form-btn">
 							Sign Up
 						</button>
 					</div>

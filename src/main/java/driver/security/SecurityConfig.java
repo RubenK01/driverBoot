@@ -24,18 +24,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
      
         http.csrf().disable().authorizeRequests()
-        .antMatchers("/**").permitAll() 
+        .antMatchers("/signUp.html", "/registration", "/lib/**","/vendor/**", "/css/**", "/fonts/**", "/images/**").permitAll() 
         .anyRequest().authenticated()
         .and()
 	        .formLogin() // default is /login with an HTTP post
-		        .loginPage("/index.html")
+		        .loginPage("/login.html")
 		        .loginProcessingUrl("/login")
 		        .permitAll()
         .and()
 	        .logout()
 	        .invalidateHttpSession(true)
 	        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-	        .logoutSuccessUrl("/login?logout")
+	        .logoutSuccessUrl("/login.html")
         .permitAll();
         
         //super.configure(http);

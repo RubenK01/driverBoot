@@ -28,6 +28,8 @@ public class UserRegistrationDto {
 	    private String confirmEmail;
 
 
+//	    @AssertTrue
+//	    private Boolean terms;
 	    public String getFirstName() {
 	        return firstName;
 	    }

@@ -17,7 +17,7 @@ public class UserRegistrationController {
 	@Autowired
     private UserService userService;
 
-    @ModelAttribute("user")
+    @ModelAttribute("usuario")
     public UserRegistrationDto userRegistrationDto() {
         return new UserRegistrationDto();
     }
@@ -25,12 +25,12 @@ public class UserRegistrationController {
     //@GetMapping
     @RequestMapping(method = RequestMethod.GET)
     public String showRegistrationForm(Model model) {
-        return "registration";
+        return "redirect:/signUp.html";
     }
 
     //@PostMapping
     @RequestMapping(method = RequestMethod.POST)
-    public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto userDto, 
+    public String registerUserAccount(@ModelAttribute("usuario") @Valid UserRegistrationDto userDto, 
                                       BindingResult result){
 
         Usuario existing = userService.findByEmail(userDto.getEmail());
@@ -39,10 +39,10 @@ public class UserRegistrationController {
         }
 
         if (result.hasErrors()){
-            return "registration";
+            return "redirect:/signUp.html?error";
         }
 
         userService.save(userDto);
-        return "redirect:/registration?success";
+        return "redirect:/#/menu";
     }
 }

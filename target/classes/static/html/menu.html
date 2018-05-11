@@ -5,7 +5,7 @@
 	</div>
 </div>
 -->
-<div class="row" style="margin: 0px; height: -webkit-fill-available;">
+<div ng-controller="menuCtrl" class="row" style="margin: 0px; height: -webkit-fill-available;">
 	<div class="col-sm-3 nav-side-menu">
 	    <div class="brand">Brand Logo</div>
 	    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
@@ -25,7 +25,8 @@
 		                </li>
 		                <ul ng-if="item.submenu" class="sub-menu collapse" id="profile">
 		                	<div ng-repeat='subItem in item.submenu'>
-		                		<li ng-class="subItem.style" ng-click="addActivo(item.name, subItem.name)"><a>{{ subItem.name }}</a></li>
+		                		<li ng-if="subItem.name != 'Log Out'" ng-class="subItem.style" ng-click="addActivo(item.name, subItem.name)"><a>{{ subItem.name }}</a></li>
+		                		<li ng-if="subItem.name == 'Log Out'" ng-class="subItem.style" ng-click="addActivo(item.name, subItem.name)"><a href="/logout">{{ subItem.name }}</a></li>
 		                	</div>
 		                </ul>
 		               
