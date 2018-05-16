@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="DriverApp">
 <head>
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -39,7 +39,7 @@
 <title>DRIVER</title>
 
 </head>
-<body>
+<body ng-controller="PrincipalCtrl">
 	
 		<div class="row" style="margin:0px;height: 100%;">
 			<div class="limiter">
@@ -70,12 +70,6 @@
 									New user?  | 
 								</span>
 						
-								<a href="/registration" class="txt3">
-									Sign Up
-								</a>
-							</div>
-						
-							<div class="w-full text-center">
 								<a href="/registration" class="txt3">
 									Sign Up
 								</a>
@@ -177,6 +171,9 @@
 <!--===============================================================================================-->
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
+	
+	<script src="js/main.js"></script>
+	<script src="js/PrincipalCtrl.js"></script>
 	
 </body>
 

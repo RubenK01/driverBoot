@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="DriverApp">
 <head>
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -39,52 +39,58 @@
 <title>DRIVER</title>
 
 </head>
-<body>
+<body ng-controller="PrincipalCtrl">
 	
 		<div class="row" style="margin:0px;height: 100%;">
 			<div class="limiter">
 				<div class="container-login100">
 					<div class="wrap-login100">
-						<form  action='/registration' method='POST'  class="login100-form validate-form form-group" style="margin-top: -250px;">
+						<form  action='/registration' method='POST'  class="login100-form validate-form form-group" style="margin-top: -250px;padding-top: 275px;">
 							<a title="Go back" href="/"><img src="images/icons/back.png" style="margin-top: -30px;width: 45px;height: 45px;margin-bottom: -34px;" alt="Go back"  /></a>
 							<span class="login100-form-title p-b-34">
 								Sign Up
 							</span>
 							
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your name">
-								<input id="firstName" class="input100" type="text" name="firstName" placeholder="First Name">
+								<input id="firstName" required class="input100" mask="@"  type="text" name="firstName" placeholder="First Name (*)">
 								<span class="focus-input100"></span>
 							</div>
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your last name">
-								<input id="lastName" class="input100" type="text" name="lastName" placeholder="Last name">
+								<input id="lastName" required class="input100" mask="@"  type="text" name="lastName" placeholder="Last name (*)">
 								<span class="focus-input100"></span>
 							</div>
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type email">
-								<input id="email" class="input100" type="email" name="email" placeholder="Email">
+								<input id="email" required class="input100" type="email" name="email" placeholder="Email (*)">
 								<span class="focus-input100"></span>
 							</div>
-							<div class="wrap-input100 validate-input m-b-20" data-validate="Type email">
-								<input id="confirmEmail" class="input100" type="email" name="confirmEmail" placeholder="Email">
-								<span class="focus-input100"></span>
-							</div>
-							<div class="wrap-input100 validate-input m-b-20" data-validate="Type password">
-								<input class="input100" type="password" name="password" id="password" placeholder="Password">
+							<div class="wrap-input100 validate-input m-b-20" data-validate="The confirm email is not match with email">
+								<input id="confirmEmail" required class="input100" type="email" name="confirmEmail" placeholder="Confirm Email (*)">
 								<span class="focus-input100"></span>
 							</div>
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type password">
-								<input class="input100" type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password">
-								<span class="focus-input100"></span>
-							</div>					
-							<!-- <div class="wrap-input100 validate-input m-b-20" data-validate="Type your DNI">
-								<input id="dni" class="input100" type="text" maxlength="9" name="dni" placeholder="DNI">
+								<input class="input100" required type="password" name="password" id="password" placeholder="Password (*)">
 								<span class="focus-input100"></span>
 							</div>
+							<div class="wrap-input100 validate-input m-b-20" data-validate="Type password">
+								<input class="input100" required type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password (*)">
+								<span class="focus-input100"></span>
+							</div>			
+							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your driver's license expiraty date">
+								<input id="fExpLicense" class="input100 datepicker" mask="39-19-2999" restrict="reject"" clean="true" ng-model="fLicense" type="text" maxlength="10"  required name="fExpLicense" placeholder="Driver's license expiry date (dd/MM/yyyy) (*)" >
+								<span class="focus-input100"></span>
+							</div>
+							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your DNI">
+								<input id="dni" class="input100" mask="9?9?9?9?9?9?9?9-@" ng-model="dni" restrict="reject"" clean="true" type="text" maxlength="9" name="dni" placeholder="DNI">
+								<span class="focus-input100"></span>	
+							</div>	
+							<!-- 
+							 pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}"
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your driver's license expiraty date">
 								<input id="fExpLicense" class="input100 datepicker" type="text" name="fExpLicense" placeholder="Driver's license expiry date (dd/MM/yyyy)">
 								<span class="focus-input100"></span>
 							</div>
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your phone number">
-								<input id="phone" class="input100" type="text" maxlength="9" name="phone" placeholder="Phone number">
+								<input id="phone" class="input100" mask="999 999 999" restrict="reject"" clean="true" type="text" maxlength="9" name="phone" placeholder="Phone number">
 								<span class="focus-input100"></span>
 							</div>
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your birth date">
@@ -196,6 +202,7 @@
 	<script src="lib/angular-animate.js"></script>
 	<script src="lib/angular-route.js"></script>
 	<script src="lib/angular-locale_es-es.js"></script>
+	<script src="lib/ngMask.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 	
@@ -220,6 +227,9 @@
 <!--===============================================================================================-->
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
+	
+	<script src="js/main.js"></script>
+	<script src="js/PrincipalCtrl.js"></script>
 	
 </body>
 
