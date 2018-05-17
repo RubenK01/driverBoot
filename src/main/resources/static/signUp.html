@@ -63,7 +63,7 @@
 								<input id="email" required class="input100" type="email" name="email" placeholder="Email (*)">
 								<span class="focus-input100"></span>
 							</div>
-							<div class="wrap-input100 validate-input m-b-20" data-validate="The confirm email is not match with email">
+							<div class="wrap-input100 validate-input m-b-20" data-validate="The email confirmation doesn't match the email field above">
 								<input id="confirmEmail" required class="input100" type="email" name="confirmEmail" placeholder="Confirm Email (*)">
 								<span class="focus-input100"></span>
 							</div>
@@ -71,30 +71,24 @@
 								<input class="input100" required type="password" name="password" id="password" placeholder="Password (*)">
 								<span class="focus-input100"></span>
 							</div>
-							<div class="wrap-input100 validate-input m-b-20" data-validate="Type password">
+							<div class="wrap-input100 validate-input m-b-20" data-validate="The email confirmation doesn't match the email field above">
 								<input class="input100" required type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password (*)">
 								<span class="focus-input100"></span>
 							</div>			
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your driver's license expiraty date">
-								<input id="fExpLicense" class="input100 datepicker" mask="39-19-2999" restrict="reject"" clean="true" ng-model="fLicense" type="text" maxlength="10"  required name="fExpLicense" placeholder="Driver's license expiry date (dd/MM/yyyy) (*)" >
+								<input id="fExpLicense" class="input100" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" mask="39.19.2999" restrict="reject"" clean="true" ng-model="fLicense" type="text" maxlength="10"  required name="fExpLicense" placeholder="Driver's license expiry date (dd/MM/yyyy) (*)" >
 								<span class="focus-input100"></span>
 							</div>
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your DNI">
 								<input id="dni" class="input100" mask="9?9?9?9?9?9?9?9-@" ng-model="dni" restrict="reject"" clean="true" type="text" maxlength="9" name="dni" placeholder="DNI">
 								<span class="focus-input100"></span>	
 							</div>	
-							<!-- 
-							 pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}"
-							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your driver's license expiraty date">
-								<input id="fExpLicense" class="input100 datepicker" type="text" name="fExpLicense" placeholder="Driver's license expiry date (dd/MM/yyyy)">
-								<span class="focus-input100"></span>
-							</div>
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your phone number">
 								<input id="phone" class="input100" mask="999 999 999" restrict="reject"" clean="true" type="text" maxlength="9" name="phone" placeholder="Phone number">
 								<span class="focus-input100"></span>
 							</div>
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your birth date">
-								<input id="birthDate" class="input100" type="text" name="birthDate" placeholder="Birth date (dd/MM/yyyy)">
+								<input id="birthDate" class="input100" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" mask="39.19.2999" restrict="reject"" clean="true" ng-model="fLicense" type="text" maxlength="10"  required name="birthDate" placeholder="Birth date (dd/MM/yyyy) (*)">
 								<span class="focus-input100"></span>
 							</div>
 							<div class="wrap-input100 m-b-20">
@@ -112,10 +106,24 @@
 								<span class="focus-input100"></span>
 							</div>
 							<div class="row wrap-input100 validate-input m-b-20" style="margin-left: 0px;">
-								<label class="col-sm-2  radio-inline input100-radio">Foto:</label>
+								<label class="col-sm-2  radio-inline input100-radio">Profile Image:</label>
 								<input class="col-sm-10 input100-radio" type="file" style="margin-bottom: 7px;margin-top: 5px;" name="fotoUser" accept="image/*" />
 								<span class="focus-input100"></span>
 							</div>
+							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your DNI">
+								<label class="col-sm-2  radio-inline input100-radio">Add Cars:</label>
+								<button id="addCar" class="login100-form-btn" ng-click="" name="addCar">
+								<span class="focus-input100"></span>	
+							</div>
+							<!-- 
+							 
+							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your driver's license expiraty date">
+								<input id="fExpLicense" class="input100 datepicker" type="text" name="fExpLicense" placeholder="Driver's license expiry date (dd/MM/yyyy)">
+								<span class="focus-input100"></span>
+							</div>
+							
+							
+							
 							<div class="row wrap-input100 validate-input m-b-20" style="margin-left: 0px;">
 								<div ng-include="'html/addCar.htm'"></div>
 								<span class="focus-input100"></span>
