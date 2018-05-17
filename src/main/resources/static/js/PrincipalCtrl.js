@@ -5,7 +5,7 @@ var myApp = angular.module('DriverApp',['ngMask']);
 
 
 //myApp.controller('PrincipalCtrl',['$scope','$http','mantenimientoSrv',function($scope,$http,mantenimientoSrv){
-myApp.controller('PrincipalCtrl',['$scope',function($scope){
+myApp.controller('PrincipalCtrl',['$scope', '$modal',function($scope, $modal){
 	$scope.showSignUp = true;
 	$scope.showLogin = false;
 	
@@ -13,6 +13,49 @@ myApp.controller('PrincipalCtrl',['$scope',function($scope){
 	$scope.doSignUp = function(){
 	    $scope.showSignUp = true;
 	    $scope.showLogin = false;
+	}
+	
+	function modalAddCar() {
+		var modalInstance = $modal.open({
+            //backdrop: 'static',
+            templateUrl: 'ventanaCierre/html/ventanaCierre.html',
+            controller: 'ventanaCierreCtrl',
+            resolve: {
+                items: function () {
+                    return {
+                        data: dataAp,
+                        claveSolicitud: datosEntrada.kSolicitud,
+                        kGrupo: datosEntrada.kGrupo,
+                        modoCons: datosEntrada.modoConsulta,
+                        cModalidad: datosEntrada.cModalidad,
+                        cIdioma: datosEntrada.cIdioma,
+                        consObjCierre: datosConsulta,
+                        sActualizSupto: sUpdateSupt,
+                        sAutorizaciones: sAutorizations,
+                        cOrigenSup: datosEntrada.cOrigenSup
+                    };
+                }
+            },
+            size: 'lg'
+        });
+        //TODO - Esto va en un evento de vuelta al origen de apertura del cierre
+        modalInstance.result.then(function () {
+            if(datosEntrada.origen === 'CAPTURA'){
+                $rootScope.$broadcast('aceptarCierreCaptura');
+            } else if (datosEntrada.origen === 'GESTSOL'){
+                $rootScope.$broadcast('aceptarCierreGestSol');
+            } else if (datosEntrada.origen === 'GESTSUP'){
+                $rootScope.$broadcast('aceptarCierreGestSup');
+            }
+        }, function (data) {
+            if(datosEntrada.origen === 'CAPTURA'){
+                $rootScope.$broadcast('cancelarCierreCaptura', data);
+            } else if (datosEntrada.origen === 'GESTSOL'){
+                $rootScope.$broadcast('cancelarCierreGestSol', data);
+            } else if (datosEntrada.origen === 'GESTSUP'){
+                $rootScope.$broadcast('cancelarCierreGestSup', data);
+            }
+        });
 	}
 	
 //	$scope.rellenaFecha = function(){
