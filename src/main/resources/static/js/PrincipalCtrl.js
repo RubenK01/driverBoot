@@ -1,11 +1,11 @@
 
 
 //var myApp = angular.module('DriverApp',['restPruebaApp', 'ngRoute','ngAnimate','ui.bootstrap', 'ngMap', 'google-maps']);
-var myApp = angular.module('DriverApp',['ngMask']);
+var myApp = angular.module('DriverApp',['ngMask', 'ui.bootstrap']);
 
 
 //myApp.controller('PrincipalCtrl',['$scope','$http','mantenimientoSrv',function($scope,$http,mantenimientoSrv){
-myApp.controller('PrincipalCtrl',['$scope', '$modal',function($scope, $modal){
+myApp.controller('PrincipalCtrl',['$scope', '$uibModal',function($scope, $uibModal){
 	$scope.showSignUp = true;
 	$scope.showLogin = false;
 	
@@ -15,12 +15,12 @@ myApp.controller('PrincipalCtrl',['$scope', '$modal',function($scope, $modal){
 	    $scope.showLogin = false;
 	}
 	
-	function modalAddCar() {
-		var modalInstance = $modal.open({
+	$scope.modalAddCar = function() {
+		var modalInstance = $uibModal.open({
             //backdrop: 'static',
-            templateUrl: 'ventanaCierre/html/ventanaCierre.html',
-            controller: 'ventanaCierreCtrl',
-            resolve: {
+            templateUrl: '/html/addCar.html',
+            //controller: 'ventanaCierreCtrl',
+            /*resolve: {
                 items: function () {
                     return {
                         data: dataAp,
@@ -35,26 +35,27 @@ myApp.controller('PrincipalCtrl',['$scope', '$modal',function($scope, $modal){
                         cOrigenSup: datosEntrada.cOrigenSup
                     };
                 }
-            },
+            },*/
             size: 'lg'
         });
         //TODO - Esto va en un evento de vuelta al origen de apertura del cierre
-        modalInstance.result.then(function () {
-            if(datosEntrada.origen === 'CAPTURA'){
-                $rootScope.$broadcast('aceptarCierreCaptura');
-            } else if (datosEntrada.origen === 'GESTSOL'){
-                $rootScope.$broadcast('aceptarCierreGestSol');
-            } else if (datosEntrada.origen === 'GESTSUP'){
-                $rootScope.$broadcast('aceptarCierreGestSup');
-            }
-        }, function (data) {
-            if(datosEntrada.origen === 'CAPTURA'){
-                $rootScope.$broadcast('cancelarCierreCaptura', data);
-            } else if (datosEntrada.origen === 'GESTSOL'){
-                $rootScope.$broadcast('cancelarCierreGestSol', data);
-            } else if (datosEntrada.origen === 'GESTSUP'){
-                $rootScope.$broadcast('cancelarCierreGestSup', data);
-            }
+        modalInstance.result
+        .then(function () {  //result
+//            if(datosEntrada.origen === 'CAPTURA'){
+//                $rootScope.$broadcast('aceptarCierreCaptura');
+//            } else if (datosEntrada.origen === 'GESTSOL'){
+//                $rootScope.$broadcast('aceptarCierreGestSol');
+//            } else if (datosEntrada.origen === 'GESTSUP'){
+//                $rootScope.$broadcast('aceptarCierreGestSup');
+//            }
+        }, function (/*data*/) {  //reject
+//            if(datosEntrada.origen === 'CAPTURA'){
+//                $rootScope.$broadcast('cancelarCierreCaptura', data);
+//            } else if (datosEntrada.origen === 'GESTSOL'){
+//                $rootScope.$broadcast('cancelarCierreGestSol', data);
+//            } else if (datosEntrada.origen === 'GESTSUP'){
+//                $rootScope.$broadcast('cancelarCierreGestSup', data);
+//            }
         });
 	}
 	

@@ -24,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
      
         http.csrf().disable().authorizeRequests()
-        .antMatchers("/signUp.html", "/js/main.js", "/js/PrincipalCtrl.js", "/registration", "/lib/**","/vendor/**", "/css/**", "/fonts/**", "/images/**").permitAll() 
+        .antMatchers("/signUp.html","/html/addCar.html", "/js/main.js", "/js/PrincipalCtrl.js", "/registration", "/lib/**","/vendor/**", "/css/**", "/fonts/**", "/images/**").permitAll() 
         .anyRequest().authenticated()
         .and()
 	        .formLogin() // default is /login with an HTTP post

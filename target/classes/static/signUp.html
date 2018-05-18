@@ -52,11 +52,11 @@
 							</span>
 							
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your name">
-								<input id="firstName" required class="input100" mask="@"  type="text" name="firstName" placeholder="First Name (*)">
+								<input id="firstName" required class="input100" ng-model="firstName" mask="@"  type="text" name="firstName" placeholder="First Name (*)">
 								<span class="focus-input100"></span>
 							</div>
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your last name">
-								<input id="lastName" required class="input100" mask="@"  type="text" name="lastName" placeholder="Last name (*)">
+								<input id="lastName" required class="input100" ng-model="lastName" mask="@"  type="text" name="lastName" placeholder="Last name (*)">
 								<span class="focus-input100"></span>
 							</div>
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type email">
@@ -106,9 +106,14 @@
 								<span class="focus-input100"></span>
 							</div>
 							<div class="row wrap-input100 validate-input m-b-20" style="margin-left: 0px;">
-								<label class="col-sm-2  radio-inline input100-radio">Foto:</label>
+								<label class="col-sm-2  radio-inline input100-radio">Profile Image:</label>
 								<input class="col-sm-10 input100-radio" type="file" style="margin-bottom: 7px;margin-top: 5px;" name="fotoUser" accept="image/*" />
 								<span class="focus-input100"></span>
+							</div>
+							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your DNI">
+								<label class="col-sm-2  radio-inline input100-radio">Add Cars:</label>
+								<button id="addCar" class="login100-form-btn" ng-click="modalAddCar" name="addCar">
+								<span class="focus-input100"></span>	
 							</div>
 							<!-- 
 							 
