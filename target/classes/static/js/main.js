@@ -148,12 +148,12 @@
     /*==================================================================
     [ Validate ]*/
 	
-	var fExpLicense = document.getElementById('fExpLicense');
-	
-	fExpLicense.oninvalid = function(event) {
-	    event.target.setCustomValidity("Date format (dd/MM/yyyy). e.g. '14/5/2025'");
-	};
-	
+//	var fExpLicense = document.getElementById('fExpLicense');
+//	
+//	fExpLicense.oninvalid = function(event) {
+//	    event.target.setCustomValidity("Date format (dd/MM/yyyy). e.g. '14/5/2025'");
+//	};
+//	
     var input = $('.validate-input .input100');
 
     $('.validate-form').on('submit',function(){
