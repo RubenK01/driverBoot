@@ -18,24 +18,12 @@ myApp.controller('PrincipalCtrl',['$scope', '$uibModal',function($scope, $uibMod
 	$scope.modalAddCar = function() {
 		var modalInstance = $uibModal.open({
             //backdrop: 'static',
-            templateUrl: '/html/addCar.html',
+            templateUrl: '/html/addCar.htm',
             //controller: 'ventanaCierreCtrl',
-            /*resolve: {
-                items: function () {
-                    return {
-                        data: dataAp,
-                        claveSolicitud: datosEntrada.kSolicitud,
-                        kGrupo: datosEntrada.kGrupo,
-                        modoCons: datosEntrada.modoConsulta,
-                        cModalidad: datosEntrada.cModalidad,
-                        cIdioma: datosEntrada.cIdioma,
-                        consObjCierre: datosConsulta,
-                        sActualizSupto: sUpdateSupt,
-                        sAutorizaciones: sAutorizations,
-                        cOrigenSup: datosEntrada.cOrigenSup
-                    };
-                }
-            },*/
+            windowClass: 'modal',
+            resolve: {
+                
+            },
             size: 'lg'
         });
         //TODO - Esto va en un evento de vuelta al origen de apertura del cierre
