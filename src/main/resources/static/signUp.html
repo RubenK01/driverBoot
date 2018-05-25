@@ -15,6 +15,7 @@
 	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"> -->
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
@@ -60,7 +61,7 @@
 								<span class="focus-input100"></span>
 							</div>
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type email">
-								<input id="email" required class="input100" type="email" name="email" placeholder="Email (*)">
+								<input id="email" ng-model="email"  required class="input100" type="email" name="email" placeholder="Email (*)">
 								<span class="focus-input100"></span>
 							</div>
 							<div class="wrap-input100 validate-input m-b-20" data-validate="The email confirmation doesn't match the email field above">
@@ -68,7 +69,7 @@
 								<span class="focus-input100"></span>
 							</div>
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type password">
-								<input class="input100" required type="password" name="password" id="password" placeholder="Password (*)">
+								<input class="input100" ng-model="password"  required type="password" name="password" id="password" placeholder="Password (*)">
 								<span class="focus-input100"></span>
 							</div>
 							<div class="wrap-input100 validate-input m-b-20" data-validate="The email confirmation doesn't match the email field above">
@@ -76,30 +77,30 @@
 								<span class="focus-input100"></span>
 							</div>			
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your driver's license expiraty date">
-								<input id="fExpLicense" class="input100"  mask="39.19.2999" restrict="reject"" clean="true" ng-model="fLicense" type="text" maxlength="10"  required name="fExpLicense" placeholder="Driver's license expiry date (dd/MM/yyyy) (*)" >
+								<input id="fExpLicense" class="input100"  mask="39/19/2999" restrict="reject"" clean="true" ng-model="fLicense" type="text" maxlength="10"  required name="fExpLicense" placeholder="Driver's license expiry date (dd/MM/yyyy) (*)" >
 								<span class="focus-input100"></span>
 							</div>
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your DNI">
-								<input id="dni" class="input100" mask="9?9?9?9?9?9?9?9-@" ng-model="dni" restrict="reject"" clean="true" type="text" maxlength="9" name="dni" placeholder="DNI">
+								<input id="dni" class="input100" mask="9?9?9?9?9?9?9?9-@" ng-model="dni" restrict="reject"" clean="true" type="text" maxlength="10" name="dni" placeholder="DNI">
 								<span class="focus-input100"></span>	
 							</div>	
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your phone number">
-								<input id="phone" class="input100" mask="999 999 999" restrict="reject"" clean="true" type="text" maxlength="9" name="phone" placeholder="Phone number">
+								<input id="phone" ng-model="phone"  class="input100" mask="999 999 999" restrict="reject"" clean="true" type="text" maxlength="11" name="phone" placeholder="Phone number">
 								<span class="focus-input100"></span>
 							</div>
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your birth date">
-								<input id="birthDate" class="input100"  mask="39.19.2999" restrict="reject"" clean="true" ng-model="fLicense" type="text" maxlength="10"  required name="birthDate" placeholder="Birth date (dd/MM/yyyy) (*)">
+								<input id="birthDate" class="input100"  mask="39/19/2999" restrict="reject"" clean="true" ng-model="fBirth" type="text" maxlength="10"  required name="birthDate" placeholder="Birth date (dd/MM/yyyy) (*)">
 								<span class="focus-input100"></span>
 							</div>
 							<div class="wrap-input100 m-b-20">
 								<div >
 									<label class="radio-inline input100-radio">Gender:</label>
 									<label class="radio-inline input100-radio">
-										<input type="radio" name="gender" value="m" checked> Male
+										<input ng-model="gender" checked  type="radio" name="gender" value="m" checked> Male
 									</label>
 									
 									<label class="radio-inline input100-radio">
-										<input type="radio" name="gender" value="f"> Female
+										<input ng-model="gender"  type="radio" name="gender" value="f"> Female
 									</label>
 								</div>
 								
@@ -107,14 +108,48 @@
 							</div>
 							<div class="row wrap-input100 validate-input m-b-20" style="margin-left: 0px;">
 								<label class="col-sm-2  radio-inline input100-radio">Profile Image:</label>
-								<input class="col-sm-10 input100-radio" type="file" style="margin-bottom: 7px;margin-top: 5px;" name="fotoUser" accept="image/*" />
+								<input class="col-sm-10 input100-radio" ng-model="userImg"  type="file" style="margin-bottom: 7px;margin-top: 5px;" name="fotoUser" accept="image/*" />
 								<span class="focus-input100"></span>
 							</div>
-							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your DNI">
+							<div class="row" ng-if="listCars.length > 0">
+								<h4>My Cars:</h4>
+								
+								<label>Model: </label>
+								<span>{{car.model}}</span>
+								<img src={{imgUrl}} class="img-responsive"></img>
+								
+							</div>
+							<h4 class="row"  style="margin: 11px;">Add Cars</h4>
+							<div class="wrap-input100 validate-input m-b-20">
+								<input id="modelCar" class="input100" ng-model="modelCar" type="text" name="modelCar" placeholder="Model Car (*)">
+								<span class="focus-input100"></span>
+							</div>
+							<div class="wrap-input100 validate-input m-b-20">
+								<input id="matriculaCar" class="input100" ng-model="matriculaCar" type="text" name="matriculaCar" placeholder="Car Registration (*)">
+								<span class="focus-input100"></span>
+							</div>
+							<div class="wrap-input100 validate-input m-b-20">
+								<input id="colorCar" class="input100" ng-model="colorCar" type="text" name="colorCar" placeholder="Color Car (*)">
+								<span class="focus-input100"></span>
+							</div>
+							<div class="row wrap-input100 validate-input m-b-20" style="margin-left: 0px;">
+								<label class="col-sm-4  radio-inline input100-radio">Car Image:</label>
+								<input accept="image/*" name="file" ng-value="fileToUpload"
+							       value="{{fileToUpload}}" file-model="fileToUpload"
+							       set-file-data="fileToUpload = value;" 
+							       type="file" id="my_file" style="display:none" />
+							    <input type="button" value="Upload image" class="col-sm-4 btn btn-default" onclick="document.getElementById('my_file').click();" >
+							    <span value="imgCar.name" class="col-sm-4">{{fileToUpload.name}}</span>
+							    
+								<!-- <input class="col-sm-10 input100-radio" fileread="carImg"  type="file" style="margin-bottom: 7px;margin-top: 5px;" name="fotoUser" accept="image/*" /> -->
+								<span class="focus-input100"></span>
+							</div>
+							<a class="btn btn-default green" ng-click="addCar()" style="margin: 8px;">Add</a>
+							<!-- <div class="wrap-input100 validate-input m-b-20" data-validate="Type your DNI">
 								<label class="col-sm-2  radio-inline input100-radio">Add Cars:</label>
 								<a id="addCar" class="btn btn-default" ng-click="modalAddCar();" name="addCar">Add Car</a>
 								<span class="focus-input100"></span>	
-							</div>
+							</div> -->
 							<!-- 
 							 
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your driver's license expiraty date">
@@ -206,22 +241,31 @@
 	
 
 <!--===============================================================================================-->
+	
 	<script src="lib/angular.js"></script>
+	
 	<script src="lib/angular-animate.js"></script>
 	<script src="lib/angular-route.js"></script>
 	<script src="lib/angular-locale_es-es.js"></script>
 	<script src="lib/ngMask.min.js"></script>
-	<script src="lib/ui-bootstrap-tpls-2.5.0.min.js"></script>
+	
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script> -->
+	<!-- <script src="vendor/jquery/jquery-3.2.1.min.js"></script> -->
+	<script src="lib/ui-bootstrap-tpls.min.js"></script>
+	<!-- <script src="lib/ui-bootstrap-tpls.js"></script> -->
+	<!-- <script src="lib/bootstrap/js/bootstrap.js"></script> -->
 	
-	<script src="lib/bootstrap/js/bootstrap.js"></script>
-	<script src="lib/ui-bootstrap-tpls.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!-- <script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script> -->
 <!--===============================================================================================-->
 	<script src="vendor/select2/select2.min.js"></script>
 	<script>
