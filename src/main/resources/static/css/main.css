@@ -121,7 +121,17 @@ section .section-title {
 
 
 /*//////////////////////////////////////////////////////////////////
+
+
 [ FONT ]*/
+
+hr { 
+   border-top: 2px solid #4bceb4; 
+   border-bottom: 2px solid #4bceb4; 
+   border-left:none; 
+   border-right:none; 
+   height: 6px; 
+ } 
 
 @font-face {
   font-family: Poppins-Regular;

@@ -7,150 +7,208 @@
     <![endif]-->
 
 <link rel="stylesheet" href="lib/bootstrap/css/bootstrap-theme.min.css">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <meta charset="UTF-8">
 
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"> -->
+<link rel="icon" type="image/png" href="images/icons/favicon.png" />
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css"
+	href="vendor/bootstrap/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"> -->
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<link rel="stylesheet" type="text/css"
+	href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<link rel="stylesheet" type="text/css"
+	href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<link rel="stylesheet" type="text/css"
+	href="vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<link rel="stylesheet" type="text/css" href="css/menu.css">
-	<link rel="stylesheet" type="text/css" href="css/header.css">
+<link rel="stylesheet" type="text/css"
+	href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="css/util.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/menu.css">
+<link rel="stylesheet" type="text/css" href="css/header.css">
 <!--===============================================================================================-->
 
 <title>DRIVER</title>
 
 </head>
 <body ng-controller="PrincipalCtrl">
-	
-		<div class="row" style="margin:0px;height: 100%;">
-			<div class="limiter">
-				<div class="container-login100">
-					<div class="wrap-login100">
-						<form  action='/registration' method='POST'  class="login100-form validate-form form-group" style="margin-top: -250px;padding-top: 275px;">
-							<a title="Go back" href="/"><img src="images/icons/back.png" style="margin-top: -30px;width: 45px;height: 45px;margin-bottom: -34px;" alt="Go back"  /></a>
-							<span class="login100-form-title p-b-34">
-								Sign Up
-							</span>
+
+	<div class="row" style="margin: 0px; height: 100%;">
+		<div class="limiter">
+			<div class="container-login100">
+				<div class="wrap-login100">
+					<form action='/registration' method='POST'
+						class="login100-form validate-form form-group"
+						style="margin-top: -250px; padding-top: 275px;">
+						<a title="Go back" href="/"><img src="images/icons/back.png"
+							style="margin-top: -30px; width: 45px; height: 45px; margin-bottom: -34px;"
+							alt="Go back" /></a> <span class="login100-form-title p-b-34">
+							Sign Up </span>
+
+						<div class="wrap-input100 validate-input m-b-20"
+							data-validate="Type your name">
+							<input id="firstName" required class="input100"
+								ng-model="firstName" mask="@" type="text" name="firstName"
+								placeholder="First Name (*)"> <span
+								class="focus-input100"></span>
+						</div>
+						<div class="wrap-input100 validate-input m-b-20"
+							data-validate="Type your last name">
+							<input id="lastName" required class="input100"
+								ng-model="lastName" mask="@" type="text" name="lastName"
+								placeholder="Last name (*)"> <span
+								class="focus-input100"></span>
+						</div>
+						<div class="wrap-input100 validate-input m-b-20"
+							data-validate="Type email">
+							<input id="email" ng-model="email" required class="input100"
+								type="email" name="email" placeholder="Email (*)"> <span
+								class="focus-input100"></span>
+						</div>
+						<div class="wrap-input100 validate-input m-b-20"
+							data-validate="The email confirmation doesn't match the email field above">
+							<input id="confirmEmail" required class="input100" type="email"
+								name="confirmEmail" placeholder="Confirm Email (*)"> <span
+								class="focus-input100"></span>
+						</div>
+						<div class="wrap-input100 validate-input m-b-20"
+							data-validate="Type password">
+							<input class="input100" ng-model="password" required
+								type="password" name="password" id="password"
+								placeholder="Password (*)"> <span class="focus-input100"></span>
+						</div>
+						<div class="wrap-input100 validate-input m-b-20"
+							data-validate="The email confirmation doesn't match the email field above">
+							<input class="input100" required type="password"
+								name="confirmPassword" id="confirmPassword"
+								placeholder="Confirm password (*)"> <span
+								class="focus-input100"></span>
+						</div>
+						<div class="wrap-input100 validate-input m-b-20"
+							data-validate="Type your driver's license expiraty date">
+							<input id="fExpLicense" class="input100" mask="39/19/2999"
+								restrict="reject" " clean="true" ng-model="fLicense" type="text"
+								maxlength="10" required name="fExpLicense"
+								placeholder="Driver's license expiry date (dd/MM/yyyy) (*)">
+							<span class="focus-input100"></span>
+						</div>
+						<div class="wrap-input100 validate-input m-b-20"
+							data-validate="Type your DNI">
+							<input id="dni" class="input100" mask="9?9?9?9?9?9?9?9-@"
+								ng-model="dni" restrict="reject" " clean="true" type="text"
+								maxlength="10" name="dni" placeholder="DNI"> <span
+								class="focus-input100"></span>
+						</div>
+						<div class="wrap-input100 validate-input m-b-20"
+							data-validate="Type your phone number">
+							<input id="phone" ng-model="phone" class="input100"
+								mask="999 999 999" restrict="reject" " clean="true" type="text"
+								maxlength="11" name="phone" placeholder="Phone number">
+							<span class="focus-input100"></span>
+						</div>
+						<div class="wrap-input100 validate-input m-b-20"
+							data-validate="Type your birth date">
+							<input id="birthDate" class="input100" mask="39/19/2999"
+								restrict="reject" " clean="true" ng-model="fBirth" type="text"
+								maxlength="10" required name="birthDate"
+								placeholder="Birth date (dd/MM/yyyy) (*)"> <span
+								class="focus-input100"></span>
+						</div>
+						<div class="wrap-input100 m-b-20">
+							<div>
+								<label class="radio-inline input100-radio">Gender:</label> <label
+									class="radio-inline input100-radio"> <input
+									ng-model="gender" type="radio" name="gender" value="m"
+									checked /> Male
+								</label> <label class="radio-inline input100-radio"> <input
+									ng-model="gender" type="radio" name="gender" value="f" />
+									Female
+								</label>
+							</div>
+
+							<span class="focus-input100"></span>
+						</div>
+						<div class="row wrap-input100 validate-input m-b-20"
+							style="margin-left: 0px;">
+							<label class="col-sm-2  radio-inline input100-radio">Profile
+								Image:</label> <input class="col-sm-10 input100-radio"
+								ng-model="userImg" type="file"
+								style="margin-bottom: 7px; margin-top: 5px;" name="fotoUser"
+								accept="image/*" /> <span class="focus-input100"></span>
+						</div>
+						<span ng-if="listCars.length > 0" class="login100-form-title p-b-34">My Cars</span> 
+						<div class="row" ng-repeat="car in listCars">
+							<img src={{car.imgUrl}} class="col-xs-6 col-sm-5 img-responsive"></img> 
 							
-							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your name">
-								<input id="firstName" required class="input100" ng-model="firstName" mask="@"  type="text" name="firstName" placeholder="First Name (*)">
-								<span class="focus-input100"></span>
-							</div>
-							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your last name">
-								<input id="lastName" required class="input100" ng-model="lastName" mask="@"  type="text" name="lastName" placeholder="Last name (*)">
-								<span class="focus-input100"></span>
-							</div>
-							<div class="wrap-input100 validate-input m-b-20" data-validate="Type email">
-								<input id="email" ng-model="email"  required class="input100" type="email" name="email" placeholder="Email (*)">
-								<span class="focus-input100"></span>
-							</div>
-							<div class="wrap-input100 validate-input m-b-20" data-validate="The email confirmation doesn't match the email field above">
-								<input id="confirmEmail" required class="input100" type="email" name="confirmEmail" placeholder="Confirm Email (*)">
-								<span class="focus-input100"></span>
-							</div>
-							<div class="wrap-input100 validate-input m-b-20" data-validate="Type password">
-								<input class="input100" ng-model="password"  required type="password" name="password" id="password" placeholder="Password (*)">
-								<span class="focus-input100"></span>
-							</div>
-							<div class="wrap-input100 validate-input m-b-20" data-validate="The email confirmation doesn't match the email field above">
-								<input class="input100" required type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password (*)">
-								<span class="focus-input100"></span>
-							</div>			
-							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your driver's license expiraty date">
-								<input id="fExpLicense" class="input100"  mask="39/19/2999" restrict="reject"" clean="true" ng-model="fLicense" type="text" maxlength="10"  required name="fExpLicense" placeholder="Driver's license expiry date (dd/MM/yyyy) (*)" >
-								<span class="focus-input100"></span>
-							</div>
-							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your DNI">
-								<input id="dni" class="input100" mask="9?9?9?9?9?9?9?9-@" ng-model="dni" restrict="reject"" clean="true" type="text" maxlength="10" name="dni" placeholder="DNI">
-								<span class="focus-input100"></span>	
-							</div>	
-							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your phone number">
-								<input id="phone" ng-model="phone"  class="input100" mask="999 999 999" restrict="reject"" clean="true" type="text" maxlength="11" name="phone" placeholder="Phone number">
-								<span class="focus-input100"></span>
-							</div>
-							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your birth date">
-								<input id="birthDate" class="input100"  mask="39/19/2999" restrict="reject"" clean="true" ng-model="fBirth" type="text" maxlength="10"  required name="birthDate" placeholder="Birth date (dd/MM/yyyy) (*)">
-								<span class="focus-input100"></span>
-							</div>
-							<div class="wrap-input100 m-b-20">
-								<div >
-									<label class="radio-inline input100-radio">Gender:</label>
-									<label class="radio-inline input100-radio">
-										<input ng-model="gender" checked  type="radio" name="gender" value="m" checked> Male
-									</label>
-									
-									<label class="radio-inline input100-radio">
-										<input ng-model="gender"  type="radio" name="gender" value="f"> Female
-									</label>
-								</div>
-								
-								<span class="focus-input100"></span>
-							</div>
-							<div class="row wrap-input100 validate-input m-b-20" style="margin-left: 0px;">
-								<label class="col-sm-2  radio-inline input100-radio">Profile Image:</label>
-								<input class="col-sm-10 input100-radio" ng-model="userImg"  type="file" style="margin-bottom: 7px;margin-top: 5px;" name="fotoUser" accept="image/*" />
-								<span class="focus-input100"></span>
-							</div>
-							<div class="row" ng-if="listCars.length > 0">
-								<h4>My Cars:</h4>
-								
-								<label>Model: </label>
-								<span>{{car.model}}</span>
-								<img src={{imgUrl}} class="img-responsive"></img>
-								
-							</div>
-							<h4 class="row"  style="margin: 11px;">Add Cars</h4>
-							<div class="wrap-input100 validate-input m-b-20">
-								<input id="modelCar" class="input100" ng-model="modelCar" type="text" name="modelCar" placeholder="Model Car (*)">
-								<span class="focus-input100"></span>
-							</div>
-							<div class="wrap-input100 validate-input m-b-20">
-								<input id="matriculaCar" class="input100" ng-model="matriculaCar" type="text" name="matriculaCar" placeholder="Car Registration (*)">
-								<span class="focus-input100"></span>
-							</div>
-							<div class="wrap-input100 validate-input m-b-20">
-								<input id="colorCar" class="input100" ng-model="colorCar" type="text" name="colorCar" placeholder="Color Car (*)">
-								<span class="focus-input100"></span>
-							</div>
-							<div class="row wrap-input100 validate-input m-b-20" style="margin-left: 0px;">
-								<label class="col-sm-4  radio-inline input100-radio">Car Image:</label>
-								<input accept="image/*" name="file" ng-value="fileToUpload"
-							       value="{{fileToUpload}}" file-model="fileToUpload"
-							       set-file-data="fileToUpload = value;" 
-							       type="file" id="my_file" style="display:none" />
-							    <input type="button" value="Upload image" class="col-sm-4 btn btn-default" onclick="document.getElementById('my_file').click();" >
-							    <span value="imgCar.name" class="col-sm-4">{{fileToUpload.name}}</span>
-							    
-								<!-- <input class="col-sm-10 input100-radio" fileread="carImg"  type="file" style="margin-bottom: 7px;margin-top: 5px;" name="fotoUser" accept="image/*" /> -->
-								<span class="focus-input100"></span>
-							</div>
-							<a class="btn btn-default green" ng-click="addCar()" style="margin: 8px;">Add</a>
-							<!-- <div class="wrap-input100 validate-input m-b-20" data-validate="Type your DNI">
+							<label class="col-sm-4 col-xs-12">Car Registration: </label> 
+							<span class="col-sm-4 col-xs-12">{{car.matricula}}</span> 
+							<label class="col-sm-4 col-xs-12">Model: </label> 
+							<span class="col-sm-4 col-xs-12">{{car.model}}</span>
+							<label class="col-sm-4 col-xs-12">Car Color: </label> 
+							<span class="col-sm-4 col-xs-12">{{car.color}}</span>
+							<hr class="col-sm-12 col-xs-12 btn" />
+
+
+						</div>
+						<h4 class="row" style="margin: 11px;">Add Car</h4>
+						<div class="wrap-input100 validate-input m-b-20">
+							<input id="modelCar" class="input100" ng-model="modelCar"
+								type="text" name="modelCar" placeholder="Model Car (*)">
+							<span class="focus-input100"></span>
+						</div>
+						<div class="wrap-input100 validate-input m-b-20">
+							<input id="matriculaCar" class="input100" ng-model="matriculaCar"
+								type="text" name="matriculaCar"
+								placeholder="Car Registration (*)"> <span
+								class="focus-input100"></span>
+						</div>
+						<div class="wrap-input100 validate-input m-b-20">
+							<input id="colorCar" class="input100" ng-model="colorCar"
+								type="text" name="colorCar" placeholder="Color Car (*)">
+							<span class="focus-input100"></span>
+						</div>
+						<div class="row wrap-input100 validate-input m-b-20"
+							style="margin-left: 0px;">
+							<label class="col-sm-4 col-xs-4  radio-inline input100-radio">Car
+								Image:</label> 
+								<input accept="image/*" name="file"
+								ng-value="fileToUpload" value="{{fileToUpload}}"
+								file-model="fileToUpload" set-file-data="fileToUpload = value;"
+								type="file" id="my_file" style="display: none" /> 
+								<input
+								type="button" value="Add image"
+								class="col-sm-4 col-xs-4 btn btn-default"
+								onclick="document.getElementById('my_file').click();">
+							<span value="imgCar.name" class="col-sm-4 col-xs-4">{{fileToUpload.name.substr(0,14)}}</span>
+
+							<!-- <input class="col-sm-10 input100-radio" fileread="carImg"  type="file" style="margin-bottom: 7px;margin-top: 5px;" name="fotoUser" accept="image/*" /> -->
+							<span class="focus-input100"></span>
+						</div>
+						<a class="btn btn-default green" ng-click="addCar()"
+							style="margin: 8px;">Add</a>
+						<!-- <div class="wrap-input100 validate-input m-b-20" data-validate="Type your DNI">
 								<label class="col-sm-2  radio-inline input100-radio">Add Cars:</label>
 								<a id="addCar" class="btn btn-default" ng-click="modalAddCar();" name="addCar">Add Car</a>
 								<span class="focus-input100"></span>	
 							</div> -->
-							<!-- 
+						<!-- 
 							 
 							<div class="wrap-input100 validate-input m-b-20" data-validate="Type your driver's license expiraty date">
 								<input id="fExpLicense" class="input100 datepicker" type="text" name="fExpLicense" placeholder="Driver's license expiry date (dd/MM/yyyy)">
@@ -163,93 +221,120 @@
 								<div ng-include="'html/addCar.htm'"></div>
 								<span class="focus-input100"></span>
 							</div> -->
-							<div class="container-login100-form-btn">
-								<button type="submit" class="login100-form-btn">
-									Sign Up
-								</button>
-							</div>
-							
-						</form>
+						<div class="container-login100-form-btn">
+							<button type="submit" class="login100-form-btn">Sign Up
+							</button>
+						</div>
 
-						<div class="login100-more" style="background-image: url('images/bg-01.jpg');"></div>
-					</div>
+					</form>
+
+					<div class="login100-more"
+						style="background-image: url('images/bg-01.jpg');"></div>
 				</div>
 			</div>
-
-<!-- pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" -->
-
 		</div>
-		
-		<!-- Footer -->
-		<section class="row" id="footer">
-			<div class="container">
-				<div class="row text-center text-xs-center text-sm-left text-md-left">
-					<div class="col-xs-12 col-sm-4 col-md-4">
-						<h5>Quick links</h5>
-						<ul class="list-unstyled quick-links">
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Home</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>About</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Videos</a></li>
-						</ul>
-					</div>
-					<div class="col-xs-12 col-sm-4 col-md-4">
-						<h5>Quick links</h5>
-						<ul class="list-unstyled quick-links">
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Home</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>About</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Videos</a></li>
-						</ul>
-					</div>
-					<div class="col-xs-12 col-sm-4 col-md-4">
-						<h5>Quick links</h5>
-						<ul class="list-unstyled quick-links">
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Home</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>About</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
-							<li><a href="https://wwwe.sunlimetech.com" title="Design and developed by"><i class="fa fa-angle-double-right"></i>Imprint</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
-						<ul class="list-unstyled list-inline social text-center">
-							<li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-facebook"></i></a></li>
-							<li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-twitter"></i></a></li>
-							<li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-instagram"></i></a></li>
-							<li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-google-plus"></i></a></li>
-							<li class="list-inline-item"><a href="javascript:void();" target="_blank"><i class="fa fa-envelope"></i></a></li>
-						</ul>
-					</div>
-					</hr>
-				</div>	
-				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
-						<p>National Transaction Corporation is a Registered MSP/ISO of Elavon, Inc. Georgia [a wholly owned subsidiary of U.S. Bancorp, Minneapolis, MN]</p>
-						<p class="h6">&copy All right Reversed.<a class="text-green ml-2" href="https://www.sunlimetech.com" target="_blank">Sunlimetech</a></p>
-					</div>
-					</hr>
-				</div>	
-			</div>
-		</section>
-	
-		
-	
 
-<!--===============================================================================================-->
-	
+		<!-- pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" -->
+
+	</div>
+
+	<!-- Footer -->
+	<section class="row" id="footer">
+		<div class="container">
+			<div class="row text-center text-xs-center text-sm-left text-md-left">
+				<div class="col-xs-12 col-sm-4 col-md-4">
+					<h5>Quick links</h5>
+					<ul class="list-unstyled quick-links">
+						<li><a href="javascript:void();"><i
+								class="fa fa-angle-double-right"></i>Home</a></li>
+						<li><a href="javascript:void();"><i
+								class="fa fa-angle-double-right"></i>About</a></li>
+						<li><a href="javascript:void();"><i
+								class="fa fa-angle-double-right"></i>FAQ</a></li>
+						<li><a href="javascript:void();"><i
+								class="fa fa-angle-double-right"></i>Get Started</a></li>
+						<li><a href="javascript:void();"><i
+								class="fa fa-angle-double-right"></i>Videos</a></li>
+					</ul>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4">
+					<h5>Quick links</h5>
+					<ul class="list-unstyled quick-links">
+						<li><a href="javascript:void();"><i
+								class="fa fa-angle-double-right"></i>Home</a></li>
+						<li><a href="javascript:void();"><i
+								class="fa fa-angle-double-right"></i>About</a></li>
+						<li><a href="javascript:void();"><i
+								class="fa fa-angle-double-right"></i>FAQ</a></li>
+						<li><a href="javascript:void();"><i
+								class="fa fa-angle-double-right"></i>Get Started</a></li>
+						<li><a href="javascript:void();"><i
+								class="fa fa-angle-double-right"></i>Videos</a></li>
+					</ul>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4">
+					<h5>Quick links</h5>
+					<ul class="list-unstyled quick-links">
+						<li><a href="javascript:void();"><i
+								class="fa fa-angle-double-right"></i>Home</a></li>
+						<li><a href="javascript:void();"><i
+								class="fa fa-angle-double-right"></i>About</a></li>
+						<li><a href="javascript:void();"><i
+								class="fa fa-angle-double-right"></i>FAQ</a></li>
+						<li><a href="javascript:void();"><i
+								class="fa fa-angle-double-right"></i>Get Started</a></li>
+						<li><a href="https://wwwe.sunlimetech.com"
+							title="Design and developed by"><i
+								class="fa fa-angle-double-right"></i>Imprint</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+					<ul class="list-unstyled list-inline social text-center">
+						<li class="list-inline-item"><a href="javascript:void();"><i
+								class="fa fa-facebook"></i></a></li>
+						<li class="list-inline-item"><a href="javascript:void();"><i
+								class="fa fa-twitter"></i></a></li>
+						<li class="list-inline-item"><a href="javascript:void();"><i
+								class="fa fa-instagram"></i></a></li>
+						<li class="list-inline-item"><a href="javascript:void();"><i
+								class="fa fa-google-plus"></i></a></li>
+						<li class="list-inline-item"><a href="javascript:void();"
+							target="_blank"><i class="fa fa-envelope"></i></a></li>
+					</ul>
+				</div>
+				</hr>
+			</div>
+			<div class="row">
+				<div
+					class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+					<p>National Transaction Corporation is a Registered MSP/ISO of
+						Elavon, Inc. Georgia [a wholly owned subsidiary of U.S. Bancorp,
+						Minneapolis, MN]</p>
+					<p class="h6">
+						&copy All right Reversed.<a class="text-green ml-2"
+							href="https://www.sunlimetech.com" target="_blank">Sunlimetech</a>
+					</p>
+				</div>
+				</hr>
+			</div>
+		</div>
+	</section>
+
+
+
+
+	<!--===============================================================================================-->
+
 	<script src="lib/angular.js"></script>
-	
+
 	<script src="lib/angular-animate.js"></script>
 	<script src="lib/angular-route.js"></script>
 	<script src="lib/angular-locale_es-es.js"></script>
 	<script src="lib/ngMask.min.js"></script>
-	
-<!--===============================================================================================-->
+
+	<!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 	<script src="vendor/bootstrap/js/popper.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -260,30 +345,30 @@
 	<script src="lib/ui-bootstrap-tpls.min.js"></script>
 	<!-- <script src="lib/ui-bootstrap-tpls.js"></script> -->
 	<!-- <script src="lib/bootstrap/js/bootstrap.js"></script> -->
-	
-<!--===============================================================================================-->
+
+	<!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<!-- <script src="vendor/bootstrap/js/popper.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script> -->
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/select2/select2.min.js"></script>
 	<script>
 		$(".selection-2").select2({
-			minimumResultsForSearch: 20,
-			dropdownParent: $('#dropDownSelect1')
+			minimumResultsForSearch : 20,
+			dropdownParent : $('#dropDownSelect1')
 		});
 	</script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/daterangepicker/moment.min.js"></script>
 	<script src="vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-	
+	<!--===============================================================================================-->
+
 	<script src="js/main.js"></script>
 	<script src="js/PrincipalCtrl.js"></script>
-	
+
 </body>
 
 

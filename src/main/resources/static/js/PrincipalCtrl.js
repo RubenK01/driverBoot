@@ -13,28 +13,52 @@ myApp.controller('PrincipalCtrl',['$scope', function($scope){
 //	
 	var reader = new FileReader();
 	$scope.listCars = [];
-	$scope.car = {};
+	
 	$scope.addCar = function() {
+		var car = {};
+		car.model = $scope.modelCar;
+		car.matricula = $scope.matriculaCar;
+		car.color = $scope.colorCar;
+		car.img = $scope.fileToUpload;
 		
-		$scope.car.model = $scope.modelCar;
-		$scope.car.matricula = $scope.matriculaCar;
-		$scope.car.color = $scope.colorCar;
-		$scope.car.img = $scope.fileToUpload;
+    	reader.onloadend = function () {
+		 	car.imgUrl = reader.result;
+		 	$scope.listCars.push(car);
+		 	limpiaDatosCar();
+		 	$scope.$apply();
+		  }
+
+		  if ($scope.fileToUpload) {
+		    reader.readAsDataURL($scope.fileToUpload);
+		  } else {
+			  $scope.imgUrl = "";//meter img por defecto (logo?)
+			  $scope.listCars.push(car);
+			  limpiaDatosCar();
+			  $scope.$apply();
+		  };  	
 		
-		$scope.imgCar = $scope.car.img;
-		getImg($scope.fileToUpload);
-		$scope.listCars.push($scope.car);
+	}
+	
+	function limpiaDatosCar(){
+		$scope.modelCar = '';
+		$scope.matriculaCar= '';
+		$scope.colorCar= '';
+		//sdocument.getElementById('my_file').click();
+		//$scope.fileToUpload= undefined;
 	}
 	
 	function getImg(file){
 		 reader.onloadend = function () {
-			 	$scope.imgUrl = reader.result;
+			 	//$scope.imgUrl = reader.result;
+			 	//$scope.$apply();
+			 	return reader.result;
 			  }
 
 			  if (file) {
 			    reader.readAsDataURL(file);
 			  } else {
-				  $scope.imgUrl = "";
+				 // $scope.imgUrl = "";
+				  return "";
 			  }
 	}
 //	
