@@ -1,51 +1,78 @@
 
 
 //var myApp = angular.module('DriverApp',['restPruebaApp', 'ngRoute','ngAnimate','ui.bootstrap', 'ngMap', 'google-maps']);
-var myApp = angular.module('DriverApp',['ngMask', 'ui.bootstrap']);
+var myApp = angular.module('DriverApp',['ngMask', 'ngAnimate', 'ui.bootstrap']);
 
 
 //myApp.controller('PrincipalCtrl',['$scope','$http','mantenimientoSrv',function($scope,$http,mantenimientoSrv){
-myApp.controller('PrincipalCtrl',['$scope', function($scope){
+myApp.controller('PrincipalCtrl',['$scope','$http', '$q','$uibModal', '$log', function($scope,$http, $q,$uibModal, $log){
 	
 	
 //	var $ctrl = this;
 //	$ctrl.items = ['item1', 'item2', 'item3'];
 //	
-	var reader = new FileReader();
+	
 	$scope.listCars = [];
 	
-	$scope.addCar = function() {
-		var car = {};
-		car.model = $scope.modelCar;
-		car.matricula = $scope.matriculaCar;
-		car.color = $scope.colorCar;
-		car.img = $scope.fileToUpload;
+	$scope.submit = function(){
+		var link = '/registration';
+		var deferred = $q.defer();
 		
-    	reader.onloadend = function () {
-		 	car.imgUrl = reader.result;
-		 	$scope.listCars.push(car);
-		 	limpiaDatosCar();
-		 	$scope.$apply();
-		  }
-
-		  if ($scope.fileToUpload) {
-		    reader.readAsDataURL($scope.fileToUpload);
-		  } else {
-			  $scope.imgUrl = "";//meter img por defecto (logo?)
-			  $scope.listCars.push(car);
-			  limpiaDatosCar();
-			  $scope.$apply();
-		  };  	
+		function success(data)
+		{
+			var da = data;
+			deferred.resolve(da);
+		}
+		function error(data)
+		{
+			var da = data;
+			deferred.reject(da);
+		}
 		
+		var UserRegistrationDto = {};
+		UserRegistrationDto.firstName = $scope.firstName;
+		UserRegistrationDto.lastName = $scope.lastName;
+		UserRegistrationDto.email = $scope.email;
+		UserRegistrationDto.confirmEmail = $scope.confirmEmail;
+		UserRegistrationDto.password = $scope.password;
+		UserRegistrationDto.confirmPassword = $scope.confirmPassword;
+		
+		$http({
+			url: link,
+			method: 'POST',
+			data : UserRegistrationDto
+		}).then(success , error);
+		
+//		
+//		HttpSrv.post(link,datos).then(success, error);
 	}
 	
-	function limpiaDatosCar(){
-		$scope.modelCar = '';
-		$scope.matriculaCar= '';
-		$scope.colorCar= '';
-		//sdocument.getElementById('my_file').click();
-		//$scope.fileToUpload= undefined;
-	}
+	$scope.items = ['item1', 'item2', 'item3'];
+	$scope.show = function (size) {
+
+	    var modalInstance = $uibModal.open({
+	      animation: true,
+	      templateUrl: '/html/addCar.html',
+	      controller: 'ModalInstanceCtrl',
+	      size: 'sm'
+	    });
+
+	    modalInstance.result.then(function (car) {
+	    	$scope.listCars.push(car);
+	    }, function () {
+	      $log.info('Modal dismissed at: ' + new Date());
+	    });
+	  };
+	
+	
+	
+//	function limpiaDatosCar(){
+//		$scope.modelCar = '';
+//		$scope.matriculaCar= '';
+//		$scope.colorCar= '';
+//		//sdocument.getElementById('my_file').click();
+//		//$scope.fileToUpload= undefined;
+//	}
 	
 	function getImg(file){
 		 reader.onloadend = function () {
@@ -61,48 +88,44 @@ myApp.controller('PrincipalCtrl',['$scope', function($scope){
 				  return "";
 			  }
 	}
-//	
-//	$scope.modalAddCar = function() {
-//		var modalInstance = $uibModal.open({
-//			ariaLabelledBy: 'modal-title-top',
-//		    ariaDescribedBy: 'modal-body-top',
-//            templateUrl: '/html/addCar.html',
-//            controller: 'ModalInstanceCtrl',
-//            controllerAs: '$ctrl',
-//            size: 'sm',
-//            resolve: {
-//            	items: function () {
-//                    return $ctrl.items;
-//                  }
-//            }
-//            
-//        });
-//        //TODO - Esto va en un evento de vuelta al origen de apertura del cierre
-//        modalInstance.result
-//        .then(function () {  //result
-//        }, function (/*data*/) {  //reject
-//        });
-//	}
-	
+
 	
 	
 }]);
 
-//myApp.controller('ModalInstanceCtrl', function ($uibModalInstance, items) {
-//	  var $ctrl = this;
-//	  $ctrl.items = items;
-//	  $ctrl.selected = {
-//	    item: $ctrl.items[0]
-//	  };
-//
-//	  $ctrl.ok = function () {
-//	    $uibModalInstance.close($ctrl.selected.item);
-//	  };
-//
-//	  $ctrl.cancel = function () {
-//	    $uibModalInstance.dismiss('cancel');
-//	  };
-//	});
+myApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
+	var reader = new FileReader();
+	var car = {};
+	
+	  
+	  $scope.ok = function () {
+		car.model = $scope.modelCar;
+		car.matricula = $scope.matriculaCar;
+		car.color = $scope.colorCar;
+		car.img = $scope.fileToUpload;
+		
+		reader.onloadend = function () {
+		 	car.imgUrl = reader.result;
+		 	$scope.$apply();
+		 	//limpiaDatosCar();
+		 	$scope.$apply();
+		  }
+
+		  if ($scope.fileToUpload) {
+		    reader.readAsDataURL($scope.fileToUpload);
+		  } else {
+			  $scope.imgUrl = "";//meter img por defecto (logo?)
+			  //$scope.listCars.push(car);
+			  //limpiaDatosCar();
+			  //$scope.$apply();
+		  };  	
+	    $modalInstance.close(car);
+	  };
+
+	  $scope.cancel = function () {
+	    $modalInstance.dismiss();
+	  };
+});
 
 
 //myApp.config(function($routeProvider) {

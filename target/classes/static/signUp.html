@@ -54,7 +54,7 @@
 		<div class="limiter">
 			<div class="container-login100">
 				<div class="wrap-login100">
-					<form action='/registration' method='POST'
+					<form ng-submit="submit()"
 						class="login100-form validate-form form-group"
 						style="margin-top: -250px; padding-top: 275px;">
 						<a title="Go back" href="/"><img src="images/icons/back.png"
@@ -84,7 +84,7 @@
 						</div>
 						<div class="wrap-input100 validate-input m-b-20"
 							data-validate="The email confirmation doesn't match the email field above">
-							<input id="confirmEmail" required class="input100" type="email"
+							<input id="confirmEmail" ng-model="confirmEmail" required class="input100" type="email"
 								name="confirmEmail" placeholder="Confirm Email (*)"> <span
 								class="focus-input100"></span>
 						</div>
@@ -97,7 +97,7 @@
 						<div class="wrap-input100 validate-input m-b-20"
 							data-validate="The email confirmation doesn't match the email field above">
 							<input class="input100" required type="password"
-								name="confirmPassword" id="confirmPassword"
+								name="confirmPassword" ng-model="confirmPassword" id="confirmPassword"
 								placeholder="Confirm password (*)"> <span
 								class="focus-input100"></span>
 						</div>
@@ -155,7 +155,7 @@
 						</div>
 						<span ng-if="listCars.length > 0" class="login100-form-title p-b-34">My Cars</span> 
 						<div class="row" ng-repeat="car in listCars">
-							<img src={{car.imgUrl}} class="col-xs-6 col-sm-5 img-responsive"></img> 
+							<img ng-src="{{car.imgUrl}}" class="col-xs-5 col-sm-5 img-responsive"></img> 
 							
 							<label class="col-sm-4 col-xs-12">Car Registration: </label> 
 							<span class="col-sm-4 col-xs-12">{{car.matricula}}</span> 
@@ -163,11 +163,11 @@
 							<span class="col-sm-4 col-xs-12">{{car.model}}</span>
 							<label class="col-sm-4 col-xs-12">Car Color: </label> 
 							<span class="col-sm-4 col-xs-12">{{car.color}}</span>
-							<hr class="col-sm-12 col-xs-12 btn" />
+							<hr class="col-sm-12 col-xs-12" />
 
 
 						</div>
-						<h4 class="row" style="margin: 11px;">Add Car</h4>
+						<!-- <h4 class="row" style="margin: 11px;">Add Car</h4>
 						<div class="wrap-input100 validate-input m-b-20">
 							<input id="modelCar" class="input100" ng-model="modelCar"
 								type="text" name="modelCar" placeholder="Model Car (*)">
@@ -186,7 +186,7 @@
 						</div>
 						<div class="row wrap-input100 validate-input m-b-20"
 							style="margin-left: 0px;">
-							<label class="col-sm-4 col-xs-4  radio-inline input100-radio">Car
+							<label class="col-sm-4 col-xs-4  radio-inline input100-radio" style="padding: 3px;">Car
 								Image:</label> 
 								<input accept="image/*" name="file"
 								ng-value="fileToUpload" value="{{fileToUpload}}"
@@ -198,11 +198,11 @@
 								onclick="document.getElementById('my_file').click();">
 							<span value="imgCar.name" class="col-sm-4 col-xs-4">{{fileToUpload.name.substr(0,14)}}</span>
 
-							<!-- <input class="col-sm-10 input100-radio" fileread="carImg"  type="file" style="margin-bottom: 7px;margin-top: 5px;" name="fotoUser" accept="image/*" /> -->
+							<input class="col-sm-10 input100-radio" fileread="carImg"  type="file" style="margin-bottom: 7px;margin-top: 5px;" name="fotoUser" accept="image/*" />
 							<span class="focus-input100"></span>
-						</div>
-						<a class="btn btn-default green" ng-click="addCar()"
-							style="margin: 8px;">Add</a>
+						</div> -->
+						<a class="btn btn-default green" href ng-click="show()"
+							style="margin: 8px;">Add Car</a>
 						<!-- <div class="wrap-input100 validate-input m-b-20" data-validate="Type your DNI">
 								<label class="col-sm-2  radio-inline input100-radio">Add Cars:</label>
 								<a id="addCar" class="btn btn-default" ng-click="modalAddCar();" name="addCar">Add Car</a>
@@ -323,18 +323,22 @@
 	</section>
 
 
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.js"></script>
+<script src="lib/ngMask.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-animate.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.0.js"></script>
 
-
-	<!--===============================================================================================-->
-
+	<!--===============================================================================================
 	<script src="lib/angular.js"></script>
-
+	<script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
 	<script src="lib/angular-animate.js"></script>
 	<script src="lib/angular-route.js"></script>
 	<script src="lib/angular-locale_es-es.js"></script>
 	<script src="lib/ngMask.min.js"></script>
+	
+	
 
-	<!--===============================================================================================-->
+	<!--===============================================================================================
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 	<script src="vendor/bootstrap/js/popper.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -342,10 +346,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script> -->
 	<!-- <script src="vendor/jquery/jquery-3.2.1.min.js"></script> -->
-	<script src="lib/ui-bootstrap-tpls.min.js"></script>
+	<!--  <script src="lib/ui-bootstrap-tpls.min.js"></script> este-->
 	<!-- <script src="lib/ui-bootstrap-tpls.js"></script> -->
 	<!-- <script src="lib/bootstrap/js/bootstrap.js"></script> -->
-
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
 	<!--===============================================================================================-->
@@ -368,6 +372,23 @@
 
 	<script src="js/main.js"></script>
 	<script src="js/PrincipalCtrl.js"></script>
+    <!--  <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">I'm a modal!</h3>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li ng-repeat="item in items">
+                    <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+                </li>
+            </ul>
+            Selected: <b>{{ selected.item }}</b>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>-->
 
 </body>
 
