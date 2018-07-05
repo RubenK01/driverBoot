@@ -1,11 +1,17 @@
 package driver;
 
+import java.util.*;
+
+import javax.persistence.*;
+
 import org.hibernate.validator.constraints.*;
 
-@FieldMatch.List({
-    @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match"),
-    @FieldMatch(first = "email", second = "confirmEmail", message = "The email fields must match")
-})
+import driver.models.*;
+
+//@FieldMatch.List({
+//    @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match"),
+//    @FieldMatch(first = "email", second = "confirmEmail", message = "The email fields must match")
+//})
 public class UserRegistrationDto {
 	  @NotEmpty
 	    private String firstName;
@@ -15,17 +21,22 @@ public class UserRegistrationDto {
 
 	    @NotEmpty
 	    private String password;
-
-	    @NotEmpty
-	    private String confirmPassword;
+//
+//	    @NotEmpty
+//	    private String confirmPassword;
 
 	    @Email
 	    @NotEmpty
 	    private String email;
-
-	    @Email
+	    @Lob
+		private byte[] userImg;
+	    
 	    @NotEmpty
-	    private String confirmEmail;
+	    private  Collection<CocheDto> coches;
+//
+//	    @Email
+//	    @NotEmpty
+//	    private String confirmEmail;
 
 
 //	    @AssertTrue
@@ -54,13 +65,13 @@ public class UserRegistrationDto {
 	        this.password = password;
 	    }
 
-	    public String getConfirmPassword() {
-	        return confirmPassword;
-	    }
-
-	    public void setConfirmPassword(String confirmPassword) {
-	        this.confirmPassword = confirmPassword;
-	    }
+//	    public String getConfirmPassword() {
+//	        return confirmPassword;
+//	    }
+//
+//	    public void setConfirmPassword(String confirmPassword) {
+//	        this.confirmPassword = confirmPassword;
+//	    }
 
 	    public String getEmail() {
 	        return email;
@@ -69,13 +80,29 @@ public class UserRegistrationDto {
 	    public void setEmail(String email) {
 	        this.email = email;
 	    }
+//
+//	    public String getConfirmEmail() {
+//	        return confirmEmail;
+//	    }
+//
+//	    public void setConfirmEmail(String confirmEmail) {
+//	        this.confirmEmail = confirmEmail;
+//	    }
 
-	    public String getConfirmEmail() {
-	        return confirmEmail;
-	    }
+		public byte[] getUserImg() {
+			return userImg;
+		}
 
-	    public void setConfirmEmail(String confirmEmail) {
-	        this.confirmEmail = confirmEmail;
-	    }
+		public void setUserImg(byte[] userImg) {
+			this.userImg = userImg;
+		}
+
+		public Collection<CocheDto> getCoches() {
+			return coches;
+		}
+
+		public void setCoches(Collection<CocheDto> coches) {
+			this.coches = coches;
+		}
 
 }

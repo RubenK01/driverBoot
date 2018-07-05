@@ -1,5 +1,6 @@
 package driver.models;
 
+import java.io.*;
 import java.util.*;
 
 import javax.persistence.*;
@@ -7,9 +8,10 @@ import javax.validation.constraints.*;
 
 @Entity(name = "Usuario")
 @Table(name = "Usuario")
-public class Usuario {
+public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private long id;
 	@NotNull
 	private String firstName;
@@ -31,8 +33,8 @@ public class Usuario {
 //	//private int minutos;
 	@NotNull
 	private String password;
-//	@Lob
-//	private byte[] foto;
+	@Lob
+	private byte[] userImg;
 //	//@NotNull
 //	private Boolean activo;
 //	//@NotNull
@@ -57,14 +59,23 @@ public class Usuario {
 	
 
 //
-//	@OneToMany(mappedBy="emisor")
-//	private List<Mensaje> enviados;
-//	
-//	@OneToMany(mappedBy="receptor")
-//	private List<Mensaje> recibidos;
-//	
-//	@OneToMany(mappedBy="conductor")
-//	private List<Coche> coches;
+	@OneToMany(mappedBy="emisor")
+	private List<Mensaje> enviados;
+	
+	@OneToMany(mappedBy="receptor")
+	private List<Mensaje> recibidos;
+	
+//	 @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//	    @JoinTable(
+//	            name = "users_cars",
+//	            joinColumns = @JoinColumn(
+//	                    name = "user_id", referencedColumnName = "id"),
+//	            inverseJoinColumns = @JoinColumn(
+//	                    name = "car_id", referencedColumnName = "id"))
+	//@OneToMany(mappedBy="conductor")
+	@OneToMany(cascade= CascadeType.ALL)
+	@JoinColumn(name="IdCoche")
+	private Collection<Coche> coches;
 //	
 //	@OneToMany(mappedBy="receptor")
 //	private List<Valoracion> valoracionesRecibidas;
@@ -354,6 +365,22 @@ public class Usuario {
 
 	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
+	}
+
+	public byte[] getUserImg() {
+		return userImg;
+	}
+
+	public void setUserImg(byte[] userImg) {
+		this.userImg = userImg;
+	}
+
+	public Collection<Coche> getCoches() {
+		return coches;
+	}
+
+	public void setCoches(Collection<Coche> coches) {
+		this.coches = coches;
 	}
 
 	

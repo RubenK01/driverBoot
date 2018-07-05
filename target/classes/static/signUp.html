@@ -65,14 +65,14 @@
 						<div class="wrap-input100 validate-input m-b-20"
 							data-validate="Type your name">
 							<input id="firstName" required class="input100"
-								ng-model="firstName" mask="@" type="text" name="firstName"
+								ng-model="firstName" type="text" name="firstName"
 								placeholder="First Name (*)"> <span
 								class="focus-input100"></span>
 						</div>
 						<div class="wrap-input100 validate-input m-b-20"
 							data-validate="Type your last name">
 							<input id="lastName" required class="input100"
-								ng-model="lastName" mask="@" type="text" name="lastName"
+								ng-model="lastName" type="text" name="lastName"
 								placeholder="Last name (*)"> <span
 								class="focus-input100"></span>
 						</div>
@@ -146,23 +146,33 @@
 							<span class="focus-input100"></span>
 						</div>
 						<div class="row wrap-input100 validate-input m-b-20"
-							style="margin-left: 0px;">
-							<label class="col-sm-2  radio-inline input100-radio">Profile
-								Image:</label> <input class="col-sm-10 input100-radio"
-								ng-model="userImg" type="file"
-								style="margin-bottom: 7px; margin-top: 5px;" name="fotoUser"
-								accept="image/*" /> <span class="focus-input100"></span>
+								style="margin-left: 0px;">
+							<label class="col-sm-4 col-xs-4  radio-inline input100-radio" style="padding: 3px;">Profile
+								Image:</label> 
+								<input accept="image/*" name="userImg"
+								ng-value="userImg" value="{{userImg}}"
+								file-model="userImg" set-file-data="userImg = value;"
+								type="file" id="user_img" style="display: none" /> 
+								<input
+								type="button" value="Add image"
+								class="col-sm-4 col-xs-4 btn btn-default"
+								onclick="document.getElementById('user_img').click();">
+							<span value="imgCar.name" class="col-sm-4 col-xs-4">{{userImg.name.substr(0,14)}}</span>
+						
+							<!-- <input class="col-sm-10 input100-radio" fileread="carImg"  type="file" style="margin-bottom: 7px;margin-top: 5px;" name="fotoUser" accept="image/*" /> -->
+							<span class="focus-input100"></span>
 						</div>
 						<span ng-if="listCars.length > 0" class="login100-form-title p-b-34">My Cars</span> 
+						<hr class="col-sm-12 col-xs-12" />
 						<div class="row" ng-repeat="car in listCars">
-							<img ng-src="{{car.imgUrl}}" class="col-xs-5 col-sm-5 img-responsive"></img> 
+							<img ng-src="{{car.imgUrl}}" class="col-xs-4 col-sm-4 img-responsive"></img> 
 							
-							<label class="col-sm-4 col-xs-12">Car Registration: </label> 
-							<span class="col-sm-4 col-xs-12">{{car.matricula}}</span> 
-							<label class="col-sm-4 col-xs-12">Model: </label> 
-							<span class="col-sm-4 col-xs-12">{{car.model}}</span>
-							<label class="col-sm-4 col-xs-12">Car Color: </label> 
-							<span class="col-sm-4 col-xs-12">{{car.color}}</span>
+							<label class="col-sm-12 col-xs-12">Car Registration: </label> 
+							<span class="col-sm-12 col-xs-12">{{car.matricula}}</span> 
+							<label class="col-sm-12 col-xs-12">Model: </label> 
+							<span class="col-sm-12 col-xs-12">{{car.model}}</span>
+							<label class="col-sm-12 col-xs-12">Color: </label> 
+							<span class="col-sm-12 col-xs-12">{{car.color}}</span>
 							<hr class="col-sm-12 col-xs-12" />
 
 

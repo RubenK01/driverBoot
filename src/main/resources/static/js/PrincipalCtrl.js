@@ -18,10 +18,16 @@ myApp.controller('PrincipalCtrl',['$scope','$http', '$q','$uibModal', '$log', fu
 		var link = '/registration';
 		var deferred = $q.defer();
 		
+		var fd = new FormData();
+
+		fd.append('file', $scope.userImg);
+		
 		function success(data)
 		{
 			var da = data;
 			deferred.resolve(da);
+			
+			loginAuto();
 		}
 		function error(data)
 		{
@@ -29,25 +35,44 @@ myApp.controller('PrincipalCtrl',['$scope','$http', '$q','$uibModal', '$log', fu
 			deferred.reject(da);
 		}
 		
+		
 		var UserRegistrationDto = {};
 		UserRegistrationDto.firstName = $scope.firstName;
 		UserRegistrationDto.lastName = $scope.lastName;
 		UserRegistrationDto.email = $scope.email;
-		UserRegistrationDto.confirmEmail = $scope.confirmEmail;
 		UserRegistrationDto.password = $scope.password;
-		UserRegistrationDto.confirmPassword = $scope.confirmPassword;
+		
+		fd.append('form', angular.toJson(UserRegistrationDto));
+		
+		var listCarsDto = [], imgCars = [];
+		var car = {};
+		for(var i = 0; i < $scope.listCars.length; i++){
+			car = {};
+			car.modelo = $scope.listCars[i].model;
+			car.matricula = $scope.listCars[i].matricula;
+			car.color = $scope.listCars[i].color;
+			imgCars.push( $scope.listCars[i].img );
+			fd.append('imgCars'+i , $scope.listCars[i].img );
+			listCarsDto.push(car);
+		}
+		
+		fd.append('formCars', angular.toJson(listCarsDto));
+		
+		
 		
 		$http({
 			url: link,
 			method: 'POST',
-			data : UserRegistrationDto
+			data : fd,
+			headers: {'Content-Type': undefined},
+			transformRequest: angular.identity
 		}).then(success , error);
 		
-//		
-//		HttpSrv.post(link,datos).then(success, error);
 	}
 	
-	$scope.items = ['item1', 'item2', 'item3'];
+	
+	
+	//$scope.items = ['item1', 'item2', 'item3'];
 	$scope.show = function (size) {
 
 	    var modalInstance = $uibModal.open({
@@ -73,6 +98,36 @@ myApp.controller('PrincipalCtrl',['$scope','$http', '$q','$uibModal', '$log', fu
 //		//sdocument.getElementById('my_file').click();
 //		//$scope.fileToUpload= undefined;
 //	}
+	  
+	function loginAuto(){
+		var f = {};
+		var link = '/login';
+		
+		function success(data)
+		{
+			var da = data;
+			deferred.resolve(da);
+		}
+		function error(data)
+		{
+			var da = data;
+			deferred.reject(da);
+		}
+		
+		f.username = $scope.email;
+		f.password = $scope.password;
+		
+		var fJSON = angular.toJson(f);
+		
+		$http({
+			url: link,
+			method: 'POST',
+			data : f,
+			headers: {'Content-Type': undefined},
+			transformRequest: angular.identity
+		}).then(success , error);
+			
+	} 
 	
 	function getImg(file){
 		 reader.onloadend = function () {
@@ -108,7 +163,7 @@ myApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
 		 	car.imgUrl = reader.result;
 		 	$scope.$apply();
 		 	//limpiaDatosCar();
-		 	$scope.$apply();
+		 	//$scope.$apply();
 		  }
 
 		  if ($scope.fileToUpload) {

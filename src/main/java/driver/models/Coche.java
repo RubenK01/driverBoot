@@ -1,11 +1,13 @@
 package driver.models;
 
+import java.io.*;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 @Entity(name = "Coche")
 @Table(name = "Coche")
-public class Coche {
+public class Coche implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -17,8 +19,11 @@ public class Coche {
 	private String modelo;
 	@NotNull
 	private String color;
-	@NotNull
+	
+//	@ManyToOne
+//    @JoinColumn(referencedColumnName = "id", nullable=false)
 	@ManyToOne
+	@JoinColumn(name="IdUser")
 	private Usuario conductor;
 	/**
 	 * @param foto
@@ -36,6 +41,12 @@ public class Coche {
 		this.modelo = modelo;
 		this.color = color;
 		this.conductor = conductor;
+	}
+	/**
+	 * 
+	 */
+	public Coche() {
+		super();
 	}
 	public long getId() {
 		return id;

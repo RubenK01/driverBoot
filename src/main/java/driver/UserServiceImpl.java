@@ -3,7 +3,6 @@ package driver;
 import java.util.*;
 import java.util.stream.*;
 
-import javax.management.relation.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.core.*;
@@ -44,7 +43,23 @@ public class UserServiceImpl implements UserService {
         user.setLastName(registration.getLastName());
         user.setEmail(registration.getEmail());
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
+        user.setUserImg(registration.getUserImg());
         user.setRoles(Arrays.asList(new Role("ROLE_USER")));
+        List<Coche> misCoches = new ArrayList<>();
+        for(CocheDto coche : registration.getCoches()) {
+        	Coche miCoche = new Coche();
+        	
+        	miCoche.setColor(coche.getColor());
+        	miCoche.setConductor(user);
+        	miCoche.setFoto(coche.getFoto());
+        	miCoche.setMatricula(coche.getMatricula());
+        	miCoche.setModelo(coche.getModelo());
+        	
+        	misCoches.add(miCoche);
+        	
+        }
+        user.setCoches(misCoches);
+        
         return userRepository.save(user);
     }
 
@@ -54,3 +69,4 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
     }
 }
+ 
