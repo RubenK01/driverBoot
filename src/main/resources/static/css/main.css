@@ -28,7 +28,9 @@ div.controls {
     color: #333;
 }
 
-
+ #map {
+      height: -webkit-fill-available;
+      }
 
 /* Footer */
 section {
@@ -42,7 +44,7 @@ section .section-title {
     text-transform: uppercase;
 }
 #footer {
-    background: #007b5e !important;
+    background: #2e353dbf !important;
 }
 #footer h5{
 	padding-left: 10px;
@@ -214,7 +216,9 @@ hr {
 html, body {
   font-family: Poppins-Regular, sans-serif;
   margin: 0;
-  
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 /*---------------------------------------------*/
@@ -252,9 +256,13 @@ p {
 	margin: 0px;
 }
 
-ul, li {
+/*ul, li {
 	margin: 0px;
 	list-style-type: none;
+}*/
+
+ul{
+  list-style-type: square;
 }
 
 

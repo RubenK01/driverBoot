@@ -21,9 +21,6 @@ public class UserRegistrationDto {
 
 	    @NotEmpty
 	    private String password;
-//
-//	    @NotEmpty
-//	    private String confirmPassword;
 
 	    @Email
 	    @NotEmpty
@@ -32,62 +29,53 @@ public class UserRegistrationDto {
 		private byte[] userImg;
 	    
 	    @NotEmpty
+	    private Date fExpiryDate;
+	    @NotEmpty
+	    private String dni;
+	    
+	    @NotEmpty
+	    private String phone;
+	    
+	    @NotEmpty
+	    private Date fBirthDate;
+	    
+	    @NotEmpty
+	    private String gender;
+	    
+	    @NotEmpty
 	    private  Collection<CocheDto> coches;
-//
-//	    @Email
-//	    @NotEmpty
-//	    private String confirmEmail;
 
+		public String getFirstName() {
+			return firstName;
+		}
 
-//	    @AssertTrue
-//	    private Boolean terms;
-	    public String getFirstName() {
-	        return firstName;
-	    }
+		public void setFirstName(String firstName) {
+			this.firstName = firstName;
+		}
 
-	    public void setFirstName(String firstName) {
-	        this.firstName = firstName;
-	    }
+		public String getLastName() {
+			return lastName;
+		}
 
-	    public String getLastName() {
-	        return lastName;
-	    }
+		public void setLastName(String lastName) {
+			this.lastName = lastName;
+		}
 
-	    public void setLastName(String lastName) {
-	        this.lastName = lastName;
-	    }
+		public String getPassword() {
+			return password;
+		}
 
-	    public String getPassword() {
-	        return password;
-	    }
+		public void setPassword(String password) {
+			this.password = password;
+		}
 
-	    public void setPassword(String password) {
-	        this.password = password;
-	    }
+		public String getEmail() {
+			return email;
+		}
 
-//	    public String getConfirmPassword() {
-//	        return confirmPassword;
-//	    }
-//
-//	    public void setConfirmPassword(String confirmPassword) {
-//	        this.confirmPassword = confirmPassword;
-//	    }
-
-	    public String getEmail() {
-	        return email;
-	    }
-
-	    public void setEmail(String email) {
-	        this.email = email;
-	    }
-//
-//	    public String getConfirmEmail() {
-//	        return confirmEmail;
-//	    }
-//
-//	    public void setConfirmEmail(String confirmEmail) {
-//	        this.confirmEmail = confirmEmail;
-//	    }
+		public void setEmail(String email) {
+			this.email = email;
+		}
 
 		public byte[] getUserImg() {
 			return userImg;
@@ -97,6 +85,46 @@ public class UserRegistrationDto {
 			this.userImg = userImg;
 		}
 
+		public Date getfExpiryDate() {
+			return fExpiryDate;
+		}
+
+		public void setfExpiryDate(Date fExpryDate) {
+			this.fExpiryDate = fExpryDate;
+		}
+
+		public String getDni() {
+			return dni;
+		}
+
+		public void setDni(String dni) {
+			this.dni = dni;
+		}
+
+		public String getPhone() {
+			return phone;
+		}
+
+		public void setPhone(String phone) {
+			this.phone = phone;
+		}
+
+		public Date getfBirthDate() {
+			return fBirthDate;
+		}
+
+		public void setfBirthDate(Date fBirthDate) {
+			this.fBirthDate = fBirthDate;
+		}
+
+		public String getGender() {
+			return gender;
+		}
+
+		public void setGender(String gender) {
+			this.gender = gender;
+		}
+
 		public Collection<CocheDto> getCoches() {
 			return coches;
 		}
@@ -104,5 +132,10 @@ public class UserRegistrationDto {
 		public void setCoches(Collection<CocheDto> coches) {
 			this.coches = coches;
 		}
+
+//	    @AssertTrue
+//	    private Boolean terms;
+	    
+	
 
 }

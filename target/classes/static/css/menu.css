@@ -5,7 +5,6 @@
   font-weight: 200;
   background-color: #2e353d;
   top: 0px;
-  width: 300px;
   height: -webkit-fill-available;
   padding: 0px;
   color: #e1ffff;
@@ -89,11 +88,13 @@
 .nav-side-menu li {
   font-family: Poppins-Regular;
   font-size: 15px;
-  padding: 10px;
+  padding: 0px;
   border-left: 3px solid #2e353d;
   border-bottom: 1px solid #23282e;
 }
 .nav-side-menu li a {
+  display: inline-block;
+  padding: 10px;
   text-decoration: none;
   color: #e1ffff;
 }
@@ -111,7 +112,7 @@
   -ms-transition: all 1s ease;
   transition: all 1s ease;
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .nav-side-menu {
     position: relative;
     height: auto;
@@ -138,7 +139,7 @@
     line-height: 50px !important;
   }
 }
-@media (min-width: 767px) {
+@media (min-width: 768px) {
   .nav-side-menu .menu-list .menu-content {
     display: block;
   }

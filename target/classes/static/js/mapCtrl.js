@@ -1,6 +1,9 @@
-myApp.factory('MarkerCreatorService', function () {
+/*myApp.factory('MarkerCreatorService', function () {
 
     var markerId = 0;
+
+
+       
 
     function create(latitude, longitude) {
         var marker = {
@@ -60,7 +63,7 @@ myApp.factory('MarkerCreatorService', function () {
     };
 
 });
-
+*/
 //myApp.controller('MapCtrl', [ '$ngMap', function(NgMap) {
 //	  NgMap.getMap().then(function(map) {
 //	    console.log(map.getCenter());
@@ -69,9 +72,71 @@ myApp.factory('MarkerCreatorService', function () {
 //	  });
 //	}]);
 
-myApp.controller('mapCtrl', ['MarkerCreatorService', '$scope', function (MarkerCreatorService, $scope) {
+myApp.controller('mapCtrl', ['$scope','$compile', function ($scope, $compile) {
 
-        MarkerCreatorService.createByCoords(40.454018, -3.509205, function (marker) {
+        var map, infowindow;
+
+        $scope.angularOk = function(){
+            return false;
+        };
+        var madrid = {lat: 40.41672271132239, lng: -3.703230192680735 };
+
+        // Initialize and add the map
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: madrid,
+            zoomControl: true,
+            gestureHandling: 'cooperative',
+            scaleControl: true
+          });
+           infoWindow = new google.maps.InfoWindow;
+
+           // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude
+                };
+
+                infoWindow.setPosition(pos);
+                infoWindow.setContent('You are here.');
+                infoWindow.open(map);
+                map.setCenter(pos);
+              });
+            }             
+        }
+
+        initMap();
+
+        var contentString =  '<button type="buttton" ng-click="angularOk();">Click Me</button>';
+        var compiledContent = $compile(contentString)($scope);
+
+        var infowindow = new google.maps.InfoWindow;
+        //infowindow.setContent(contentString);
+
+        var marker = new google.maps.Marker({
+          position: madrid,
+          map: map,
+          title: 'Madrid (Ayers Rock)'
+        });
+
+        google.maps.event.addListener(marker, 'click', (function(marker, contentString) {
+                    return function() {
+                        infowindow.setContent(contentString);
+                        infowindow.open(map, marker);
+                    };
+                })(marker, compiledContent[0], $scope));
+
+       /* marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });*/
+
+
+
+
+       /* MarkerCreatorService.createByCoords(40.454018, -3.509205, function (marker) {
             marker.options.labelContent = 'Autentia';
             $scope.autentiaMarker = marker;
         });
@@ -114,6 +179,6 @@ myApp.controller('mapCtrl', ['MarkerCreatorService', '$scope', function (MarkerC
         function refresh(marker) {
             $scope.map.control.refresh({latitude: marker.latitude,
                 longitude: marker.longitude});
-        }
+        }*/
 
     }]);

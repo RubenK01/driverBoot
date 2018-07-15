@@ -55,6 +55,7 @@ public class UserRegistrationController {
 	        if (existing != null){
 	        	salida.setTexto("There is already an account registered with that email");
 	        	salida.setDescripcion("Incorreco");
+	        	salida.setCodigo("01");
 	        	return salida;
 	            //result.rejectValue("email", null, "There is already an account registered with that email");
 	        }
@@ -63,7 +64,11 @@ public class UserRegistrationController {
 //	            return "redirect:/signUp.html?error";
 //	        }
 	        
-	        userDto.setUserImg(file);  
+	        if(file.length == 1 && file[0] == 48) {
+	        	userDto.setUserImg(null);
+	        }
+	        else
+	        	userDto.setUserImg(file);  
 	        
 	        
 	        //seteo de coches
@@ -80,7 +85,12 @@ public class UserRegistrationController {
 						byte[] img = new byte[(int) pi];
 						p.getInputStream().read(img);
 						
-						listCars.get(i).setFoto(img);
+						if(img.length == 1 && img[0] == 48) {
+							listCars.get(i).setFoto(null);
+				        }
+				        else
+				        	listCars.get(i).setFoto(img); 
+						
 					} catch (ServletException e) {
 						e.printStackTrace();
 					}
@@ -99,6 +109,12 @@ public class UserRegistrationController {
 		} catch (IOException e1) {
 
 			e1.printStackTrace();
+		}
+		catch (Exception e) {
+			salida.setCodigo("02");
+			salida.setTexto("There is already an account registered with that DNI");
+
+			return salida;
 		}
     	
     	

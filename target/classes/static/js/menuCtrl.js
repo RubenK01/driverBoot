@@ -1,14 +1,15 @@
-'use strict';
 
-myApp.controller('menuCtrl',['$scope','$http','mantenimientoSrv',function($scope,$http,mantenimientoSrv){
+myApp.controller('menuCtrl',['$scope','$http',function($scope,$http){
 	$scope.pestaniasMenu = [
-					{name: 'Map', style: 'active', ico: 'fa fa-globe fa-lg '},
-					{name: 'New Trip', style: '', ico: 'fa fa-map-marker fa-lg'},
-					{name: 'My Trips', style: '', ico: 'fa fa-car fa-lg'},
-					{name: 'Inbox', style: '', ico: 'fa fa-envelope fa-lg'},
-					{name: 'Profile', style: 'collapsed', ico: 'fa fa-user fa-lg', submenu: [{name: 'My Account', style:''}, {name: 'Settings', style:''}, {name: 'Log Out', style:''} ]} ];
+					{name: 'Map', url: '/', style: 'active', ico: 'fa fa-globe fa-lg '},
+					{name: 'New Trip', url: '/newTrip', style: '', ico: 'fa fa-map-marker fa-lg'},
+					{name: 'My Trips', url: '/myTrips',style: '', ico: 'fa fa-car fa-lg'},
+					{name: 'Inbox', url: '/inbox',style: '', ico: 'fa fa-envelope fa-lg'},
+					{name: 'Profile', url: '/profile',style: 'collapsed', ico: 'fa fa-user fa-lg', submenu: [{name: 'My Account',url: '/', style:''}, {name: 'Settings', url: '/',style:''}, {name: 'Log Out', style:''} ]} ];
 	
 	$scope.selectedName = 'map';
+
+	
 
 	$scope.addActivo = function(name, subName){
 		//limpia estilos

@@ -44,7 +44,16 @@ public class UserServiceImpl implements UserService {
         user.setEmail(registration.getEmail());
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
         user.setUserImg(registration.getUserImg());
+        user.setFechaExpCarnet(registration.getfExpiryDate());
+        user.setDni(registration.getDni());
+        user.setFechaNacimiento(registration.getfBirthDate());
         user.setRoles(Arrays.asList(new Role("ROLE_USER")));
+        user.setActivo(true);
+        user.setFechaAlta(new Date());
+        user.setMinutos(15);
+        user.setTelefono(registration.getPhone());
+        user.setSexo(registration.getGender().charAt(0));
+        
         List<Coche> misCoches = new ArrayList<>();
         for(CocheDto coche : registration.getCoches()) {
         	Coche miCoche = new Coche();
