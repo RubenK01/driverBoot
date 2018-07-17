@@ -41,12 +41,12 @@
 </head>
 <body ng-controller="PrincipalCtrl">
 	
-		<div ng-show="login" class="row" style="margin:0px;height: 100%;">	
+		<div ng-show="login" class="row" style="margin:0px;">	
 
 			<!-- LOGIN -->
-			<div class="limiter">
-				<div  class="container-login100">
-					<div class="wrap-login100">						
+			<div class="limiter" style="height: 100%">
+				<div  class="container-login100" style="height: 100%">
+					<div class="wrap-login100" style="height: 100%">						
 							<form name='f' action='/login' method='POST' class="login100-form validate-form">
 								<span class="login100-form-title p-b-34">
 									Account Login
@@ -88,11 +88,13 @@
 		</div>
 
 		<!-- ////////////// SIGNUP /////////////////////////////// -->
-		<div ng-show="!login" class="row" style="margin: 0px; height: 100%;">
-			<div class="limiter">
-				<div class="container-login100">
-					<div class="wrap-login100">
-						<form  class="login100-form validate-form form-group" style="margin-top: -250px; padding-top: 275px;">
+		<div ng-show="!login" class="row" style="margin:0px;">	
+
+			<!-- LOGIN -->
+			<div class="limiter" style="height: 100%">
+				<div  class="container-login100" style="height: 100%">
+					<div class="wrap-login100" style="height: 100%">						
+							<form  class="login100-form validate-form form-group" style="margin-top: -250px; padding-top: 275px;">
 							
 
 									<a title="Go back" href="#" ng-click="changeLogin();"><img src="images/icons/back.png"
@@ -150,13 +152,10 @@
 									</div>
 									<div class="wrap-input100 validate-input m-b-20"
 										data-validate="Type your driver's license expiraty date">
-										<!-- <input id="fExpLicense" class="input100" mask="39/19/2999"
-											restrict="reject" " clean="true" ng-model="fLicense" type="text"
-											maxlength="10" required name="fExpLicense"
-											placeholder="Driver's license expiry date (ddMMyyyy) (*)"> -->
+										
 											<label class="col-sm-7 col-xs-7 radio-inline input100-radio" style="margin-bottom: 13px;height: 80%;margin-top: 13px;">License expiry date (*)</label>
 											<input id="fExpLicense" class="col-sm-5 col-xs-5 "
-											 ng-model="fLicense" type="date" style="font-size: 15px; margin-bottom: 10px; margin-top: 7px; padding:  0;"
+											 ng-model="fLicense" type="date" style="border: none;font-size: 15px; margin-bottom: 10px; margin-top: 7px; padding:  0;"
 											 required name="fExpLicense">
 										<span class="focus-input100"></span>
 									</div>
@@ -178,7 +177,7 @@
 										data-validate="Type your birth date">
 										<label class="col-sm-7 col-xs-7 radio-inline input100-radio" style="margin-bottom: 13px;height: 80%;margin-top: 13px;">Birth date (*)</label>
 										<input id="birthDate" class="col-sm-5 col-xs-5 "
-											 ng-model="fBirth" type="date" style="font-size: 15px; margin-bottom: 10px; margin-top: 7px; padding:  0;"
+											 ng-model="fBirth" type="date" style="border: none;font-size: 15px; margin-bottom: 10px; margin-top: 7px; padding:  0;"
 											required name="birthDate">
 											<span class="focus-input100"></span>
 									</div>
@@ -197,7 +196,7 @@
 										<span class="focus-input100"></span>
 									</div>
 									<div class="row"
-											style="margin-left: -10px;">
+											style="position: relative;margin-left: -10px;">
 											<input accept="image/*" name="userImg"
 											ng-value="userImg" value="{{userImg}}"
 											file-model="userImg" set-file-data="userImg = value;"
@@ -211,7 +210,7 @@
 										<span class="focus-input100"></span>
 									</div>
 									<br />
-									<span ng-if="listCars.length > 0" class="login100-form-title p-b-34">My Cars</span>
+									 <span ng-if="listCars.length > 0" class="login100-form-title p-b-34">My Cars</span>
 									
 									<hr class="col-sm-12 col-xs-12" />
 									<div class="row" ng-repeat="car in listCars">
@@ -237,74 +236,81 @@
 									<div class="container-login100-form-btn">
 										<button type="submit" ng-click="submit();" class="login100-form-btn">Sign Up
 										</button>
-									</div>
+									</div> 
 									<div ng-if="loading" class="col-sm-12" style="text-align:  center;margin-top: 28px;">
 										<img src="/images/loading.gif" alt="Loading...">
 									</div>
-								</form>
-						<div class="login100-more"
-							style="background-image: url('images/bg-01.jpg');"></div>
+							</form>
+							
+						<div class="login100-more" style="background-image: url('images/bg-01.jpg');"></div>
 					</div>
 				</div>
+				
+				
 			</div>
-
 		</div>
-		<!-- Footer -->
-		<section id="footer">
-			<div class="container">
-				<div class="row text-center text-xs-center text-sm-left text-md-left">
-					<div class="col-xs-12 col-sm-4 col-md-4">
-						<h5>Quick links</h5>
-						<ul class="list-unstyled quick-links">
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Home</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>About</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Videos</a></li>
-						</ul>
+			<!-- Footer -->
+		
+			<section id="footer">
+				<div class="container">
+					<div class="row text-center text-xs-center text-sm-left text-md-left">
+						<div class="col-xs-12 col-sm-4 col-md-4">
+							<h5>Quick links</h5>
+							<ul class="list-unstyled quick-links">
+								<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Home</a></li>
+								<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>About</a></li>
+								<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
+								<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
+								<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Videos</a></li>
+							</ul>
+						</div>
+						<div class="col-xs-12 col-sm-4 col-md-4">
+							<h5>Quick links</h5>
+							<ul class="list-unstyled quick-links">
+								<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Home</a></li>
+								<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>About</a></li>
+								<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
+								<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
+								<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Videos</a></li>
+							</ul>
+						</div>
+						<div class="col-xs-12 col-sm-4 col-md-4">
+							<h5>Quick links</h5>
+							<ul class="list-unstyled quick-links">
+								<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Home</a></li>
+								<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>About</a></li>
+								<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
+								<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
+								<li><a href="https://wwwe.sunlimetech.com" title="Design and developed by"><i class="fa fa-angle-double-right"></i>Imprint</a></li>
+							</ul>
+						</div>
 					</div>
-					<div class="col-xs-12 col-sm-4 col-md-4">
-						<h5>Quick links</h5>
-						<ul class="list-unstyled quick-links">
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Home</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>About</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Videos</a></li>
-						</ul>
-					</div>
-					<div class="col-xs-12 col-sm-4 col-md-4">
-						<h5>Quick links</h5>
-						<ul class="list-unstyled quick-links">
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Home</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>About</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
-							<li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
-							<li><a href="https://wwwe.sunlimetech.com" title="Design and developed by"><i class="fa fa-angle-double-right"></i>Imprint</a></li>
-						</ul>
-					</div>
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+							<ul class="list-unstyled list-inline social text-center">
+								<li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-facebook"></i></a></li>
+								<li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-twitter"></i></a></li>
+								<li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-instagram"></i></a></li>
+								<li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-google-plus"></i></a></li>
+								<li class="list-inline-item"><a href="javascript:void();" target="_blank"><i class="fa fa-envelope"></i></a></li>
+							</ul>
+						</div>
+						</hr>
+					</div>	
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+							<p>National Transaction Corporation is a Registered MSP/ISO of Elavon, Inc. Georgia [a wholly owned subsidiary of U.S. Bancorp, Minneapolis, MN]</p>
+							<p class="h6">&copy All right Reversed.<a class="text-green ml-2" href="https://www.sunlimetech.com" target="_blank">Sunlimetech</a></p>
+						</div>
+						</hr>
+					</div>	
 				</div>
-				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
-						<ul class="list-unstyled list-inline social text-center">
-							<li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-facebook"></i></a></li>
-							<li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-twitter"></i></a></li>
-							<li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-instagram"></i></a></li>
-							<li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-google-plus"></i></a></li>
-							<li class="list-inline-item"><a href="javascript:void();" target="_blank"><i class="fa fa-envelope"></i></a></li>
-						</ul>
-					</div>
-					</hr>
-				</div>	
-				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
-						<p>National Transaction Corporation is a Registered MSP/ISO of Elavon, Inc. Georgia [a wholly owned subsidiary of U.S. Bancorp, Minneapolis, MN]</p>
-						<p class="h6">&copy All right Reversed.<a class="text-green ml-2" href="https://www.sunlimetech.com" target="_blank">Sunlimetech</a></p>
-					</div>
-					</hr>
-				</div>	
-			</div>
-		</section>
+			</section>
+		
+
+		
+		
+		
 	
 		
 	

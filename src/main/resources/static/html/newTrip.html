@@ -1,0 +1,45 @@
+<br />
+<br />
+<div class="row" style=" height: 22%;">
+	<div style="position: relative;display: inline-block;text-align: center;"  class="col-sm-2 col-xs-7">
+		<img  style="width: 145%;" src="/images/cronometro.gif" />
+		<div style="font-size: 37px;position: absolute;top: 42%;left: 92%;transform: translate(-50%, -50%);">10</div>
+		<div style="font-size: 37px;position: absolute;top: 57%;left: 92%;transform: translate(-50%, -50%);">min</div>
+	</div>
+	<div class="col-sm-10 col-xs-10" style="float: right;">	
+		<div class="row" style="text-align: right;">
+			<label class="col-sm-2 col-xs-3">Starting Point: </label>
+			<input class="inputTrip col-sm-8 col-xs-8" type="text"></input>
+		</div>
+		<div class="row" style="text-align: right;margin-bottom: 15px;margin-top: 15px;">
+			<label class="col-sm-2 col-xs-3">Destination: </label>
+			<input class="inputTrip col-sm-8 col-xs-8" type="text"></input>
+		</div>
+		<div class="row" style="text-align: right;">
+			<div class="col-sm-4 col-xs-12">
+				<label class="col-sm-5 col-xs-3">Date: </label>
+				<input style="line-height: inherit !important;" class="inputTrip col-sm-7 col-xs-7" type="date"></input>
+			</div>	
+			<div class="col-sm-3 col-xs-12">
+				<label class="col-sm-4 col-xs-3">Time: </label>
+				<input style="line-height: inherit !important;" class="inputTrip col-sm-8 col-xs-7" type="time"></input>
+			</div>
+			<div class="col-sm-4 col-xs-12">
+				<label class="col-sm-6 col-xs-3">Available Seats: </label>
+				<input class="inputTrip col-sm-3 col-xs-7" min="1" max="7" type="number"></input>
+			</div>
+		</div>
+		<div class="row" style="  margin-top: 24px;">
+			<div class="col-sm-4 col-xs-4"></div>
+			<div class="col-sm-4 col-xs-4">
+				<button type="button" ng-click="" class="login100-form-btn">Add Trip</button>
+			</div>			
+			<div class="col-sm-4 col-xs-4"></div>
+		</div>
+	</div>
+</div>
+<br />
+<br />
+<div class="row" style="height: 70%;">
+	<div id="map1" ></div>
+</div>

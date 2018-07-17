@@ -8,6 +8,14 @@ myApp.config(function($routeProvider) {
         templateUrl :"html/map.html",
 		controller: "mapCtrl"
     })
+    .when("/newTrip", {
+        templateUrl :"html/newTrip.html",
+		controller: "newTripCtrl"
+    })
+    .when("/myTrips", {
+        templateUrl :"html/map.html",
+		controller: "mapCtrl"
+    })
 	.otherwise({redirectTo:'/'});
 	
 });

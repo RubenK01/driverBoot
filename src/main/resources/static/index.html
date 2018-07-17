@@ -33,6 +33,7 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/menu.css">
+	<link rel="stylesheet" type="text/css" href="css/maps.css">
 	<link rel="stylesheet" type="text/css" href="css/header.css">
 <!--===============================================================================================-->
 
@@ -43,11 +44,11 @@
 	<div ng-if="!working" style="text-align: center;z-index: 100; width: 100%; height: 100%; position: fixed; background-color: white;">
 			<img src="/images/loading.gif" alt="Loading...">
 	</div>
-	<header id="page-top">
+	<header id="page-top" >
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<img class="img-responsive" src="http://ironsummitmedia.github.io/startbootstrap-freelancer/img/profile.png" alt="">
+					<img class="img-responsive" src="/images/icons/favicon.png" alt="">
 					<div class="intro-text">
 						<span class="name">Inspired by PureCSS.io</span>
 						<hr class="star-light">
@@ -58,8 +59,8 @@
 			</div>
 		</div>
 	</header>
-	<div class="content-wrapper">
-		<div  class="row" style="margin: 0px; height: -webkit-fill-available;">
+	<div class="content-wrapper" style="height: 143%;">
+		<div style="height: 100%;margin: 0px" class="row" >
 			<div class="col-sm-2 col-xs-2 nav-side-menu">
 				<div class="brand"><img src="images/icons/favicon.png" style=" padding: 9px;" alt="Driver"> </div>
 				<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
@@ -88,13 +89,13 @@
 
 				 </div>
 			</div>
-			<div class="col-sm-10 col-xs-12">
+			<div class="col-sm-10 col-xs-12" style="height: 100%;">
 							  			
-				<div ng-view style="padding: 0px;"></div> 
+				<div ng-view style="padding: 0px;height: 100%; top:5px; bottom:5px;"></div> 
 			</div>
 		</div>
 		<!-- Footer -->
-		<section class="row" id="footer">
+		<section id="footer" style="height: 43%;">
 			<div class="container">
 				<div class="row text-center text-xs-center text-sm-left text-md-left">
 					<div class="col-xs-12 col-sm-4 col-md-4">
@@ -172,7 +173,7 @@
 
 	   
 	<script async defer
-	    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTf3XsDyBHXRtW6SY9483Ofp2KnvNfDa4">
+	    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTf3XsDyBHXRtW6SY9483Ofp2KnvNfDa4&libraries=places">
     </script>
 	  <!-- 
 	    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTf3XsDyBHXRtW6SY9483Ofp2KnvNfDa4&sensor=false"
@@ -216,6 +217,7 @@
 	<script src="js/app.js"></script>
 	<script src="js/menuCtrl.js"></script>
 	<script src="js/mapCtrl.js"></script>
+	<script src="js/newTripCtrl.js"></script>
 <!-- 	<script src="js/directiveMenu.js"></script> -->
 
 </body>
