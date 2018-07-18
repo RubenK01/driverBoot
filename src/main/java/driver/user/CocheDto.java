@@ -1,4 +1,4 @@
-package driver;
+package driver.user;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;

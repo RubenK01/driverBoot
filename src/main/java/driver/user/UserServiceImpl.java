@@ -1,4 +1,4 @@
-package driver;
+package driver.user;
 
 import java.util.*;
 import java.util.stream.*;
@@ -12,7 +12,6 @@ import org.springframework.security.crypto.bcrypt.*;
 import org.springframework.stereotype.*;
 
 import driver.models.*;
-import driver.models.Role;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -77,5 +76,11 @@ public class UserServiceImpl implements UserService {
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());
     }
+
+	@Override
+	public Usuario getUsuario() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
  

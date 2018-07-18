@@ -1,4 +1,4 @@
-myApp.controller('newTripCtrl',['$scope','$http',function($scope,$http){
+myApp.controller('newTripCtrl',['$scope',function($scope){
 	var map1, infoWindow;
 	function initmap1() {
 		var madrid = {lat: 40.41672271132239, lng: -3.703230192680735 };

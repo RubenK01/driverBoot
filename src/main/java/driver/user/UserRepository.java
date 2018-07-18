@@ -1,4 +1,4 @@
-package driver;
+package driver.user;
 
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.*;

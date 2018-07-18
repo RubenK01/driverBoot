@@ -1,5 +1,5 @@
 
-myApp.controller('menuCtrl',['$scope','$http',function($scope,$http){
+myApp.controller('menuCtrl',['$scope','MantenimientoSrv',function($scope,MantenimientoSrv){
 	$scope.pestaniasMenu = [
 					{name: 'Map', url: '/#/', style: 'active', ico: 'fa fa-globe fa-lg '},
 					{name: 'New Trip', url: '/#/newTrip', style: '', ico: 'fa fa-map-marker fa-lg'},
@@ -9,7 +9,13 @@ myApp.controller('menuCtrl',['$scope','$http',function($scope,$http){
 	
 	$scope.selectedName = 'map';
 
+	$scope.usuario = {};
 
+	MantenimientoSrv.getUser().then(function(data){
+		$scope.usuario = data;
+	},function(err){
+		
+	});
 
 	$scope.addActivo = function(name, subName){
 		//limpia estilos

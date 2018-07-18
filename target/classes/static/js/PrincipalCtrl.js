@@ -215,8 +215,9 @@ myAppIni.controller('PrincipalCtrl',['$scope','$http', '$q','$uibModal', '$log',
 				$window.scrollTo(0, 0);
 				$scope.errors.push(data.data.texto);
 			}
-			else
+			else{
 				$window.location = "/login.html";
+			}
 
 			deferred.resolve(data);
 		}
@@ -333,6 +334,7 @@ myAppIni.controller('PrincipalCtrl',['$scope','$http', '$q','$uibModal', '$log',
 	function loginAuto(){
 		var f = {};
 		var link = '/login';
+		var deferred = $q.defer();
 		
 		function success(data)
 		{

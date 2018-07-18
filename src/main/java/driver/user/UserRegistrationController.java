@@ -1,4 +1,4 @@
-package driver;
+package driver.user;
 
 import java.io.*;
 import java.sql.*;
@@ -10,6 +10,8 @@ import javax.validation.*;
 
 import org.hibernate.*;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.validation.*;
@@ -17,28 +19,54 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.*;
 import org.yaml.snakeyaml.scanner.*;
 
+import driver.RetornoForm;
 import driver.commons.*;
 import driver.models.*;
 
-@Controller
-@RequestMapping("/registration")
+@RestController
 public class UserRegistrationController {
 	@Autowired
     private UserService userService;
 
-    @ModelAttribute("usuario")
+    @ModelAttribute("/usuario")
     public UserRegistrationDto userRegistrationDto() {
         return new UserRegistrationDto();
     }
+    
+    @RequestMapping(value="/getUsuario",method = RequestMethod.GET)
+    @ResponseBody
+    public UserRegistrationDto getUser(final HttpServletRequest request, HttpServletResponse response) {
+    	UserRegistrationDto resul = new UserRegistrationDto();
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	
+    	String name = auth.getName();
 
+    	Usuario u = userService.findByEmail(name);
+    	
+    	resul.setDni(u.getDni());
+    	resul.setEmail(u.getEmail());
+    	resul.setfBirthDate(u.getFechaNacimiento());
+    	resul.setfExpiryDate(u.getFechaExpCarnet());
+    	resul.setFirstName(u.getFirstName());
+    	resul.setGender(String.valueOf(u.getSexo()));
+    	resul.setLastName(u.getLastName());
+    	resul.setPhone(u.getTelefono());
+    	resul.setUserImg(u.getUserImg());
+    	
+    	
+		return resul;
+    	
+    }
+    
+    
     //@GetMapping
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value="/registration",method = RequestMethod.GET)
     public String showRegistrationForm(Model model) {
         return "redirect:/signUp.html";
     }
 
     //@PostMapping
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value="/registration",method = RequestMethod.POST)
     @ResponseBody
     public RetornoForm registerUserAccount(@RequestParam(value = "form") String userJSON
     		, @RequestPart(value = "file") byte[]  file , @RequestParam(value = "formCars") String listCarJSON , final HttpServletRequest request, HttpServletResponse response){

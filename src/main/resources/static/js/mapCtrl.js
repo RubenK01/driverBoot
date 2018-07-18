@@ -72,7 +72,7 @@
 //	  });
 //	}]);
 
-myApp.controller('mapCtrl', ['$scope','$compile', function ($scope, $compile) {
+myApp.controller('mapCtrl', ['$scope','$compile', '$http', function ($scope, $compile,$http) {
 
         var map, infowindow;
 
@@ -80,6 +80,8 @@ myApp.controller('mapCtrl', ['$scope','$compile', function ($scope, $compile) {
             return false;
         };
         var madrid = {lat: 40.41672271132239, lng: -3.703230192680735 };
+
+        
 
         // Initialize and add the map
         function initMap() {

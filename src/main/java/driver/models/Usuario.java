@@ -58,6 +58,9 @@ public class Usuario implements Serializable {
 	
 	@OneToMany(mappedBy="receptor")
 	private List<Mensaje> recibidos;
+	
+	@ManyToMany(mappedBy="participantes")
+	private List<Viaje> viajes;
 
 	@OneToMany(cascade= CascadeType.ALL)
 	@JoinColumn(name="IdCoche")
@@ -271,6 +274,16 @@ public class Usuario implements Serializable {
 
 	public void setCoches(Collection<Coche> coches) {
 		this.coches = coches;
+	}
+
+
+	public List<Viaje> getViajes() {
+		return viajes;
+	}
+
+
+	public void setViajes(List<Viaje> viajes) {
+		this.viajes = viajes;
 	}
 
 }

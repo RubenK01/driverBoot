@@ -12,6 +12,7 @@ import org.springframework.security.web.util.matcher.*;
 
 import driver.*;
 import driver.models.*;
+import driver.user.UserService;
 
 @Configuration
 @EnableWebSecurity
@@ -24,12 +25,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
      
         http.csrf().disable().authorizeRequests()
-        .antMatchers("/signUp.html","/html/addCar.html", "/js/main.js", "/js/PrincipalCtrl.js", "/registration", "/lib/**","/vendor/**", "/css/**", "/fonts/**", "/images/**").permitAll() 
+        .antMatchers("/html/addCar.html", "/js/PrincipalCtrl.js", "/registration", "/lib/**","/vendor/**", "/css/**", "/fonts/**", "/images/**").permitAll() 
         .anyRequest().authenticated()
         .and()
 	        .formLogin() // default is /login with an HTTP post
 		        .loginPage("/login.html")
 		        .loginProcessingUrl("/login")
+		        .defaultSuccessUrl("/#/")
 		        .permitAll()
         .and()
 	        .logout()

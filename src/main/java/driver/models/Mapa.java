@@ -18,21 +18,27 @@ public class Mapa {
 	@NotNull
 	private String logDestino;
 	@NotNull
+	private String descOrigen;
+	@NotNull
+	private String descDestino;
+	@NotNull
 	@OneToOne(mappedBy="mapa")
 	private Viaje viaje;
-	/**
-	 * @param latOrigen
-	 * @param logOrigen
-	 * @param latDestino
-	 * @param logDestino
-	 * @param viaje
-	 */
-	public Mapa(String latOrigen, String logOrigen, String latDestino, String logDestino, Viaje viaje) {
+
+	
+	public Mapa() {
+
+	}
+	public Mapa(long id, String latOrigen, String logOrigen, String latDestino, String logDestino, String descOrigen,
+			String descDestino, Viaje viaje) {
 		super();
+		this.id = id;
 		this.latOrigen = latOrigen;
 		this.logOrigen = logOrigen;
 		this.latDestino = latDestino;
 		this.logDestino = logDestino;
+		this.descOrigen = descOrigen;
+		this.descDestino = descDestino;
 		this.viaje = viaje;
 	}
 	public long getId() {
@@ -70,5 +76,17 @@ public class Mapa {
 	}
 	public void setViaje(Viaje viaje) {
 		this.viaje = viaje;
+	}
+	public String getDescOrigen() {
+		return descOrigen;
+	}
+	public void setDescOrigen(String descOrigen) {
+		this.descOrigen = descOrigen;
+	}
+	public String getDescDestino() {
+		return descDestino;
+	}
+	public void setDescDestino(String descDestino) {
+		this.descDestino = descDestino;
 	}
 }
