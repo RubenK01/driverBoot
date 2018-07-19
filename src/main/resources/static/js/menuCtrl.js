@@ -12,7 +12,10 @@ myApp.controller('menuCtrl',['$scope','MantenimientoSrv',function($scope,Manteni
 	$scope.usuario = {};
 
 	MantenimientoSrv.getUser().then(function(data){
-		$scope.usuario = data;
+
+		$scope.usuario = data.data;
+		$scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
+		
 	},function(err){
 		
 	});

@@ -19,7 +19,7 @@ public class Usuario implements Serializable {
 	private String lastName;
 	
 	//@NotNull
-	@Column(unique=true)
+	//@Column(unique=true)
 	private String telefono;
 	@NotNull
 	@Column(unique=true)

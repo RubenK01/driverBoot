@@ -331,7 +331,7 @@ myAppIni.controller('PrincipalCtrl',['$scope','$http', '$q','$uibModal', '$log',
 	};
 	
 		  
-	function loginAuto(){
+/*	function loginAuto(){
 		var f = {};
 		var link = '/login';
 		var deferred = $q.defer();
@@ -360,7 +360,7 @@ myAppIni.controller('PrincipalCtrl',['$scope','$http', '$q','$uibModal', '$log',
 			transformRequest: angular.identity
 		}).then(success , error);
 			
-	} 
+	} */
 	
 	function getImg(file){
 		 reader.onloadend = function () {
@@ -420,13 +420,12 @@ myAppIni.controller('ModalInstanceCtrl', function ($scope, $modalInstance, lista
 			 	car.imgUrl = reader.result;
 			 	$scope.$apply();
 			 	//limpiaDatosCar();
-			 	//$scope.$apply();
 			  }
 
 			  if ($scope.fileToUpload) {
 			    reader.readAsDataURL($scope.fileToUpload);
 			  } else {
-				  $scope.imgUrl = "";//meter img por defecto (logo?)
+				  car.imgUrl = '/images/icons/logoNegro.png';//meter img por defecto (logo?)
 				  //$scope.listCars.push(car);
 				  //limpiaDatosCar();
 				  //$scope.$apply();
