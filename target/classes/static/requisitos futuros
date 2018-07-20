@@ -3,3 +3,5 @@
 - poder anular viaje
 - poder desvincularse del viaje 
 - En el footer escribir condiciones ( si conductor/pasajero anula con menos de 24h se le restan min..)
+- Poder añadir viaje con paradas
+- App movil (dependencias DOM (window y document eliminarlas antes))

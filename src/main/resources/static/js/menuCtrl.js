@@ -14,7 +14,13 @@ myApp.controller('menuCtrl',['$scope','MantenimientoSrv',function($scope,Manteni
 	MantenimientoSrv.getUser().then(function(data){
 
 		$scope.usuario = data.data;
-		$scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
+		if(!data.data.userImg){
+			$scope.usuario.userImg = "/images/icons/defaultDriver.png";
+		}
+		else{
+			$scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
+		}
+		
 		
 	},function(err){
 		
