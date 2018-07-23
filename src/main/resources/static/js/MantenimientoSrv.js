@@ -26,8 +26,32 @@ myApp.factory('MantenimientoSrv',['$http','$q',function($http,$q){
 
 	}
 
+	function saveViaje(viajeDTO){
+
+		function success(data){
+        deferred.resolve(data);
+	    };
+
+	    function error(data){
+	        deferred.reject(data);
+	    };
+
+		$http({
+				url: link,
+				method: 'POST',
+				data : viajeDTO,
+				headers: {'Content-Type': undefined},
+				transformRequest: angular.identity
+			}).then(success , error);
+
+		return promise;
+
+	}
 	
 	
 	
-	return {getUser:getUser}
+	return {
+		getUser:getUser,
+		saveViaje:saveViaje
+	}
 }]);

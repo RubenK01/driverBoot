@@ -12,7 +12,7 @@ import driver.models.*;
 //    @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match"),
 //    @FieldMatch(first = "email", second = "confirmEmail", message = "The email fields must match")
 //})
-public class UserRegistrationDto {
+public class UserDto {
 	  @NotEmpty
 	    private String firstName;
 

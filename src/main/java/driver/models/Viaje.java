@@ -24,28 +24,24 @@ public class Viaje {
 	@NotNull
 	private Date fechaHora;
 	@NotNull
-	private long idConductor; 
+	private Usuario conductor; 
 	@NotNull
 	@ManyToMany
 	private List<Usuario> participantes;
 	@NotNull
 	@OneToOne
 	private Mapa mapa;
-	/**
-	 * @param cEstado
-	 * @param plazas
-	 * @param minutos
-	 * @param fechaHora
-	 * @param participantes
-	 * @param mapa
-	 */
-	public Viaje(String cEstado, int plazas, int minutos, Date fechaHora,
+	
+	public Viaje() {
+	}
+	public Viaje(long id, String cEstado, int plazas, int minutos, Date fechaHora, Usuario conductor,
 			List<Usuario> participantes, Mapa mapa) {
-		super();
+		this.id = id;
 		this.cEstado = cEstado;
 		this.plazas = plazas;
 		this.minutos = minutos;
 		this.fechaHora = fechaHora;
+		this.conductor = conductor;
 		this.participantes = participantes;
 		this.mapa = mapa;
 	}
@@ -61,10 +57,10 @@ public class Viaje {
 	public void setcEstado(String cEstado) {
 		this.cEstado = cEstado;
 	}
-	public int getplazas() {
+	public int getPlazas() {
 		return plazas;
 	}
-	public void setplazas(int plazas) {
+	public void setPlazas(int plazas) {
 		this.plazas = plazas;
 	}
 	public int getMinutos() {
@@ -73,11 +69,17 @@ public class Viaje {
 	public void setMinutos(int minutos) {
 		this.minutos = minutos;
 	}
-	public Date getfechaHora() {
+	public Date getFechaHora() {
 		return fechaHora;
 	}
-	public void setfechaHora(Date fechaHora) {
+	public void setFechaHora(Date fechaHora) {
 		this.fechaHora = fechaHora;
+	}
+	public Usuario getConductor() {
+		return conductor;
+	}
+	public void setConductor(Usuario conductor) {
+		this.conductor = conductor;
 	}
 	public List<Usuario> getParticipantes() {
 		return participantes;

@@ -29,14 +29,14 @@ public class UserRegistrationController {
     private UserService userService;
 
     @ModelAttribute("/usuario")
-    public UserRegistrationDto userRegistrationDto() {
-        return new UserRegistrationDto();
+    public UserDto userRegistrationDto() {
+        return new UserDto();
     }
     
     @RequestMapping(value="/getUsuario",method = RequestMethod.GET)
     @ResponseBody
-    public UserRegistrationDto getUser(final HttpServletRequest request, HttpServletResponse response) {
-    	UserRegistrationDto resul = new UserRegistrationDto();
+    public UserDto getUser(final HttpServletRequest request, HttpServletResponse response) {
+    	UserDto resul = new UserDto();
     	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     	
     	String name = auth.getName();
@@ -72,10 +72,10 @@ public class UserRegistrationController {
     		, @RequestPart(value = "file") byte[]  file , @RequestParam(value = "formCars") String listCarJSON , final HttpServletRequest request, HttpServletResponse response){
     	RetornoForm salida = new RetornoForm();
 
-    	UserRegistrationDto userDto;
+    	UserDto userDto;
     	//ObjectMapper J_MAPPER = new ObjectMapper();
 		try {
-			userDto = Constants.JSON_MAPPER.readValue(userJSON, UserRegistrationDto.class);
+			userDto = Constants.JSON_MAPPER.readValue(userJSON, UserDto.class);
 			//Blob blob = Hibernate.createBlob(file.getInputStream());
 			
 			

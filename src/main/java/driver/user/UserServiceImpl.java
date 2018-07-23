@@ -27,6 +27,9 @@ public class UserServiceImpl implements UserService {
         if (user == null){
             throw new UsernameNotFoundException("Invalid username or password.");
         }
+        else if(!user.getActivo()) {
+        	throw new UsernameNotFoundException("This user is inactive.");
+        }
         return new org.springframework.security.core.userdetails.User(user.getEmail(),
                 user.getPassword(),
                 mapRolesToAuthorities(user.getRoles()));
@@ -36,7 +39,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(email);
     }
 
-    public Usuario save(UserRegistrationDto registration){
+    public Usuario save(UserDto registration){
     	Usuario user = new Usuario();
         user.setFirstName(registration.getFirstName());
         user.setLastName(registration.getLastName());
@@ -77,10 +80,5 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
     }
 
-	@Override
-	public Usuario getUsuario() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
  
