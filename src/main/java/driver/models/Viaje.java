@@ -1,5 +1,6 @@
 package driver.models;
 
+import java.io.Serializable;
 import java.util.*;
 
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import javax.validation.constraints.*;
 
 @Entity(name = "Viaje")
 @Table(name = "Viaje")
-public class Viaje {
+public class Viaje  implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -24,25 +25,30 @@ public class Viaje {
 	@NotNull
 	private Date fechaHora;
 	@NotNull
+	@ManyToOne
 	private Usuario conductor; 
+	
+	private Coche coche;
 	@NotNull
 	@ManyToMany
-	private List<Usuario> participantes;
-	@NotNull
-	@OneToOne
+	private List<Usuario> pasajeros;
+	
+	@OneToOne(mappedBy="viaje")
 	private Mapa mapa;
 	
 	public Viaje() {
 	}
-	public Viaje(long id, String cEstado, int plazas, int minutos, Date fechaHora, Usuario conductor,
-			List<Usuario> participantes, Mapa mapa) {
+	public Viaje(long id, String cEstado, int plazas, int minutos, Date fechaHora, Usuario conductor, Coche coche,
+			List<Usuario> pasajeros, Mapa mapa) {
+		super();
 		this.id = id;
 		this.cEstado = cEstado;
 		this.plazas = plazas;
 		this.minutos = minutos;
 		this.fechaHora = fechaHora;
 		this.conductor = conductor;
-		this.participantes = participantes;
+		this.coche = coche;
+		this.pasajeros = pasajeros;
 		this.mapa = mapa;
 	}
 	public long getId() {
@@ -81,11 +87,17 @@ public class Viaje {
 	public void setConductor(Usuario conductor) {
 		this.conductor = conductor;
 	}
-	public List<Usuario> getParticipantes() {
-		return participantes;
+	public Coche getCoche() {
+		return coche;
 	}
-	public void setParticipantes(List<Usuario> participantes) {
-		this.participantes = participantes;
+	public void setCoche(Coche coche) {
+		this.coche = coche;
+	}
+	public List<Usuario> getPasajeros() {
+		return pasajeros;
+	}
+	public void setPasajeros(List<Usuario> pasajeros) {
+		this.pasajeros = pasajeros;
 	}
 	public Mapa getMapa() {
 		return mapa;
@@ -93,5 +105,7 @@ public class Viaje {
 	public void setMapa(Mapa mapa) {
 		this.mapa = mapa;
 	}
+	
+	
 	
 }

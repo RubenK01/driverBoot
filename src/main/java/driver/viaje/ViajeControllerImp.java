@@ -1,40 +1,47 @@
 package driver.viaje;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 import driver.RetornoForm;
-import driver.models.Usuario;
-import driver.models.Viaje;
-import driver.user.UserDto;
-import driver.user.UserRepository;
-import driver.user.UserService;
+import driver.commons.Constants;
 
+@RestController
 public class ViajeControllerImp implements ViajeController{
+	
+	
 	@Autowired
-    private UserService userService;
+    private ViajeService viajeService;
 	
 	@Override
-	public RetornoForm saveTrip(ViajeDto viajeDto, HttpServletRequest request, HttpServletResponse response) {
+	public RetornoForm saveTrip(@RequestParam(value = "viajeJson") String viajeJson, final HttpServletRequest request, HttpServletResponse response) {
 		RetornoForm retorno = new RetornoForm();
 		
-		Viaje viaje = new Viaje();
+		ViajeDto viajeDto = new ViajeDto();
 		
-		viaje.setFechaHora(viajeDto.getFechaHora());
-		viaje.setMinutos(viajeDto.getMinutos());
-		viaje.setPlazas(viajeDto.getPlazas());
-		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    	
-    	String name = auth.getName();
+		try {
+			viajeDto = Constants.JSON_MAPPER.readValue(viajeJson, ViajeDto.class);
+			
+			viajeService.save(viajeDto);			
+			
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-    	Usuario conductor = userService.findByEmail(name);
-    	
-    	viaje.setConductor(conductor);
+
     	
 		return retorno;
 	}

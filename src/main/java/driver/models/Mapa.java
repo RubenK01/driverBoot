@@ -1,42 +1,44 @@
 package driver.models;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 @Entity(name = "Mapa")
 @Table(name = "Mapa")
-public class Mapa {
+public class Mapa  implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@NotNull
-	private String latOrigen;
+	private Double latOrigen;
 	@NotNull
-	private String logOrigen;
+	private Double lngOrigen;
 	@NotNull
-	private String latDestino;
+	private Double latDestino;
 	@NotNull
-	private String logDestino;
+	private Double lngDestino;
 	@NotNull
 	private String descOrigen;
 	@NotNull
 	private String descDestino;
-	@NotNull
-	@OneToOne(mappedBy="mapa")
+
+	@OneToOne
 	private Viaje viaje;
 
 	
 	public Mapa() {
 
 	}
-	public Mapa(long id, String latOrigen, String logOrigen, String latDestino, String logDestino, String descOrigen,
+	public Mapa(long id, Double latOrigen, Double lngOrigen, Double latDestino, Double lngDestino, String descOrigen,
 			String descDestino, Viaje viaje) {
 		super();
 		this.id = id;
 		this.latOrigen = latOrigen;
-		this.logOrigen = logOrigen;
+		this.lngOrigen = lngOrigen;
 		this.latDestino = latDestino;
-		this.logDestino = logDestino;
+		this.lngDestino = lngDestino;
 		this.descOrigen = descOrigen;
 		this.descDestino = descDestino;
 		this.viaje = viaje;
@@ -47,29 +49,29 @@ public class Mapa {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getLatOrigen() {
+	public Double getLatOrigen() {
 		return latOrigen;
 	}
-	public void setLatOrigen(String latOrigen) {
+	public void setLatOrigen(Double latOrigen) {
 		this.latOrigen = latOrigen;
 	}
-	public String getLogOrigen() {
-		return logOrigen;
+	public Double getLngOrigen() {
+		return lngOrigen;
 	}
-	public void setLogOrigen(String logOrigen) {
-		this.logOrigen = logOrigen;
+	public void setLngOrigen(Double lngOrigen) {
+		this.lngOrigen = lngOrigen;
 	}
-	public String getLatDestino() {
+	public Double getLatDestino() {
 		return latDestino;
 	}
-	public void setLatDestino(String latDestino) {
+	public void setLatDestino(Double latDestino) {
 		this.latDestino = latDestino;
 	}
-	public String getLogDestino() {
-		return logDestino;
+	public Double getLngDestino() {
+		return lngDestino;
 	}
-	public void setLogDestino(String logDestino) {
-		this.logDestino = logDestino;
+	public void setLngDestino(Double lngDestino) {
+		this.lngDestino = lngDestino;
 	}
 	public Viaje getViaje() {
 		return viaje;

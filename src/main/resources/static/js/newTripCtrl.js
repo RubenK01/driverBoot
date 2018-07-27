@@ -1,4 +1,4 @@
-myApp.controller('newTripCtrl',['$scope',function($scope){
+myApp.controller('newTripCtrl',['$scope', 'MantenimientoSrv',function($scope,MantenimientoSrv){
 	//variables
 	var map1, infoWindow;
 	$scope.timeTrip = 0;
@@ -73,6 +73,12 @@ myApp.controller('newTripCtrl',['$scope',function($scope){
 	          if (status === 'OK') {
 	            me.directionsDisplay.setDirections(response);
 	            $scope.timeTrip = Math.round(response.routes[0].legs[0].duration.value / 60); 
+              $scope.origin = response.routes[0].legs[0].start_address;
+              $scope.destination = response.routes[0].legs[0].end_address;
+              $scope.latOrigen = response.routes[0].legs[0].start_location.lat();
+              $scope.lngOrigen = response.routes[0].legs[0].start_location.lng();
+              $scope.latDestino = response.routes[0].legs[0].end_location.lat();
+              $scope.lngDestino = response.routes[0].legs[0].end_location.lng()
 	            $scope.$apply();
 	          } else {
 	            window.alert('Directions request failed due to ' + status);
@@ -96,30 +102,47 @@ myApp.controller('newTripCtrl',['$scope',function($scope){
 	          me.route();
         	});
 
-        
-
-        
-
-        
-
       	};
-      	/*this.setupClickListener('changemode-walking', 'WALKING');
-        this.setupClickListener('changemode-transit', 'TRANSIT');
-        this.setupClickListener('changemode-driving', 'DRIVING');*/
+
 
         this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
         this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
 
-       /* this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
-        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
-        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);*/
-      
       }
 
-      function addTrip(){
-        
-      }
+      $scope.addTrip = function(){
+        var viajeDTO = {};
 
-      
+        viajeDTO.plazas = $scope.seats;
+        viajeDTO.minutos = $scope.timeTrip;
+        //
+        /*var fechaHora = new Date($scope.date);
+        fechaHora.setTime($scope.time);
+        viajeDTO.fechaHora = fechaHora;*/
+        viajeDTO.fechaHora = $scope.date;
+
+        //
+        var mapaDTO = {};
+        mapaDTO.descOrigen = $scope.origin;
+        mapaDTO.descDestino = $scope.destination;
+        mapaDTO.latOrigen = $scope.latOrigen ;
+        mapaDTO.lngOrigen =$scope.lngOrigen ;
+        mapaDTO.latDestino = $scope.latDestino;
+        mapaDTO.lngDestino = $scope.lngDestino;
+        viajeDTO.mapa = mapaDTO;
+        viajeDTO.pasajeros = [];
+        viajeDTO.conductor = null;
+
+        function success(data){
+        };
+
+        function error(data){
+        };
+
+        MantenimientoSrv.saveViaje(viajeDTO).then(success , error);
+
+
+
+      }    
 
 }]);

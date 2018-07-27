@@ -22,6 +22,7 @@ import org.yaml.snakeyaml.scanner.*;
 import driver.RetornoForm;
 import driver.commons.*;
 import driver.models.*;
+import driver.viaje.ViajeDto;
 
 @RestController
 public class UserRegistrationController {
@@ -144,7 +145,7 @@ public class UserRegistrationController {
 
 			return salida;
 		}
-    	
+		
     	
         
         
@@ -160,4 +161,25 @@ public class UserRegistrationController {
         //return "redirect:/#/menu";
         return salida;
     }
+//    @RequestMapping(value="/saveTrip",method = RequestMethod.POST)
+//    @ResponseBody
+//    public RetornoForm saveTrip(ViajeDto viajeDto)  {
+//		RetornoForm retorno = new RetornoForm();
+//		
+//		Viaje viaje = new Viaje();
+//		
+//		viaje.setFechaHora(viajeDto.getFechaHora());
+//		viaje.setMinutos(viajeDto.getMinutos());
+//		viaje.setPlazas(viajeDto.getPlazas());
+//		
+//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//    	
+//    	String name = auth.getName();
+//
+//    	Usuario conductor = userService.findByEmail(name);
+//    	
+//    	viaje.setConductor(conductor);
+//    	
+//		return retorno;
+//	}
 }

@@ -1,9 +1,11 @@
 package driver.models;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
-public class Role {
+public class Role  implements Serializable{
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

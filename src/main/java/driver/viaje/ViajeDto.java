@@ -19,19 +19,19 @@ public class ViajeDto {
 	private UserDto conductor; 
 	@NotNull
 	@ManyToMany
-	private List<UserDto> participantes;
+	private List<UserDto> pasajeros;
 	@NotNull
 	private MapaDto mapa;
 	
 	public ViajeDto() {
 	}
-	public ViajeDto(int plazas, int minutos, Date fechaHora, UserDto conductor, List<UserDto> participantes,
+	public ViajeDto(int plazas, int minutos, Date fechaHora, UserDto conductor, List<UserDto> pasajeros,
 			MapaDto mapa) {
 		this.plazas = plazas;
 		this.minutos = minutos;
 		this.fechaHora = fechaHora;
 		this.conductor = conductor;
-		this.participantes = participantes;
+		this.pasajeros = pasajeros;
 		this.mapa = mapa;
 	}
 	public int getPlazas() {
@@ -58,11 +58,11 @@ public class ViajeDto {
 	public void setConductor(UserDto conductor) {
 		this.conductor = conductor;
 	}
-	public List<UserDto> getParticipantes() {
-		return participantes;
+	public List<UserDto> getPasajeros() {
+		return pasajeros;
 	}
-	public void setParticipantes(List<UserDto> participantes) {
-		this.participantes = participantes;
+	public void setPasajeros(List<UserDto> pasajeros) {
+		this.pasajeros = pasajeros;
 	}
 	public MapaDto getMapa() {
 		return mapa;

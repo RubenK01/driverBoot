@@ -23,7 +23,6 @@ public class Coche implements Serializable {
 //	@ManyToOne
 //    @JoinColumn(referencedColumnName = "id", nullable=false)
 	@ManyToOne
-	@JoinColumn(name="IdUser")
 	private Usuario conductor;
 	/**
 	 * @param foto
