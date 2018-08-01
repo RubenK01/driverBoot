@@ -26,6 +26,7 @@ myApp.controller('menuCtrl',['$scope','MantenimientoSrv',function($scope,Manteni
 		
 	});
 
+	
 	$scope.addActivo = function(name, subName){
 		//limpia estilos
 		$scope.pestaniasMenu.forEach(function(p){

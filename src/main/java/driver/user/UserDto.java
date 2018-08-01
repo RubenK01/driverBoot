@@ -7,6 +7,7 @@ import javax.persistence.*;
 import org.hibernate.validator.constraints.*;
 
 import driver.models.*;
+import driver.viaje.ViajeDto;
 
 //@FieldMatch.List({
 //    @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match"),
@@ -44,6 +45,26 @@ public class UserDto {
 	    
 	    @NotEmpty
 	    private  Collection<CocheDto> coches;
+	    
+	    private  Collection<ViajeDto> viajes;
+	    
+	    private  Collection<ViajeDto> viajesCreados;
+
+		public Collection<ViajeDto> getViajes() {
+			return viajes;
+		}
+
+		public void setViajes(Collection<ViajeDto> viajes) {
+			this.viajes = viajes;
+		}
+
+		public Collection<ViajeDto> getViajesCreados() {
+			return viajesCreados;
+		}
+
+		public void setViajesCreados(Collection<ViajeDto> viajesCreados) {
+			this.viajesCreados = viajesCreados;
+		}
 
 		public String getFirstName() {
 			return firstName;

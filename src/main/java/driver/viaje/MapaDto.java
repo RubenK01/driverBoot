@@ -38,7 +38,7 @@ public class MapaDto {
 	public String getLngOrigen() {
 		return lngOrigen;
 	}
-	public void setlLngOrigen(String lngOrigen) {
+	public void setLngOrigen(String lngOrigen) {
 		this.lngOrigen = lngOrigen;
 	}
 	public String getLatDestino() {

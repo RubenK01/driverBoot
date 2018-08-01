@@ -22,6 +22,7 @@ import org.yaml.snakeyaml.scanner.*;
 import driver.RetornoForm;
 import driver.commons.*;
 import driver.models.*;
+import driver.viaje.MapaDto;
 import driver.viaje.ViajeDto;
 
 @RestController
@@ -54,12 +55,97 @@ public class UserRegistrationController {
     	resul.setPhone(u.getTelefono());
     	resul.setUserImg(u.getUserImg());
     	
+    	//coches
+    	List<CocheDto> misCoches = new ArrayList<CocheDto>();
+    	for(Coche c : u.getCoches()) {
+    		CocheDto cocheDto = new CocheDto();
+    		cocheDto.setColor(c.getColor());
+    		cocheDto.setFoto(c.getFoto());
+    		cocheDto.setMatricula(c.getMatricula());
+    		cocheDto.setModelo(c.getModelo());
+    		
+    		misCoches.add(cocheDto);
+    	}
+    	resul.setCoches(misCoches);
+    	
+    	//viajes
+    	List<ViajeDto> misViajes = new ArrayList<ViajeDto>();
+    	for(Viaje v : u.getViajes()) {
+    		ViajeDto viaje = new ViajeDto();
+    		
+    		viaje.setFechaHora(v.getFechaHora());
+    		viaje.setMinutos(v.getMinutos());
+    		
+    		UserDto conductor = new UserDto();
+    		conductor.setFirstName(v.getConductor().getFirstName());
+    		conductor.setLastName(v.getConductor().getLastName());
+    		conductor.setUserImg(v.getConductor().getUserImg());
+    		viaje.setConductor(conductor);
+    		
+    		MapaDto mapa = new MapaDto();
+    		mapa.setDescDestino(v.getMapa().getDescDestino());
+    		mapa.setDescOrigen(v.getMapa().getDescOrigen());
+    		viaje.setMapa(mapa);
+    		
+    		List<UserDto> listPasajeros = new ArrayList<UserDto>();
+    		for(Usuario pasajero : v.getPasajeros()) {
+    			UserDto p = new UserDto();
+    			p.setFirstName(pasajero.getFirstName());
+        		p.setLastName(pasajero.getLastName());
+        		p.setUserImg(pasajero.getUserImg());
+        		
+        		listPasajeros.add(p);
+    		}
+    		viaje.setPasajeros(listPasajeros);
+    		
+    		misViajes.add(viaje);
+    	}
+    	resul.setViajes(misViajes);
+    	
+    	//viajes Creados
+    	
+//    	List<ViajeDto> misViajesCreados = new ArrayList<ViajeDto>();
+//    	for(Viaje v : u.getViajesConducidos()) {
+//    		ViajeDto viaje = new ViajeDto();
+//    		
+//    		viaje.setFechaHora(v.getFechaHora());
+//    		viaje.setMinutos(v.getMinutos());
+//    		
+//    		UserDto conductor = new UserDto();
+//    		conductor.setFirstName(v.getConductor().getFirstName());
+//    		conductor.setLastName(v.getConductor().getLastName());
+//    		conductor.setUserImg(v.getConductor().getUserImg());
+//    		viaje.setConductor(conductor);
+//    		
+//    		MapaDto mapa = new MapaDto();
+//    		mapa.setDescDestino(v.getMapa().getDescDestino());
+//    		mapa.setDescOrigen(v.getMapa().getDescOrigen());
+//    		viaje.setMapa(mapa);
+//    		
+//    		List<UserDto> listPasajeros = new ArrayList<UserDto>();
+//    		for(Usuario pasajero : v.getPasajeros()) {
+//    			UserDto p = new UserDto();
+//        		p.setFirstName(pasajero.getFirstName());
+//        		p.setLastName(pasajero.getLastName());
+//        		p.setUserImg(pasajero.getUserImg());
+//        		
+//        		listPasajeros.add(p);
+//    		}
+//    		viaje.setPasajeros(listPasajeros);
+//    		
+//    		misViajesCreados.add(viaje);
+//    	}
+//    	resul.setViajes(misViajesCreados);
+    	
+    	//mensajes
+    	
+    	
     	
 		return resul;
     	
     }
     
-    
+       
     //@GetMapping
     @RequestMapping(value="/registration",method = RequestMethod.GET)
     public String showRegistrationForm(Model model) {

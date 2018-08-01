@@ -1,5 +1,8 @@
 package driver.viaje;
 
+import java.util.Collection;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,6 +17,10 @@ import driver.RetornoForm;
 
 @RestController
 public interface ViajeController {
+	@RequestMapping(value="/getTrips",method = RequestMethod.GET)
+    @ResponseBody
+    public List<ViajeDto> getTrips(final HttpServletRequest request, HttpServletResponse response);
+	
 	@RequestMapping(value="/saveTrip",method = RequestMethod.POST)
     @ResponseBody
     public RetornoForm saveTrip(@RequestParam(value = "viajeJson") String viajeJson, final HttpServletRequest request, HttpServletResponse response) ;

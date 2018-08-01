@@ -72,16 +72,25 @@
 //	  });
 //	}]);
 
-myApp.controller('mapCtrl', ['$scope','$compile', '$http', function ($scope, $compile,$http) {
+myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv', function ($scope, $compile,$http,MantenimientoSrv) {
 
-        var map, infowindow;
+        var map, infowindow, viajes = [];
 
         $scope.angularOk = function(){
             return false;
         };
         var madrid = {lat: 40.41672271132239, lng: -3.703230192680735 };
 
-        
+        MantenimientoSrv.getViajes().then(function(data){
+
+          viajes = data.data;
+
+          loadMarkers();
+          
+          
+        },function(err){
+          
+        });
 
         // Initialize and add the map
         function initMap() {
@@ -172,24 +181,31 @@ myApp.controller('mapCtrl', ['$scope','$compile', '$http', function ($scope, $co
 
         initMap();
 
-        var contentString =  '<button type="buttton" ng-click="angularOk();">Click Me</button>';
-        var compiledContent = $compile(contentString)($scope);
+        function loadMarkers(){
+          viajes.forEach(function(viaje){
+            var contentString =  '<button type="buttton" ng-click="angularOk();">Click Me</button>';
+            var compiledContent = $compile(contentString)($scope);
 
-        var infowindow = new google.maps.InfoWindow;
-        //infowindow.setContent(contentString);
+            var infowindow = new google.maps.InfoWindow;
+            //infowindow.setContent(contentString);
 
-        var marker = new google.maps.Marker({
-          position: madrid,
-          map: map,
-          title: 'Madrid (Ayers Rock)'
-        });
+            var marker = new google.maps.Marker({
+              position: {lat: parseFloat(viaje.mapa.latOrigen) ,lng: parseFloat(viaje.mapa.lngOrigen) },
+              map: map,
+              title: 'Origin'
+            });
 
-        google.maps.event.addListener(marker, 'click', (function(marker, contentString) {
-                    return function() {
-                        infowindow.setContent(contentString);
-                        infowindow.open(map, marker);
-                    };
-                })(marker, compiledContent[0], $scope));
+            google.maps.event.addListener(marker, 'click', (function(marker, contentString) {
+                        return function() {
+                            infowindow.setContent(contentString);
+                            infowindow.open(map, marker);
+                        };
+                    })(marker, compiledContent[0], $scope));
+          });
+
+        }
+        
+        
 
        /* marker.addListener('click', function() {
           infowindow.open(map, marker);

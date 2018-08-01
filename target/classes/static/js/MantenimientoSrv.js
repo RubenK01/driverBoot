@@ -27,6 +27,30 @@ myApp.factory('MantenimientoSrv',['$http','$q',function($http,$q){
 
 	}
 
+	function getViajes(){
+		var deferred = $q.defer();
+		var promise = deferred.promise;
+
+		function success(data){
+        deferred.resolve(data);
+	    };
+
+	    function error(data){
+	        deferred.reject(data);
+	    };
+
+
+	    $http({
+	            url: '/getTrips',
+	            method: 'GET',
+	            headers: {'Content-Type': undefined},
+	            transformRequest: angular.identity
+	        }).then(success , error);
+
+	    return promise;
+
+	}
+
 	function saveViaje(viajeDTO){
 		var deferred = $q.defer();
 		var promise = deferred.promise;
@@ -61,6 +85,7 @@ myApp.factory('MantenimientoSrv',['$http','$q',function($http,$q){
 	
 	
 	return {
+		getViajes:getViajes,
 		getUser:getUser,
 		saveViaje:saveViaje
 	}
