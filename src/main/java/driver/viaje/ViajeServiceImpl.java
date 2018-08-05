@@ -74,8 +74,10 @@ public class ViajeServiceImpl implements ViajeService{
     	for(Viaje v : viajes) {
     		ViajeDto viaje = new ViajeDto();
     		
+    		viaje.setId(v.getId());
     		viaje.setFechaHora(v.getFechaHora());
     		viaje.setMinutos(v.getMinutos());
+    		viaje.setPlazas(v.getPlazas());
     		
     		UserDto conductor = new UserDto();
     		conductor.setFirstName(v.getConductor().getFirstName());

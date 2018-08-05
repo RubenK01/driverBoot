@@ -10,6 +10,8 @@ import driver.user.UserDto;
 
 public class ViajeDto {
 	@NotNull
+	private long id;
+	@NotNull
 	private int plazas;
 	@NotNull
 	private int minutos;
@@ -69,6 +71,12 @@ public class ViajeDto {
 	}
 	public void setMapa(MapaDto mapa) {
 		this.mapa = mapa;
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 	

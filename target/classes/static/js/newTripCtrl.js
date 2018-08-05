@@ -111,6 +111,7 @@ myApp.controller('newTripCtrl',['$scope', 'MantenimientoSrv',function($scope,Man
       }
 
       $scope.addTrip = function(){
+        $scope.loading = true;
         var viajeDTO = {};
 
         viajeDTO.plazas = $scope.seats;
@@ -134,15 +135,27 @@ myApp.controller('newTripCtrl',['$scope', 'MantenimientoSrv',function($scope,Man
         viajeDTO.conductor = null;
 
         function success(data){
+          limpiaDatos();
+          $scope.loading = false;
         };
 
         function error(data){
+          $scope.loading = false;
         };
 
         MantenimientoSrv.saveViaje(viajeDTO).then(success , error);
 
 
 
-      }    
+      } 
+
+      function limpiaDatos(){
+        $scope.origin = '';
+        $scope.destination = '';
+        $scope.date = '';
+        $scope.date = '';
+        $scope.car = '';
+        $scope.seats = '';
+      }   
 
 }]);

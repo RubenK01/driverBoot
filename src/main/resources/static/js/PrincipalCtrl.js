@@ -20,6 +20,11 @@ myAppIni.controller('PrincipalCtrl',['$scope','$http', '$q','$uibModal', '$log',
 	$scope.login = true;
 	var check = true;
 	var input = $('.validate-input input');
+	var emailNoCopia = document.getElementById('email');
+
+	emailNoCopia.oncopy = function(e) {
+	    e.preventDefault();
+	  }
 
 	//////////validacion dni//////////////////
 	/*
@@ -81,6 +86,26 @@ myAppIni.controller('PrincipalCtrl',['$scope','$http', '$q','$uibModal', '$log',
 	$scope.changeLogin = function(){
 		var newVar = !$scope.login;
 		$scope.login = newVar;
+
+		limpiaInputs();
+	}
+
+	function limpiaInputs(){
+		$scope.errors = [];
+		$scope.username = '';
+		$scope.passLogin = '';
+		$scope.firstName = '';
+		$scope.lastName = '';
+		$scope.email = '';
+		$scope.confirmEmail = '';
+		$scope.password = '';
+		$scope.confirmPassword = '';
+		$scope.fLicense = '';
+		$scope.dni = '';
+		$scope.phone = '';
+		$scope.fBirth = '';
+		$scope.gender = '';
+		$scope.userImg = '';
 	}
 
     $('.validate-form').on('submit',function(){
@@ -107,6 +132,7 @@ myAppIni.controller('PrincipalCtrl',['$scope','$http', '$q','$uibModal', '$log',
     	if($(input).attr('name') == 'confirmEmail' ){
         	var email = document.getElementById('email');
         	if($(input).val() !== '' && $(input).val() !== email.value){
+        		$scope.errors.push("Confirm email error");
         		return false;
         	}
         	
@@ -114,6 +140,7 @@ myAppIni.controller('PrincipalCtrl',['$scope','$http', '$q','$uibModal', '$log',
         else if($(input).attr('name') == 'confirmPassword' ){
         	var password = document.getElementById('password');
         	if($(input).val() !== '' &&  $(input).val() !== password.value){
+        		$scope.errors.push("Confirm password error");
         		return false;
         	}
         	
@@ -121,6 +148,7 @@ myAppIni.controller('PrincipalCtrl',['$scope','$http', '$q','$uibModal', '$log',
         else if($(input).attr('name') == 'dni' ){
         	var dni = document.getElementById('dni');
         	if(dni.value !== '' && !vNIFCIF(dni.value)){
+        		$scope.errors.push("The DNI is incorrect");
         		return false;
         	}
         	
@@ -318,8 +346,8 @@ myAppIni.controller('PrincipalCtrl',['$scope','$http', '$q','$uibModal', '$log',
 	      resolve: {
 	      	listaCoches: function(){
 	      		return $scope.listCars;
-	      }
-	  },
+	      		}
+	  		},
 	      size: 'md'
 	    });
 

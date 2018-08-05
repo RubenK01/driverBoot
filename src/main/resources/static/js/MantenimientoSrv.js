@@ -32,10 +32,18 @@ myApp.factory('MantenimientoSrv',['$http','$q',function($http,$q){
 		var promise = deferred.promise;
 
 		function success(data){
-        deferred.resolve(data);
+			var viajes = data.data;
+
+			viajes.forEach(function(viaje){
+				viaje.fechaHora = new Date(viaje.fechaHora);
+			});
+	    	
+
+        	deferred.resolve(viajes);
 	    };
 
 	    function error(data){
+
 	        deferred.reject(data);
 	    };
 

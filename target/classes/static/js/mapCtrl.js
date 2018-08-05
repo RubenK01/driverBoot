@@ -72,9 +72,12 @@
 //	  });
 //	}]);
 
-myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv', function ($scope, $compile,$http,MantenimientoSrv) {
+myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv','$uibModal', function ($scope, $compile,$http,MantenimientoSrv,$uibModal) {
 
-        var map, infowindow, viajes = [];
+        var map, infowindow, infowindows = [];
+        var markers = [];
+        var directionsService = new google.maps.DirectionsService, directionsDisplay = new google.maps.DirectionsRenderer;
+        $scope.viajes = [];
 
         $scope.angularOk = function(){
             return false;
@@ -83,7 +86,7 @@ myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv', fu
 
         MantenimientoSrv.getViajes().then(function(data){
 
-          viajes = data.data;
+          $scope.viajes = data;
 
           loadMarkers();
           
@@ -111,7 +114,9 @@ myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv', fu
                   lat: position.coords.latitude,
                   lng: position.coords.longitude
                 };
-
+                if (infowindow) {
+                    infowindow.close();
+                }
                 infoWindow.setPosition(pos);
                 infoWindow.setContent('You are here.');
                 infoWindow.open(map);
@@ -129,7 +134,7 @@ myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv', fu
               searchBox.setBounds(map.getBounds());
             });   
 
-             var markers = [];
+             
             // Listen for the event fired when the user selects a prediction and retrieve
             // more details for that place.
             searchBox.addListener('places_changed', function() {
@@ -181,13 +186,45 @@ myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv', fu
 
         initMap();
 
+        function horaToStr(fechaHora){
+          var horaStr = '';
+            if(fechaHora.getHours().toString().length === 1){
+              horaStr = '0' + fechaHora.getHours().toString();
+            }
+            else{
+              horaStr = fechaHora.getHours().toString();
+            }
+            if(fechaHora.getMinutes().toString().length === 1){
+              horaStr += ':0' + fechaHora.getMinutes().toString();
+            }
+            else{
+              horaStr += ':' +  fechaHora.getMinutes().toString();
+            }
+
+            return horaStr;
+        }
+
         function loadMarkers(){
-          viajes.forEach(function(viaje){
-            var contentString =  '<button type="buttton" ng-click="angularOk();">Click Me</button>';
+          $scope.viajes.forEach(function(viaje){
+            
+            var horaStr = horaToStr(viaje.fechaHora);
+            var contentString =  
+            '<div> <label>Origin:  </label><span> '+viaje.mapa.descOrigen + '</span>' +
+            '<br/> <label>Destination:  </label><span> '+viaje.mapa.descDestino +'</span>' +
+            '<br/> <label>Date:  </label><span> '+viaje.fechaHora.getDate() + '/' + viaje.fechaHora.getMonth() + '/' + viaje.fechaHora.getFullYear() +'</span>' +
+            '<br/> <label>Time:  </label><span> '+ horaStr +'</span>' +
+            '<br/> <label>Duration:  </label><span> '+viaje.minutos + ' min.</span>' +
+            '<br/> <label>Avaible Seats:   </label><span> '+ (viaje.plazas - viaje.pasajeros.length).toString() +'/'+ (viaje.plazas).toString() +'</span>' +
+            '<br/> <button style="float: right;" type="buttton" class="btn btn-default" ng-click="showModal('+ viaje.id +');">Join</button></div>';
             var compiledContent = $compile(contentString)($scope);
 
             var infowindow = new google.maps.InfoWindow;
+            infowindows.push(infowindow);
+
             //infowindow.setContent(contentString);
+            google.maps.event.addListener(infowindow, 'closeclick', (function() {
+              directionsDisplay.setMap(null);
+            }));
 
             var marker = new google.maps.Marker({
               position: {lat: parseFloat(viaje.mapa.latOrigen) ,lng: parseFloat(viaje.mapa.lngOrigen) },
@@ -196,14 +233,67 @@ myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv', fu
             });
 
             google.maps.event.addListener(marker, 'click', (function(marker, contentString) {
-                        return function() {
-                            infowindow.setContent(contentString);
-                            infowindow.open(map, marker);
-                        };
-                    })(marker, compiledContent[0], $scope));
+                return function() {
+
+                  infowindows.forEach(function(iw){
+                    iw.close();
+                  });
+
+                    route(viaje);
+                    infowindow.setContent(contentString);
+                    infowindow.open(map, marker);
+                };
+            })(marker, compiledContent[0], $scope));
           });
 
         }
+
+        
+
+        var route = function(viaje){         
+          
+          directionsDisplay.setMap(map);
+
+          directionsService.route({
+            origin: {lat: parseFloat(viaje.mapa.latOrigen) ,lng: parseFloat(viaje.mapa.lngOrigen)},
+            destination: {lat: parseFloat(viaje.mapa.latDestino) ,lng: parseFloat(viaje.mapa.lngDestino)},
+            travelMode: 'DRIVING'/*,
+            drivingOptions: {
+          departureTime:  ,  
+          trafficModel: 'optimistic'
+        }*/
+          }, function(response, status) {
+            if (status === 'OK') {
+              directionsDisplay.setDirections(response);
+              
+            } else {
+              window.alert('Directions request failed due to ' + status);
+            }
+          });
+        };
+
+      $scope.showModal = function (viajeId) {
+          var viajeObj = $scope.viajes.find( viaje => viaje.id === viajeId);
+
+          var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: '/html/joinTripModal.html',
+            controller: 'ModalViajeCtrl',
+            resolve: {
+              viaje: function(){
+                return viajeObj;
+                }
+            },
+            size: 'lg'
+          });
+
+          modalInstance.result.then(function (car) {
+            $scope.listCars.push(car);
+          }, function () {
+            
+          });
+      };
+  
         
         
 
