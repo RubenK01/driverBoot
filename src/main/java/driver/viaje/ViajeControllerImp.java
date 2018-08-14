@@ -61,4 +61,22 @@ public class ViajeControllerImp implements ViajeController{
     	
 		return retorno;
 	}
+
+	@Override
+	public RetornoForm joinTrip(@RequestParam(value = "viajeId") String viajeIdJson, HttpServletRequest request, HttpServletResponse response) {
+		Long viajeId;
+		RetornoForm rf = null;
+		
+		try {
+			rf = new RetornoForm();
+			viajeId = Constants.JSON_MAPPER.readValue(viajeIdJson, Long.class);
+			
+			rf = viajeService.joinTrip(viajeId);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rf;
+	}
+
 }

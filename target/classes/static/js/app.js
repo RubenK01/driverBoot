@@ -13,8 +13,12 @@ myApp.config(function($routeProvider) {
 		controller: "newTripCtrl"
     })
     .when("/myTrips", {
-        templateUrl :"html/map.html",
-		controller: "mapCtrl"
+        templateUrl :"html/myTrips.html",
+		controller: "myTripsCtrl"
+    })
+    .when("/inbox", {
+        templateUrl :"html/inbox.html",
+        controller: "inboxCtrl"
     })
 	.otherwise({redirectTo:'/'});
 	

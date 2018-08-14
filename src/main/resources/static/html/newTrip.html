@@ -1,15 +1,15 @@
 
-<div class="row" style=" height: 30%;">
+<div class="row newTripTexto" style=" height: 40%;">
 	<br />
 	<br />
-	<div style="position: relative;display: inline-block;text-align: center;"  class="col-sm-2 col-xs-7">
+	<div style="position: relative;display: inline-block;text-align: center;"  class="col-sm-2 col-xs-7 newTripReloj">
 		<img  style="width: 145%;" src="/images/cronometro.gif" />
 		<div style="font-size: 37px;position: absolute;top: 42%;left: 92%;transform: translate(-50%, -50%);">
 			<span>{{timeTrip}}</span>
 		</div>
 		<div style="font-size: 37px;position: absolute;top: 57%;left: 92%;transform: translate(-50%, -50%);">min</div>
 	</div>
-	<div class="col-sm-10 col-xs-10" style="float: right;">	
+	<div class="col-sm-10 col-xs-10 newTripRelojTexto" style="float: right;">	
 		<div class="row" style="text-align: right;">
 			<label class="col-sm-2 col-xs-3">Origin: </label>
 			<input id="origin-input" ng-model="origin" class="inputTrip col-sm-8 col-xs-8" placeholder="" type="text"></input>
@@ -56,6 +56,6 @@
 	<br />
 </div>
 
-<div class="row" style="height: 70%;">
+<div class="row newTripMapa" style="height: 50%;padding: 20px;">
 	<div id="map1" ></div>
 </div>

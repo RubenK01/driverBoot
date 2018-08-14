@@ -1,3 +1,77 @@
+
+/* CSS Tabs jQuery */
+ul.tabs {
+  margin: 0;
+  padding: 0;
+  float: left;
+  list-style: none;
+  height: 32px; /*--Set height of tabs--*/
+  border-bottom: 1px solid #999;
+  /*border-left: 1px solid #999;*/
+  width: 100%;
+}
+ul.tabs li {
+  float: left;
+  margin: 0;
+  padding: 0;
+  height: 31px; /*--Subtract 1px from the height of the unordered list--*/
+  line-height: 31px; /*--Vertically aligns the text within the tab--*/
+  border: 1px solid #999;
+  border-left: none;
+  margin-bottom: -1px; /*--Pull the list item down 1px--*/
+  overflow: hidden;
+  position: relative;
+  background: #e0e0e0;
+  border-left: 1px solid #999;
+  border-radius: 12px 12px 0px 0px;
+}
+ul.tabs li a {
+  text-decoration: none;
+  color: #000;
+  display: block;
+  font-size: 1.2em;
+  padding: 0 20px;
+  border: 1px solid #fff; /*--Gives the bevel look with a 1px white border inside the list item--*/
+  outline: none;
+}
+ul.tabs li a:hover {
+  background: #ccc;
+}
+html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that the active tab does not
+        listen to the hover properties--*/
+  background: #fff;
+  border-bottom: 1px solid #fff; /*--Makes the active tab look like it's connected with
+        its content--*/
+}
+.tab_container {  
+  height: auto;
+  overflow:  auto !important;
+  max-height: 90%;
+  border: 1px solid #999;
+  border-top: none;
+  clear: both;
+  float: left; width: 100%;
+  background: #fff;
+}
+.tab_content {
+  font-size: 1.2em;
+}
+/*-------------------- */
+@media (max-width: 768px) {
+  .newTripTexto{
+    height: 100% !important;
+  }
+  .newTripReloj{
+    height: 56% !important;
+  }
+  .newTripRelojTexto{
+    height: 40% !important;
+  }
+  .newTripMapa{
+    height: 40% !important;
+  }
+}
+
 /* mapas */
 div.map_container {
     position: relative;
@@ -28,7 +102,20 @@ div.controls {
     color: #333;
 }
 
-f
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+    padding-left: 20px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
 /* Footer */
 section {
     padding: 60px 0;

@@ -72,12 +72,13 @@
 //	  });
 //	}]);
 
-myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv','$uibModal', function ($scope, $compile,$http,MantenimientoSrv,$uibModal) {
+myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv','$uibModal', 'utils', function ($scope, $compile,$http,MantenimientoSrv,$uibModal, utils) {
 
         var map, infowindow, infowindows = [];
         var markers = [];
         var directionsService = new google.maps.DirectionsService, directionsDisplay = new google.maps.DirectionsRenderer;
         $scope.viajes = [];
+        $scope.$parent.addActivo('Map')
 
         $scope.angularOk = function(){
             return false;
@@ -186,33 +187,17 @@ myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv','$u
 
         initMap();
 
-        function horaToStr(fechaHora){
-          var horaStr = '';
-            if(fechaHora.getHours().toString().length === 1){
-              horaStr = '0' + fechaHora.getHours().toString();
-            }
-            else{
-              horaStr = fechaHora.getHours().toString();
-            }
-            if(fechaHora.getMinutes().toString().length === 1){
-              horaStr += ':0' + fechaHora.getMinutes().toString();
-            }
-            else{
-              horaStr += ':' +  fechaHora.getMinutes().toString();
-            }
-
-            return horaStr;
-        }
 
         function loadMarkers(){
           $scope.viajes.forEach(function(viaje){
             
-            var horaStr = horaToStr(viaje.fechaHora);
+            var horaStr = utils.horaToStr(viaje.fechaHora);
+            var fehaStr = utils.fechaToStr(viaje.fechaHora);
             var contentString =  
             '<div> <label>Origin:  </label><span> '+viaje.mapa.descOrigen + '</span>' +
             '<br/> <label>Destination:  </label><span> '+viaje.mapa.descDestino +'</span>' +
-            '<br/> <label>Date:  </label><span> '+viaje.fechaHora.getDate() + '/' + viaje.fechaHora.getMonth() + '/' + viaje.fechaHora.getFullYear() +'</span>' +
-            '<br/> <label>Time:  </label><span> '+ horaStr +'</span>' +
+            '<br/> <label>Date:  </label><span> '+ fehaStr + '</span>' +
+            '<br/> <label>Time:  </label><span> '+ horaStr + '</span>' +
             '<br/> <label>Duration:  </label><span> '+viaje.minutos + ' min.</span>' +
             '<br/> <label>Avaible Seats:   </label><span> '+ (viaje.plazas - viaje.pasajeros.length).toString() +'/'+ (viaje.plazas).toString() +'</span>' +
             '<br/> <button style="float: right;" type="buttton" class="btn btn-default" ng-click="showModal('+ viaje.id +');">Join</button></div>';
@@ -282,13 +267,24 @@ myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv','$u
             resolve: {
               viaje: function(){
                 return viajeObj;
-                }
+                },
+              modalInfo: false
             },
             size: 'lg'
           });
 
-          modalInstance.result.then(function (car) {
-            $scope.listCars.push(car);
+          modalInstance.result.then(function () {
+            infowindows.forEach(function(iw){
+                    iw.close();
+                  });
+             MantenimientoSrv.getViajes().then(function(data){
+
+                $scope.viajes = data;
+
+                loadMarkers();
+              },function(err){
+                
+              });
           }, function () {
             
           });

@@ -2,7 +2,7 @@ myApp.controller('newTripCtrl',['$scope', 'MantenimientoSrv',function($scope,Man
 	//variables
 	var map1, infoWindow;
 	$scope.timeTrip = 0;
-
+  $scope.$parent.addActivo('New Trip');
 
 	function initMapNewTrip() {
 		var madrid = {lat: 40.41672271132239, lng: -3.703230192680735 };

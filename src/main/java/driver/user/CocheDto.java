@@ -1,7 +1,6 @@
 package driver.user;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 
 import org.hibernate.validator.constraints.*;
 

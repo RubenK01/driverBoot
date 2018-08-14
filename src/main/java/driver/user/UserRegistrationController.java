@@ -21,6 +21,7 @@ import org.yaml.snakeyaml.scanner.*;
 
 import driver.RetornoForm;
 import driver.commons.*;
+import driver.inbox.MensajeDto;
 import driver.models.*;
 import driver.viaje.MapaDto;
 import driver.viaje.ViajeDto;
@@ -75,11 +76,13 @@ public class UserRegistrationController {
     		
     		viaje.setFechaHora(v.getFechaHora());
     		viaje.setMinutos(v.getMinutos());
-    		
+    		viaje.setId(v.getId());
+    		viaje.setPlazas(v.getPlazas());
     		UserDto conductor = new UserDto();
     		conductor.setFirstName(v.getConductor().getFirstName());
     		conductor.setLastName(v.getConductor().getLastName());
     		conductor.setUserImg(v.getConductor().getUserImg());
+    		conductor.setEmail(v.getConductor().getEmail());
     		viaje.setConductor(conductor);
     		
     		MapaDto mapa = new MapaDto();
@@ -93,6 +96,7 @@ public class UserRegistrationController {
     			p.setFirstName(pasajero.getFirstName());
         		p.setLastName(pasajero.getLastName());
         		p.setUserImg(pasajero.getUserImg());
+        		p.setEmail(pasajero.getEmail());
         		
         		listPasajeros.add(p);
     		}
@@ -104,41 +108,48 @@ public class UserRegistrationController {
     	
     	//viajes Creados
     	
-//    	List<ViajeDto> misViajesCreados = new ArrayList<ViajeDto>();
-//    	for(Viaje v : u.getViajesConducidos()) {
-//    		ViajeDto viaje = new ViajeDto();
-//    		
-//    		viaje.setFechaHora(v.getFechaHora());
-//    		viaje.setMinutos(v.getMinutos());
-//    		
-//    		UserDto conductor = new UserDto();
-//    		conductor.setFirstName(v.getConductor().getFirstName());
-//    		conductor.setLastName(v.getConductor().getLastName());
-//    		conductor.setUserImg(v.getConductor().getUserImg());
-//    		viaje.setConductor(conductor);
-//    		
-//    		MapaDto mapa = new MapaDto();
-//    		mapa.setDescDestino(v.getMapa().getDescDestino());
-//    		mapa.setDescOrigen(v.getMapa().getDescOrigen());
-//    		viaje.setMapa(mapa);
-//    		
-//    		List<UserDto> listPasajeros = new ArrayList<UserDto>();
-//    		for(Usuario pasajero : v.getPasajeros()) {
-//    			UserDto p = new UserDto();
-//        		p.setFirstName(pasajero.getFirstName());
-//        		p.setLastName(pasajero.getLastName());
-//        		p.setUserImg(pasajero.getUserImg());
-//        		
-//        		listPasajeros.add(p);
-//    		}
-//    		viaje.setPasajeros(listPasajeros);
-//    		
-//    		misViajesCreados.add(viaje);
-//    	}
-//    	resul.setViajes(misViajesCreados);
+    	List<ViajeDto> misViajesCreados = new ArrayList<ViajeDto>();
+    	for(Viaje v : u.getViajesConducidos()) {
+    		ViajeDto viaje = new ViajeDto();
+    		
+    		viaje.setFechaHora(v.getFechaHora());
+    		viaje.setMinutos(v.getMinutos());
+    		viaje.setId(v.getId());
+    		viaje.setPlazas(v.getPlazas());
+    		UserDto conductor = new UserDto();
+    		conductor.setFirstName(v.getConductor().getFirstName());
+    		conductor.setLastName(v.getConductor().getLastName());
+    		conductor.setUserImg(v.getConductor().getUserImg());
+    		conductor.setEmail(v.getConductor().getEmail());
+    		viaje.setConductor(conductor);
+    		
+    		MapaDto mapa = new MapaDto();
+    		mapa.setDescDestino(v.getMapa().getDescDestino());
+    		mapa.setDescOrigen(v.getMapa().getDescOrigen());
+    		viaje.setMapa(mapa);
+    		
+    		List<UserDto> listPasajeros = new ArrayList<UserDto>();
+    		for(Usuario pasajero : v.getPasajeros()) {
+    			UserDto p = new UserDto();
+        		p.setFirstName(pasajero.getFirstName());
+        		p.setLastName(pasajero.getLastName());
+        		p.setUserImg(pasajero.getUserImg());
+        		p.setEmail(pasajero.getEmail());
+        		
+        		listPasajeros.add(p);
+    		}
+    		viaje.setPasajeros(listPasajeros);
+    		
+    		misViajesCreados.add(viaje);
+    	}
+    	resul.setViajesCreados(misViajesCreados);
     	
     	//mensajes
+    	List<MensajeDto> misMensajesEnviados = new ArrayList<MensajeDto>();
     	
+    	for(Mensaje m : u.getMensajesEnviados()) {
+    		
+    	}
     	
     	
 		return resul;

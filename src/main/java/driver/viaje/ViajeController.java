@@ -24,4 +24,8 @@ public interface ViajeController {
 	@RequestMapping(value="/saveTrip",method = RequestMethod.POST)
     @ResponseBody
     public RetornoForm saveTrip(@RequestParam(value = "viajeJson") String viajeJson, final HttpServletRequest request, HttpServletResponse response) ;
+	
+	@RequestMapping(value="/joinTrip",method = RequestMethod.POST)
+    @ResponseBody
+    public RetornoForm joinTrip(@RequestParam(value = "viajeId") String viajeIdJson, final HttpServletRequest request, HttpServletResponse response) ;
 }

@@ -9,10 +9,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import driver.RetornoForm;
 import driver.models.Mapa;
 import driver.models.Usuario;
 import driver.models.Viaje;
 import driver.user.UserDto;
+import driver.user.UserRepository;
 import driver.user.UserService;
 
 @Service
@@ -22,6 +24,9 @@ public class ViajeServiceImpl implements ViajeService{
 
 	@Autowired
 	private ViajeRepository viajeRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	@Autowired
 	private MapaRepository mapaRepository;
@@ -83,6 +88,7 @@ public class ViajeServiceImpl implements ViajeService{
     		conductor.setFirstName(v.getConductor().getFirstName());
     		conductor.setLastName(v.getConductor().getLastName());
     		conductor.setUserImg(v.getConductor().getUserImg());
+    		conductor.setfBirthDate(v.getConductor().getFechaNacimiento());
     		viaje.setConductor(conductor);
     		
     		MapaDto mapa = new MapaDto();
@@ -100,6 +106,7 @@ public class ViajeServiceImpl implements ViajeService{
     			p.setFirstName(pasajero.getFirstName());
         		p.setLastName(pasajero.getLastName());
         		p.setUserImg(pasajero.getUserImg());
+        		p.setfBirthDate(pasajero.getFechaNacimiento());
         		
         		listPasajeros.add(p);
     		}
@@ -109,6 +116,55 @@ public class ViajeServiceImpl implements ViajeService{
     	}
 		
 		return misViajes;
+	}
+
+	@Override
+	public RetornoForm joinTrip(Long id) {
+		RetornoForm rf = new RetornoForm();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	
+    	String name = auth.getName();
+
+    	Usuario me = userService.findByEmail(name);
+		
+		Viaje viaje = viajeRepository.findOne(id);
+		
+		if(viaje.getPasajeros().contains(me)) {
+			rf.setCodigo("01");
+			rf.setDescripcion("You already joined the trip.");
+		}
+		else if(viaje.getConductor().equals(me)) {
+			rf.setCodigo("01");
+			rf.setDescripcion("You are trip's driver.");
+		}
+		else if((viaje.getPlazas() - viaje.getPasajeros().size()) == 0) {
+			rf.setCodigo("01");
+			rf.setDescripcion("There are not enough seats.");
+		}
+		else if(viaje.getMinutos() > me.getMinutos()) {
+			rf.setCodigo("01");
+			rf.setDescripcion("You need more minutes for this trip.");
+		} 
+		else {
+			int minutos = me.getMinutos();
+			minutos -= viaje.getMinutos();
+			
+			me.setMinutos(minutos);
+			
+			me.getViajes().add(viaje);
+			viaje.getPasajeros().add(me);
+			
+			Usuario conductor = viaje.getConductor();
+			minutos = conductor.getMinutos();
+			minutos += viaje.getMinutos();
+			
+			conductor.setMinutos(minutos);
+			
+			viajeRepository.save(viaje);
+			
+		}
+		
+		return rf;
 	}
 
 }

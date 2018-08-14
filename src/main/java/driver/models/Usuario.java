@@ -53,16 +53,16 @@ public class Usuario implements Serializable {
 	                    name = "role_id", referencedColumnName = "id"))
 	    private Collection<Role> roles;
 	
-	@OneToMany(mappedBy="emisor")
-	private List<Mensaje> enviados;
+	@OneToMany(mappedBy="emisor", cascade = CascadeType.ALL)
+	private List<Mensaje> mensajesEnviados;
 	
-	@OneToMany(mappedBy="receptor")
-	private List<Mensaje> recibidos;
+	@OneToMany(mappedBy="receptor", cascade = CascadeType.ALL)
+	private List<Mensaje> mensajesRecibidos;
 	
-	@ManyToMany(mappedBy="pasajeros")
+	@ManyToMany(mappedBy="pasajeros", cascade = CascadeType.ALL)
 	private List<Viaje> viajes;
 	
-	@OneToMany(mappedBy="conductor")
+	@OneToMany(mappedBy="conductor", cascade = CascadeType.ALL)
 	private List<Viaje> viajesConducidos;
 
 	@OneToMany(cascade= CascadeType.ALL)
@@ -93,8 +93,8 @@ public class Usuario implements Serializable {
 		this.fechaNacimiento = fechaNacimiento;
 		this.sexo = sexo;
 		this.roles = roles;
-		this.enviados = enviados;
-		this.recibidos = recibidos;
+		this.mensajesEnviados = enviados;
+		this.mensajesRecibidos = recibidos;
 		this.viajes = viajes;
 		this.viajesConducidos = viajesConducidos;
 		this.coches = coches;
@@ -220,20 +220,20 @@ public class Usuario implements Serializable {
 		this.roles = roles;
 	}
 
-	public List<Mensaje> getEnviados() {
-		return enviados;
+	public List<Mensaje> getMensajesEnviados() {
+		return mensajesEnviados;
 	}
 
-	public void setEnviados(List<Mensaje> enviados) {
-		this.enviados = enviados;
+	public void setMensajesEnviados(List<Mensaje> enviados) {
+		this.mensajesEnviados = enviados;
 	}
 
-	public List<Mensaje> getRecibidos() {
-		return recibidos;
+	public List<Mensaje> getMensajesRecibidos() {
+		return mensajesRecibidos;
 	}
 
-	public void setRecibidos(List<Mensaje> recibidos) {
-		this.recibidos = recibidos;
+	public void setMensajesRecibidos(List<Mensaje> recibidos) {
+		this.mensajesRecibidos = recibidos;
 	}
 
 	public List<Viaje> getViajes() {

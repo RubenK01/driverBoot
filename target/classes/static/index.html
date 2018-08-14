@@ -44,22 +44,8 @@
 	<div ng-if="!working" style="text-align: center;z-index: 100; width: 100%; height: 100%; position: fixed; background-color: white;">
 			<img src="/images/loading.gif" alt="Loading...">
 	</div>
-	<header id="page-top" >
+	<!-- <header id="page-top" >
 		<div>
-			<!-- <div class="row">
-				<div class="col-lg-12">
-					<div>
-						<img class="img-responsive" src="/images/icons/logoBlanco-100.png" alt="">
-						<span>DRIVER</span>
-					</div>
-					<div class="intro-text">
-						<span class="name">Inspired by PureCSS.io</span>
-						<hr class="star-light">
-						<p class="skills">Landing Page Layout</p>
-						<p class="skills">Scroll to see the effect</p>
-					</div>
-				</div>
-			</div> -->
 			<div class="col-sm-4 col-xs-4">
 				
 			</div>
@@ -76,8 +62,8 @@
 				
 			</div>
 		</div>
-	</header>
-	<div class="content-wrapper" style="height: 143%;">
+	</header> -->
+	<div style="height: 100%;overflow: hidden;">
 		<div style="height: 100%;margin: 0px" class="row" >
 			<div class="col-sm-2 col-xs-2 nav-side-menu">
 				<div class="brand"><img src="images/icons/favicon.png" style=" padding: 9px;" alt="Driver"> </div>
@@ -107,13 +93,13 @@
 
 				 </div>
 			</div>
-			<div class="col-sm-10 col-xs-12" style="height: 100%;">
+			<div class="col-sm-10 col-xs-12" style="height: 100%;overflow: auto;">
 							  			
 				<div ng-view style="padding: 0px;height: 100%; top:5px; bottom:5px;"></div> 
 			</div>
 		</div>
 		<!-- Footer -->
-		<section id="footer" style="height: 43%;">
+		<!-- <section id="footer" style="height: 43%;">
 			<div class="container">
 				<div class="row text-center text-xs-center text-sm-left text-md-left">
 					<div class="col-xs-12 col-sm-4 col-md-4">
@@ -167,7 +153,7 @@
 					</hr>
 				</div>	
 			</div>
-		</section>
+		</section> -->
 		
 		
 	</div>
@@ -238,6 +224,10 @@
 	<script src="js/newTripCtrl.js"></script>
 	<script src="js/MantenimientoSrv.js"></script>
 	<script src="js/ModalViajeCtrl.js"></script>
+	<script src="js/viajeSrv.js"></script>
+	<script src="js/myTripsCtrl.js"></script>
+	<script src="js/utils.js"></script>
+	<script src="js/inboxCtrl.js"></script>
 <!-- 	<script src="js/directiveMenu.js"></script> -->
 
 </body>

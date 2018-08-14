@@ -1,0 +1,64 @@
+<div style="height: 5%">
+</div>
+<ul class="tabs">
+  <li ng-class="allClass"><a href="" ng-click="changeActiveTab('all')">All</a></li>
+  <li ng-class="driverClass"><a href="" ng-click="changeActiveTab('driver')">I'm a Driver</a></li>
+  <li ng-class="passClass"><a href="" ng-click="changeActiveTab('pass')">I'm a passenger</a></li>
+</ul>
+<div class="tab_container">
+  <div id="tab1" class="tab_content">
+    <div style="overflow:auto; height: 60%">
+      <table>
+        <tr style=" background-color: #f3a928;">
+          <th>
+            Date/Time
+          </th>
+          <th>
+            Origin/Destination
+          </th>
+          <th>
+            Min.
+          </th>
+          <th>
+            Details
+          </th>
+
+        </tr>
+      	<tr ng-repeat="viaje in viajes">
+          <td>
+            <div class="row">
+              <label>
+                {{viaje.fecha}}
+              </label>                    
+            </div>
+            <div class="row">
+              <span>
+                {{viaje.hora}}
+              </span>              
+            </div>
+          </td>      		
+      		<td>
+      			<div class="row">
+              <li>
+                {{viaje.mapa.descOrigen}}
+              </li>  				
+      			</div>
+      			<div class="row">
+              <li>
+      				  {{viaje.mapa.descDestino}}
+              </li>
+      			</div>
+      		</td>
+          <td ng-style="{{viaje.classMinuto}}">
+            <label>
+              {{viaje.minutos}}
+            </label>
+          </td>
+      		<td>
+      			<a href="" ng-click="detailTrip(viaje.id)">View Details</a>
+      		</td>
+      	</tr>
+      </table>
+     </div>
+  </div>
+</div>

@@ -33,7 +33,7 @@ public class Viaje  implements Serializable{
 	@ManyToMany
 	private List<Usuario> pasajeros;
 	
-	@OneToOne(mappedBy="viaje")
+	@OneToOne(mappedBy="viaje", cascade = CascadeType.ALL)
 	private Mapa mapa;
 	
 	public Viaje() {

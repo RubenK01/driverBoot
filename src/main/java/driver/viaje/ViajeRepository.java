@@ -9,6 +9,6 @@ import driver.models.*;
 
 @Repository
 public interface ViajeRepository extends JpaRepository<Viaje, Long>{
-	@Query("select v from Viaje v where fechaHora > NOW()")
+	@Query("select v from Viaje v where v.fechaHora > NOW()")
 	public List<Viaje> findViajes();
 }

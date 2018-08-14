@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 import org.hibernate.validator.constraints.*;
 
+import driver.inbox.MensajeDto;
 import driver.models.*;
 import driver.viaje.ViajeDto;
 
@@ -49,6 +50,10 @@ public class UserDto {
 	    private  Collection<ViajeDto> viajes;
 	    
 	    private  Collection<ViajeDto> viajesCreados;
+	    
+	    private  Collection<MensajeDto> mensajesRecibidos;
+	    
+	    private  Collection<MensajeDto> mensajesEnviados;
 
 		public Collection<ViajeDto> getViajes() {
 			return viajes;
@@ -152,6 +157,22 @@ public class UserDto {
 
 		public void setCoches(Collection<CocheDto> coches) {
 			this.coches = coches;
+		}
+
+		public Collection<MensajeDto> getMensajesRecibidos() {
+			return mensajesRecibidos;
+		}
+
+		public void setMensajesRecibidos(Collection<MensajeDto> mensajesRecibidos) {
+			this.mensajesRecibidos = mensajesRecibidos;
+		}
+
+		public Collection<MensajeDto> getMensajesEnviados() {
+			return mensajesEnviados;
+		}
+
+		public void setMensajesEnviados(Collection<MensajeDto> mensajesEnviados) {
+			this.mensajesEnviados = mensajesEnviados;
 		}
 
 //	    @AssertTrue
