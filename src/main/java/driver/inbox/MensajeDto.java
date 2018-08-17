@@ -9,17 +9,23 @@ import driver.user.UserDto;
 public class MensajeDto {
 	
 	private long id;
-	@NotEmpty
 	private String texto;
-	@NotEmpty
 	private Date fechaHora;
-	@NotEmpty
 	private Boolean leido;
-	@NotEmpty
 	private UserDto emisor;
-	@NotEmpty
 	private UserDto receptor;
 	
+	public MensajeDto() {
+		super();
+	}
+	public MensajeDto(String texto, Date fechaHora, Boolean leido, UserDto emisor, UserDto receptor) {
+		super();
+		this.texto = texto;
+		this.fechaHora = fechaHora;
+		this.leido = leido;
+		this.emisor = emisor;
+		this.receptor = receptor;
+	}
 	public long getId() {
 		return id;
 	}

@@ -1,0 +1,30 @@
+<div class="modal-content">
+		<div class="modal-header" style=" background-color: whitesmoke;">
+		          <h3 class="modal-title">{{receptor.firstName}} {{receptor.lastName}}</h3>
+		</div>
+		<div class="modal-body" style="background-color: #9fe89f;">
+			<div id="divConScroll" style="height: 279px;overflow: auto;padding: 9px">
+				<div ng-repeat="message in messages">
+					<div ng-class="message.class">
+						<div>
+							<p>{{message.texto}}</p>						
+							<p><small>{{message.fechaHoraStr}}</small></p>
+						</div>
+						
+					</div>
+					
+				</div>
+			</div>
+			<div style="height: 30%;    margin-top: 6px;">
+				<textarea class="mytext" ng-model="texto" rows=6 placeholder="Type a message" style="border: 1.5px solid #ccc !important;width: 100%;padding: 11px;background-color: whitesmoke;border-radius: 12px 12px 12px 12px;" ></textarea>
+			</div>
+		</div>
+<!-- </div> -->
+	     <div class="modal-footer" style=" background-color: whitesmoke;">
+	     	<div>
+	     		<button class="btn btn-primary" type="button" ng-disabled="!texto || texto === ''" style="background-color: #238023;" ng-click="sendMessage();">Send</button>
+	         	<button class="btn btn-default" type="button" ng-click="cancel();">Cancel</button>
+	     	</div>
+	     </div>
+        
+</div>	

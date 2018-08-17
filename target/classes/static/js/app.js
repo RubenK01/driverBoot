@@ -20,6 +20,10 @@ myApp.config(function($routeProvider) {
         templateUrl :"html/inbox.html",
         controller: "inboxCtrl"
     })
+    .when("/myAccount", {
+        templateUrl :"html/myAccount.html",
+        controller: "myAccountCtrl"
+    })
 	.otherwise({redirectTo:'/'});
 	
 });

@@ -9,7 +9,7 @@
   <div id="tab1" class="tab_content">
     <div style="overflow:auto; height: 60%">
       <table>
-        <tr>
+        <tr style=" background-color: #f3a928;">
           <th>
             Date/Time
           </th>
@@ -20,7 +20,7 @@
             Min.
           </th>
           <th>
-            Detail
+            Details
           </th>
 
         </tr>
@@ -49,7 +49,11 @@
               </li>
       			</div>
       		</td>
-          <td ng-style="{{viaje.classMinuto}}">{{viaje.minutos}}</td>
+          <td ng-style="{{viaje.classMinuto}}">
+            <label>
+              {{viaje.minutos}}
+            </label>
+          </td>
       		<td>
       			<a href="" ng-click="detailTrip(viaje.id)">View Details</a>
       		</td>

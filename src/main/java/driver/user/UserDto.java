@@ -15,45 +15,55 @@ import driver.viaje.ViajeDto;
 //    @FieldMatch(first = "email", second = "confirmEmail", message = "The email fields must match")
 //})
 public class UserDto {
-	  @NotEmpty
 	    private String firstName;
 
-	    @NotEmpty
+	    
 	    private String lastName;
 
-	    @NotEmpty
+	    
 	    private String password;
-
+	    
+	    
 	    @Email
-	    @NotEmpty
+	    @Column(unique=true)
 	    private String email;
 	    @Lob
 		private byte[] userImg;
 	    
-	    @NotEmpty
 	    private Date fExpiryDate;
-	    @NotEmpty
+	    @Column(unique=true)
 	    private String dni;
 	    
-	    @NotEmpty
 	    private String phone;
 	    
-	    @NotEmpty
 	    private Date fBirthDate;
 	    
-	    @NotEmpty
 	    private String gender;
 	    
-	    @NotEmpty
+	    private int minutos;
+	    
 	    private  Collection<CocheDto> coches;
 	    
 	    private  Collection<ViajeDto> viajes;
 	    
 	    private  Collection<ViajeDto> viajesCreados;
 	    
-	    private  Collection<MensajeDto> mensajesRecibidos;
+	    private  List<MensajeDto> mensajesRecibidos;
 	    
-	    private  Collection<MensajeDto> mensajesEnviados;
+	    private  List<MensajeDto> mensajesEnviados;
+	    
+
+		public UserDto() {
+			super();
+		}
+
+		public UserDto(String firstName, String lastName, String email, byte[] userImg) {
+			super();
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.email = email;
+			this.userImg = userImg;
+		}
 
 		public Collection<ViajeDto> getViajes() {
 			return viajes;
@@ -159,20 +169,28 @@ public class UserDto {
 			this.coches = coches;
 		}
 
-		public Collection<MensajeDto> getMensajesRecibidos() {
+		public List<MensajeDto> getMensajesRecibidos() {
 			return mensajesRecibidos;
 		}
 
-		public void setMensajesRecibidos(Collection<MensajeDto> mensajesRecibidos) {
+		public void setMensajesRecibidos(List<MensajeDto> mensajesRecibidos) {
 			this.mensajesRecibidos = mensajesRecibidos;
 		}
 
-		public Collection<MensajeDto> getMensajesEnviados() {
+		public List<MensajeDto> getMensajesEnviados() {
 			return mensajesEnviados;
 		}
 
-		public void setMensajesEnviados(Collection<MensajeDto> mensajesEnviados) {
+		public void setMensajesEnviados(List<MensajeDto> mensajesEnviados) {
 			this.mensajesEnviados = mensajesEnviados;
+		}
+
+		public int getMinutos() {
+			return minutos;
+		}
+
+		public void setMinutos(int minutos) {
+			this.minutos = minutos;
 		}
 
 //	    @AssertTrue

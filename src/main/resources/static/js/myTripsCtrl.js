@@ -1,9 +1,24 @@
-myApp.controller('myTripsCtrl', function ($scope, utils,$uibModal) {
+myApp.controller('myTripsCtrl', function ($scope, utils,$uibModal,MantenimientoSrv ) {
 	$scope.allClass = 'active';
 	$scope.driverClass =  '';
 	$scope.passClass = '';
 	$scope.$parent.addActivo('My Trips');
 
+	/*MantenimientoSrv.getUser().then(function(data){
+
+		$scope.usuario = data.data;
+		if(!data.data.userImg){
+			$scope.usuario.userImg = "/images/icons/defaultDriver.png";
+		}
+		else{
+			$scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
+		}
+		
+		
+	},function(err){
+		
+	});
+*/
 	$scope.changeActiveTab = function(tab){
 		$scope.allClass = '';
 		$scope.driverClass =  '';
@@ -55,7 +70,8 @@ myApp.controller('myTripsCtrl', function ($scope, utils,$uibModal) {
           viaje: function(){
             return viajeObj;
             },
-            modalInfo: true
+            modalInfo: true,
+            usuario: function(){ return $scope.usuario}
         },
         size: 'lg'
       });

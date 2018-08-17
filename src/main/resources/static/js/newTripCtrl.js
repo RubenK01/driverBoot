@@ -1,6 +1,7 @@
 myApp.controller('newTripCtrl',['$scope', 'MantenimientoSrv',function($scope,MantenimientoSrv){
 	//variables
 	var map1, infoWindow;
+  $scope.errors = []
 	$scope.timeTrip = 0;
   $scope.$parent.addActivo('New Trip');
 
@@ -43,6 +44,8 @@ myApp.controller('newTripCtrl',['$scope', 'MantenimientoSrv',function($scope,Man
       	this.map = map;
         this.originPlaceId = null;
         this.destinationPlaceId = null;
+        $scope.originPlaceId = null;
+        $scope.destinationPlaceId = null;
         this.travelMode = 'DRIVING';
         var originInput = document.getElementById('origin-input');
         var destinationInput = document.getElementById('destination-input');
@@ -95,8 +98,11 @@ myApp.controller('newTripCtrl',['$scope', 'MantenimientoSrv',function($scope,Man
 	            return;
 	          }
 	          if (mode === 'ORIG') {
+              $scope.originPlaceId = place.place_id;
 	            me.originPlaceId = place.place_id;
 	          } else {
+
+              $scope.destinationPlaceId = place.place_id;
 	            me.destinationPlaceId = place.place_id;
 	          }
 	          me.route();
@@ -110,40 +116,81 @@ myApp.controller('newTripCtrl',['$scope', 'MantenimientoSrv',function($scope,Man
 
       }
 
+      function comprobacionesOK(){
+        if(!$scope.date || $scope.date == '' || !$scope.car || $scope.car == '' || 
+          !$scope.seats || $scope.seats == ''){
+          $scope.errors.push("Fill out all the fields.");
+        }
+        else{
+          if($scope.timeTrip == 0 || $scope.originPlaceId == null || $scope.destinationPlaceId == null){
+            $scope.errors.push("The Origin/Destination is incorrect.");
+          }
+          if($scope.date <= Date.now() ){
+            $scope.errors.push("The date is incorrect.");
+          }
+          if($scope.seats < 1 || $scope.seats > 7){
+            $scope.errors.push("The numbers of seats must be from 1 to 7.");
+          }
+        }
+        
+      }
+
       $scope.addTrip = function(){
-        $scope.loading = true;
-        var viajeDTO = {};
 
-        viajeDTO.plazas = $scope.seats;
-        viajeDTO.minutos = $scope.timeTrip;
-        //
-        /*var fechaHora = new Date($scope.date);
-        fechaHora.setTime($scope.time);
-        viajeDTO.fechaHora = fechaHora;*/
-        viajeDTO.fechaHora = $scope.date;
+        if(comprobacionesOK()){
+          $scope.loading = true;
+          var viajeDTO = {};
 
-        //
-        var mapaDTO = {};
-        mapaDTO.descOrigen = $scope.origin;
-        mapaDTO.descDestino = $scope.destination;
-        mapaDTO.latOrigen = $scope.latOrigen ;
-        mapaDTO.lngOrigen =$scope.lngOrigen ;
-        mapaDTO.latDestino = $scope.latDestino;
-        mapaDTO.lngDestino = $scope.lngDestino;
-        viajeDTO.mapa = mapaDTO;
-        viajeDTO.pasajeros = [];
-        viajeDTO.conductor = null;
+          viajeDTO.plazas = $scope.seats;
+          viajeDTO.minutos = $scope.timeTrip;
+          //
+          /*var fechaHora = new Date($scope.date);
+          fechaHora.setTime($scope.time);
+          viajeDTO.fechaHora = fechaHora;*/
+          viajeDTO.fechaHora = $scope.date;
 
-        function success(data){
-          limpiaDatos();
-          $scope.loading = false;
-        };
+          //
+          var mapaDTO = {};
+          mapaDTO.descOrigen = $scope.origin;
+          mapaDTO.descDestino = $scope.destination;
+          mapaDTO.latOrigen = $scope.latOrigen ;
+          mapaDTO.lngOrigen =$scope.lngOrigen ;
+          mapaDTO.latDestino = $scope.latDestino;
+          mapaDTO.lngDestino = $scope.lngDestino;
+          viajeDTO.mapa = mapaDTO;
+          viajeDTO.pasajeros = [];
+          viajeDTO.conductor = null;
+          viajeDTO.coche = $scope.usuario.coches.find(coche => coche.matricula == $scope.car) ;
 
-        function error(data){
-          $scope.loading = false;
-        };
+          function success(data){
+            limpiaDatos();
+            MantenimientoSrv.getUser().then(function(data){
 
-        MantenimientoSrv.saveViaje(viajeDTO).then(success , error);
+              $scope.usuario = data.data;
+              if(!data.data.userImg){
+                $scope.usuario.userImg = "/images/icons/defaultDriver.png";
+              }
+              else{
+                $scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
+              }
+              
+              
+            },function(err){
+              
+            });
+
+            
+            $scope.loading = false;
+          };
+
+          function error(data){
+            $scope.loading = false;
+          };
+
+          MantenimientoSrv.saveViaje(viajeDTO).then(success , error);
+        }
+
+        
 
 
 

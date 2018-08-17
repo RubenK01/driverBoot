@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
-import driver.user.UserDto;
+import driver.user.*;
 
 public class ViajeDto {
 	@NotNull
@@ -19,6 +19,8 @@ public class ViajeDto {
 	private Date fechaHora;
 	@NotNull
 	private UserDto conductor; 
+	
+	private CocheDto coche;
 	@NotNull
 	@ManyToMany
 	private List<UserDto> pasajeros;
@@ -77,6 +79,12 @@ public class ViajeDto {
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	public CocheDto getCoche() {
+		return coche;
+	}
+	public void setCoche(CocheDto coche) {
+		this.coche = coche;
 	}
 	
 	

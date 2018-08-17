@@ -83,7 +83,7 @@
 								</li>
 								<ul ng-if="item.submenu" class="sub-menu collapse" id="profile">
 									<div ng-repeat='subItem in item.submenu'>
-										<li ng-if="subItem.name != 'Log Out'" ng-class="subItem.style" ng-click="addActivo(item.name, subItem.name)"><a  style="width: 80%;">{{ subItem.name }}</a></li>
+										<li ng-if="subItem.name != 'Log Out'" ng-class="subItem.style" ng-click="addActivo(item.name, subItem.name)"><a  style="width: 80%;" href="{{subItem.url}}">{{ subItem.name }}</a></li>
 										<li ng-if="subItem.name == 'Log Out'" ng-class="subItem.style" ng-click="addActivo(item.name, subItem.name)"><a  style="width: 80%;" href="/logout">{{ subItem.name }}</a></li>
 									</div>
 								</ul>
@@ -228,6 +228,8 @@
 	<script src="js/myTripsCtrl.js"></script>
 	<script src="js/utils.js"></script>
 	<script src="js/inboxCtrl.js"></script>
+	<script src="js/modalConversacionCtrl.js"></script>
+	<script src="js/myAccountCtrl.js"></script>
 <!-- 	<script src="js/directiveMenu.js"></script> -->
 
 </body>

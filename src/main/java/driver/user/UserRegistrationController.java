@@ -55,6 +55,7 @@ public class UserRegistrationController {
     	resul.setLastName(u.getLastName());
     	resul.setPhone(u.getTelefono());
     	resul.setUserImg(u.getUserImg());
+    	resul.setMinutos(u.getMinutos());
     	
     	//coches
     	List<CocheDto> misCoches = new ArrayList<CocheDto>();
@@ -83,6 +84,7 @@ public class UserRegistrationController {
     		conductor.setLastName(v.getConductor().getLastName());
     		conductor.setUserImg(v.getConductor().getUserImg());
     		conductor.setEmail(v.getConductor().getEmail());
+    		conductor.setPhone(v.getConductor().getTelefono());
     		viaje.setConductor(conductor);
     		
     		MapaDto mapa = new MapaDto();
@@ -121,6 +123,7 @@ public class UserRegistrationController {
     		conductor.setLastName(v.getConductor().getLastName());
     		conductor.setUserImg(v.getConductor().getUserImg());
     		conductor.setEmail(v.getConductor().getEmail());
+    		conductor.setPhone(v.getConductor().getTelefono());
     		viaje.setConductor(conductor);
     		
     		MapaDto mapa = new MapaDto();
@@ -144,13 +147,60 @@ public class UserRegistrationController {
     	}
     	resul.setViajesCreados(misViajesCreados);
     	
-    	//mensajes
+    	//mensajes Enviados
     	List<MensajeDto> misMensajesEnviados = new ArrayList<MensajeDto>();
     	
     	for(Mensaje m : u.getMensajesEnviados()) {
+    		UserDto receptor = new UserDto(m.getReceptor().getFirstName(),m.getReceptor().getLastName(), m.getReceptor().getEmail(), m.getReceptor().getUserImg());
+    		MensajeDto mensajeDto = new MensajeDto();    		
+    		UserDto emisor = new UserDto(m.getEmisor().getFirstName(),m.getEmisor().getLastName(), m.getEmisor().getEmail(), m.getEmisor().getUserImg());
     		
+    		mensajeDto.setEmisor(emisor);
+    		mensajeDto.setFechaHora(m.getFecha());
+    		mensajeDto.setLeido(m.getLeido());
+    		mensajeDto.setReceptor(receptor);
+    		mensajeDto.setTexto(m.getTexto());  
+    		mensajeDto.setId(m.getId());
+    		
+    		misMensajesEnviados.add(mensajeDto);
+//    		if(!misMensajesEnviados.containsKey(receptor.getEmail())) {  
+//    			List<MensajeDto> listaMensajes = new ArrayList<MensajeDto>();
+//    			listaMensajes.add(mensajeDto);
+//    			misMensajesEnviados.put(receptor.getEmail(), listaMensajes);
+//    		}
+//    		else {
+//    			misMensajesEnviados.get(receptor.getEmail()).add(mensajeDto);
+//    		}
     	}
+    	resul.setMensajesEnviados(misMensajesEnviados);
     	
+    	//mensajes Recibidos
+    	List<MensajeDto> misMensajesRecibidos = new ArrayList<MensajeDto>();
+    	
+    	for(Mensaje m : u.getMensajesEnviados()) {
+    		UserDto receptor = new UserDto(m.getReceptor().getFirstName(),m.getReceptor().getLastName(), m.getReceptor().getEmail(), m.getReceptor().getUserImg());
+    		MensajeDto mensajeDto = new MensajeDto();    		
+    		UserDto emisor = new UserDto(m.getEmisor().getFirstName(),m.getEmisor().getLastName(), m.getEmisor().getEmail(), m.getEmisor().getUserImg());
+    		
+    		mensajeDto.setEmisor(emisor);
+    		mensajeDto.setFechaHora(m.getFecha());
+    		mensajeDto.setLeido(m.getLeido());
+    		mensajeDto.setReceptor(receptor);
+    		mensajeDto.setTexto(m.getTexto());   
+    		mensajeDto.setId(m.getId());
+    		
+    		misMensajesRecibidos.add(mensajeDto);
+    		
+//    		if(!misMensajesRecibidos.containsKey(emisor.getEmail())) {  
+//    			List<MensajeDto> listaMensajes = new ArrayList<MensajeDto>();
+//    			listaMensajes.add(mensajeDto);
+//    			misMensajesRecibidos.put(emisor.getEmail(), listaMensajes);
+//    		}
+//    		else {
+//    			misMensajesRecibidos.get(emisor.getEmail()).add(mensajeDto);
+//    		}
+    	}
+    	resul.setMensajesRecibidos(misMensajesRecibidos);
     	
 		return resul;
     	

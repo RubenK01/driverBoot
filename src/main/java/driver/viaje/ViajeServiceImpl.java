@@ -1,7 +1,6 @@
 package driver.viaje;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +9,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import driver.RetornoForm;
+import driver.models.Coche;
 import driver.models.Mapa;
 import driver.models.Usuario;
 import driver.models.Viaje;
+import driver.user.CocheDto;
 import driver.user.UserDto;
-import driver.user.UserRepository;
 import driver.user.UserService;
 
 @Service
@@ -24,10 +24,7 @@ public class ViajeServiceImpl implements ViajeService{
 
 	@Autowired
 	private ViajeRepository viajeRepository;
-	
-	@Autowired
-	private UserRepository userRepository;
-	
+		
 	@Autowired
 	private MapaRepository mapaRepository;
 	
@@ -38,13 +35,24 @@ public class ViajeServiceImpl implements ViajeService{
 		viaje.setFechaHora(viajeDto.getFechaHora());
 		viaje.setMinutos(viajeDto.getMinutos());
 		viaje.setPlazas(viajeDto.getPlazas());
-		viaje.setPasajeros(new ArrayList<Usuario>());
-		
+				
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     	
     	String name = auth.getName();
 
     	Usuario conductor = userService.findByEmail(name);
+    	
+    	
+    	Coche coche = new Coche();
+    	for(Coche c : conductor.getCoches() ) {
+    		if(c.getMatricula() == viaje.getCoche().getMatricula()) {
+    			coche = c;
+    		}
+    	}
+
+		
+		viaje.setCoche(coche);
+		viaje.setPasajeros(new ArrayList<Usuario>());
     	
     	viaje.setConductor(conductor);
     	

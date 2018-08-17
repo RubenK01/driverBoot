@@ -38,6 +38,9 @@ public class Mensaje {
 		this.emisor = emisor;
 		this.receptor = receptor;
 	}
+	public Mensaje() {
+		// TODO Auto-generated constructor stub
+	}
 	public long getId() {
 		return id;
 	}

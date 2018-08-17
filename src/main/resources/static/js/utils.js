@@ -35,10 +35,19 @@ myApp.factory('utils',function(){
 		    return edad;
 		}
 
+    function nl2br (str, is_xhtml) {
+      if (typeof str === 'undefined' || str === null) {
+          return '';
+      }
+      var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+      return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+    }
+
 return {
 		horaToStr:horaToStr,
 		calcularEdad:calcularEdad,
-		fechaToStr:fechaToStr
+		fechaToStr:fechaToStr,
+    nl2br:nl2br
 
 	}
 });

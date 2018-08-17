@@ -89,12 +89,43 @@ myApp.factory('MantenimientoSrv',['$http','$q',function($http,$q){
 		return promise;
 
 	}
+
+	function saveMessage(messageDTO){
+		var deferred = $q.defer();
+		var promise = deferred.promise;
+
+		var link = '/saveMessage';
+		var fd = new FormData();
+
+		var mensajeJson = angular.toJson(messageDTO);
+
+		fd.append('mensajeJson', mensajeJson);
+
+		function success(data){
+        	deferred.resolve(data);
+	    };
+
+	    function error(data){
+	        deferred.reject(data);
+	    };
+
+		$http({
+				url: link,
+				method: 'POST',
+				data : fd,
+				headers: {'Content-Type': undefined},
+				transformRequest: angular.identity
+			}).then(success , error);
+
+		return promise;
+	}
 	
 	
 	
 	return {
 		getViajes:getViajes,
 		getUser:getUser,
-		saveViaje:saveViaje
+		saveViaje:saveViaje,
+		saveMessage:saveMessage
 	}
 }]);

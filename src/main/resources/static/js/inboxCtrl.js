@@ -1,8 +1,24 @@
-myApp.controller('inboxCtrl', function ($scope, utils,$uibModal) {
+myApp.controller('inboxCtrl', function ($scope, utils,$uibModal,MantenimientoSrv ) {
 	$scope.allClass = 'active';
 	$scope.driverClass =  '';
 	$scope.passClass = '';
+	$scope.chats = [];
 	$scope.$parent.addActivo('Inbox');
+
+	MantenimientoSrv.getUser().then(function(data){
+
+		$scope.usuario = data.data;
+		if(!data.data.userImg){
+			$scope.usuario.userImg = "/images/icons/defaultDriver.png";
+		}
+		else{
+			$scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
+		}
+		
+		
+	},function(err){
+		
+	});
 
 	$scope.changeActiveTab = function(tab){
 		$scope.allClass = '';
@@ -23,20 +39,100 @@ myApp.controller('inboxCtrl', function ($scope, utils,$uibModal) {
 		}
 	}
 
-	$scope.mensajes = $scope.usuario.mensajesEnviados;
-	if($scope.usuario.mensajesRecibidos.length > 0){
-		$scope.viajes = $scope.usuario.viajes.concat($scope.usuario.viajesCreados);
+	$scope.usuario.mensajesEnviados = $scope.usuario.mensajesEnviados.sort((a,b) => b.fechaHora - a.fechaHora);
+	$scope.usuario.mensajesRecibidos = $scope.usuario.mensajesRecibidos.sort((a,b) => b.fechaHora - a.fechaHora);
+
+	$scope.conversacionMap = new Map();
+
+	//pasar mensajes a Map()
+	$scope.usuario.mensajesEnviados.forEach(function(m){
+		m.class = "msj macro text text-l";
+		//m.text = utils.nl2br(m.texto);
+		m.fechaHoraStr = utils.fechaToStr(m.fechaHora) + ' ' + utils.horaToStr(m.fechaHora) ;
+		if($scope.conversacionMap.get(m.receptor.email) == null){
+			var listaMensajes = [];
+			listaMensajes.push(m);
+			$scope.conversacionMap.set(m.receptor.email, listaMensajes);
+		}
+		else
+			$scope.conversacionMap.get(m.receptor.email).push(m);
+	});
+	$scope.usuario.mensajesRecibidos.forEach(function(m){
+		m.class = "msj-rta macro text text-r";
+		m.texto = utils.nl2br(m.texto);
+		m.fechaHoraStr = utils.fechaToStr(m.fechaHora) + ' ' + utils.horaToStr(m.fechaHora) ;
+		if($scope.conversacionMap.get(m.receptor.email) == null){
+			var listaMensajes = [];
+			listaMensajes.push(m);
+			$scope.conversacionMap.set(m.receptor.email, listaMensajes);
+		}
+		else
+			$scope.conversacionMap.get(m.receptor.email).push(m);
+	});
+
+	for (var [key, value] of $scope.conversacionMap) {
+		value[0].fechaHoraStr = utils.fechaToStr(value[0].fechaHora) + ' ' + utils.horaToStr(value[0].fechaHora) ;
+		if($scope.usuario.mensajesEnviados.includes(value[0])){
+					value[0].datosReceptor = {};
+					value[0].datosReceptor = value[0].receptor;
+					$scope.chats.push(value[0]);
+				}
+		else{
+			value[0].datosReceptor = {};
+			value[0].datosReceptor = value[0].emisor;
+			$scope.chats.push(value[0]);
+		}
 	}
 
-	for(var i = 0; i < $scope.viajes.length; i++){
-		$scope.viajes[i].hora = '';
-		$scope.viajes[i].fecha =  '';
-		
-		
-		$scope.viajes[i].hora = utils.horaToStr($scope.viajes[i].fechaHora);
-		$scope.viajes[i].fecha = utils.fechaToStr($scope.viajes[i].fechaHora);
+	$scope.modalMensaje = function(email){
+		var chat = $scope.chats.find(c => c.datosReceptor.email === email);
+		var receptor = chat.datosReceptor;
+		var modalInstance = $uibModal.open({
+	        animation: true,
+	        templateUrl: '/html/modalConversacion.html',
+	        resolve: {
+	          receptor: function(){
+	            return receptor;
+	            },
+	            usuario: function(){ return $scope.usuario}
+	        },
+	        controller: 'modalConversacionCtrl',
+	        size: 'md'
+	      });
+		modalInstance.result.then(function () {
+	        MantenimientoSrv.getUser().then(function(data){
 
-	}
+						$scope.usuario = data.data;
+						if(!data.data.userImg){
+							$scope.usuario.userImg = "/images/icons/defaultDriver.png";
+						}
+						else{
+							$scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
+						}
+						
+						
+					},function(err){
+						
+					});
+	      }, function () {
+	        MantenimientoSrv.getUser().then(function(data){
+
+						$scope.usuario = data.data;
+						if(!data.data.userImg){
+							$scope.usuario.userImg = "/images/icons/defaultDriver.png";
+						}
+						else{
+							$scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
+						}
+						
+						
+					},function(err){
+						
+					});
+	      });
+	} 
+
+
 	//$scope.viajes = $scope.viajes.sort((a,b) => b.fechaHora - a.fechaHora);
 
 	/*$scope.showMessages = function(name){

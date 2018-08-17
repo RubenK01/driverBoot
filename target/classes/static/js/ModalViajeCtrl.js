@@ -1,4 +1,4 @@
-myApp.controller('ModalViajeCtrl', function ($scope, $modalInstance, viajeSrv, viaje, utils, modalInfo) {
+myApp.controller('ModalViajeCtrl', function ($scope, $modalInstance, $uibModal, viajeSrv, viaje, utils, modalInfo, usuario) {
 	$scope.viaje = viaje;
 	$scope.modalInfo = modalInfo;
 	$scope.errorsModal = [];
@@ -10,6 +10,16 @@ myApp.controller('ModalViajeCtrl', function ($scope, $modalInstance, viajeSrv, v
 		$scope.viaje.conductor.userImg = "data:image/png;base64," + viaje.conductor.userImg;
 	}
 
+
+	$scope.viaje.pasajeros.forEach(function(p){
+		if(!p.userImg || p.userImg === "/images/icons/defaultDriver.png"){
+				p.userImg = "/images/icons/defaultDriver.png";
+			}
+			else{
+				p.userImg = "data:image/png;base64," + viaje.conductor.userImg;
+			}
+	});
+
 	$scope.ageConductor = utils.calcularEdad(viaje.conductor.fBirthDate);
 	$scope.viaje.fecha = utils.fechaToStr(viaje.fechaHora);
 	$scope.viaje.hora = utils.horaToStr(viaje.fechaHora);
@@ -20,6 +30,20 @@ myApp.controller('ModalViajeCtrl', function ($scope, $modalInstance, viajeSrv, v
 			var retornoForm = data.data;
 
 			if(retornoForm.codigo === '00'){
+				MantenimientoSrv.getUser().then(function(data){
+
+						$scope.usuario = data.data;
+						if(!data.data.userImg){
+							$scope.usuario.userImg = "/images/icons/defaultDriver.png";
+						}
+						else{
+							$scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
+						}
+						
+						
+					},function(err){
+						
+					});
 				 var modalInstance = $uibModal.open({
 		            animation: true,
 		            templateUrl: '/html/modalInfo.html',
@@ -49,59 +73,64 @@ myApp.controller('ModalViajeCtrl', function ($scope, $modalInstance, viajeSrv, v
 	}
 	$scope.cancel = function () {
 	    $modalInstance.dismiss();
+
 	};
 
-	 /* $scope.ok = function () {
+	$scope.modalMensaje = function(email){
+		var receptor = {};
 
-	  	var check = true;
-		$scope.errorsModal = [];
-
-	  	if(!$scope.modelCar || !$scope.matriculaCar || !$scope.colorCar ){
-	  		$scope.errorsModal.push("Fill out all the fields");
-	  		check = false;
-	  	}
-	  	else{
-	  		//comprobar matrícula única
-	  		for(var i = 0; i < listaCoches.length; i++){
-	  			if(listaCoches[i].matricula === $scope.matriculaCar){
-	  				$scope.errorsModal.push("You already used this car registration number");
-	  				check = false;
-	  				break;
-	  			}
-	  		}
-	  		if(check){
-	  			car.model = $scope.modelCar;
-				car.matricula = $scope.matriculaCar;
-				car.color = $scope.colorCar;
-	  		}
-	  		
-	  	}
-
-		
-		car.img = $scope.fileToUpload;
-
-		if(check){
-				reader.onloadend = function () {
-			 	car.imgUrl = reader.result;
-			 	$scope.$apply();
-			 	//limpiaDatosCar();
-			  }
-
-			  if ($scope.fileToUpload) {
-			    reader.readAsDataURL($scope.fileToUpload);
-			  } else {
-				  car.imgUrl = '/images/icons/logoNegro.png';//meter img por defecto (logo?)
-				  //$scope.listCars.push(car);
-				  //limpiaDatosCar();
-				  //$scope.$apply();
-			  };  	
-	    	$modalInstance.close(car);
+		if(email === viaje.conductor.email){
+			receptor = viaje.conductor;
 		}
-		
-		
-	  };
+		else{
+			viaje.pasajeros.forEach(function(p){
+				if(p.email === email){
+					receptor = p;
+				}
+			});
+		}
+		var modalInstance = $uibModal.open({
+	        animation: true,
+	        templateUrl: '/html/modalConversacion.html',
+	        resolve: {
+	          receptor: function(){
+	            return receptor;
+	            },
+	            usuario: function(){ return usuario}
+	        },
+	        controller: 'modalConversacionCtrl',
+	        size: 'md'
+	      });
+		modalInstance.result.then(function () {
+	        MantenimientoSrv.getUser().then(function(data){
 
-	  $scope.cancel = function () {
-	    $modalInstance.dismiss();
-	  };*/
+						$scope.usuario = data.data;
+						if(!data.data.userImg){
+							$scope.usuario.userImg = "/images/icons/defaultDriver.png";
+						}
+						else{
+							$scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
+						}
+						
+						
+					},function(err){
+						
+					});
+	      }, function () {
+	        MantenimientoSrv.getUser().then(function(data){
+
+						$scope.usuario = data.data;
+						if(!data.data.userImg){
+							$scope.usuario.userImg = "/images/icons/defaultDriver.png";
+						}
+						else{
+							$scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
+						}
+						
+						
+					},function(err){
+						
+					});
+	      });
+	} 
 });

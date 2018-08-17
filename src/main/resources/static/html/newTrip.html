@@ -1,5 +1,12 @@
 
 <div class="row newTripTexto" style=" height: 40%;">
+	<div ng-if="errors.length >0" style=" margin: 13px;    padding: 8px;">
+							<ul style="color:  red;	">
+				                <li ng-repeat="err in errors">
+				                    {{ err }}
+				                </li>
+				            </ul>
+			</div>
 	<br />
 	<br />
 	<div style="position: relative;display: inline-block;text-align: center;"  class="col-sm-2 col-xs-7 newTripReloj">
@@ -38,7 +45,7 @@
 			</div>
 			<div class="col-sm-4 col-xs-12">
 				<label class="col-sm-7 col-xs-3">Available Seats: </label>
-				<input class="inputTrip col-sm-3 col-xs-7" ng-model="seats" min="1" max="7" type="number"></input>
+				<input class="inputTrip col-sm-3 col-xs-7" ng-model="seats" type="number"></input>
 			</div>
 		</div>
 		<div class="row" style="  margin-top: 24px;">

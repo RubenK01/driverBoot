@@ -6,3 +6,5 @@
 - Poder añadir viaje con paradas
 - App movil (dependencias DOM (window y document eliminarlas antes))
 - Mensajes instantaneos (recargos de la pagina cada x tiempo)
+- Encriptacion de Ids realizar todas las comprobaciones en server
+- Verifica emisor/receptor en server Mensajes

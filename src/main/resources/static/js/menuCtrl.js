@@ -5,7 +5,7 @@ myApp.controller('menuCtrl',['$scope','MantenimientoSrv',function($scope,Manteni
 					{name: 'New Trip', url: '/#/newTrip', style: '', ico: 'fa fa-map-marker fa-lg'},
 					{name: 'My Trips', url: '/#/myTrips',style: '', ico: 'fa fa-car fa-lg'},
 					{name: 'Inbox', url: '/#/inbox',style: '', ico: 'fa fa-envelope fa-lg'},
-					{name: 'Profile', url: '/#/profile',style: 'collapsed', ico: 'fa fa-user fa-lg', submenu: [{name: 'My Account',url: '/', style:''}, {name: 'Settings', url: '/',style:''}, {name: 'Log Out', style:''} ]} ];
+					{name: 'Profile', url: '/#/profile',style: 'collapsed', ico: 'fa fa-user fa-lg', submenu: [{name: 'My Account',url: '/#/myAccount', style:''}, {name: 'Settings', url: '/',style:''}, {name: 'Log Out', style:''} ]} ];
 	
 	$scope.selectedName = 'map';
 

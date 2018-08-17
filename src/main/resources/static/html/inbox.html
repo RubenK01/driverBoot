@@ -1,39 +1,42 @@
 <div style="height: 5%">
 </div>
-<ul class="tabs">
-  <li ng-class="allClass"><a href="" ng-click="changeActiveTab('all')">All</a></li>
+<!--<ul class="tabs">
+   <li ng-class="allClass"><a href="" ng-click="changeActiveTab('all')">All</a></li>
   <li ng-class="driverClass"><a href="" ng-click="changeActiveTab('driver')">I'm a Driver</a></li>
   <li ng-class="passClass"><a href="" ng-click="changeActiveTab('pass')">I'm a passenger</a></li>
-</ul>
+</ul> -->
 <div class="tab_container">
   <div id="tab1" class="tab_content">
     <div style="overflow:auto; height: 60%">
       <table>
-        <tr>
+        <tr style=" background-color: #f3a928;">
           <th>
             Date/Time
           </th>
           <th>
-            Origin/Destination
+            Name
           </th>
+          <!--<th>
+             
+          </th> -->
           <th>
-            Min.
-          </th>
-          <th>
-            Detail
+            Chat
           </th>
 
         </tr>
-      	<tr ng-repeat="viaje in viajes">
+      	<tr ng-repeat="chat in chats">
           <td>
             <div class="row">
-                {{viaje.fecha}}    
+                {{chat.fechaHoraStr}}    
             </div>
-            <div class="row">
-              {{viaje.hora}}
+           
+          </td> 
+          <td>
+             <div class="row">
+              {{chat.datosReceptor.firstName}} {{chat.datosReceptor.lastName}} 
             </div>
-          </td>      		
-      		<td>
+          </td>     		
+      		<!-- <td>
       			<div class="row">
               <li>
                 {{viaje.mapa.descOrigen}}
@@ -44,10 +47,10 @@
       				  {{viaje.mapa.descDestino}}
               </li>
       			</div>
-      		</td>
-          <td>{{viaje.minutos}}</td>
+      		</td> -->
+          <!-- <td>{{viaje.minutos}}</td> -->
       		<td>
-      			<a href="" ng-click="detailTrip(viaje.id)">View Details</a>
+      			<a href="" ng-click="modalMensaje(chat.datosReceptor.email)">View Chat</a>
       		</td>
       	</tr>
       </table>
