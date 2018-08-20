@@ -2,21 +2,22 @@ myApp.controller('ModalViajeCtrl', function ($scope, $modalInstance, $uibModal, 
 	$scope.viaje = viaje;
 	$scope.modalInfo = modalInfo;
 	$scope.errorsModal = [];
+	$scope.usuario = usuario;
 
 	if(!viaje.conductor.userImg || viaje.conductor.userImg === "/images/icons/defaultDriver.png"){
-		$scope.viaje.conductor.userImg = "/images/icons/defaultDriver.png";
+		$scope.viaje.conductor.foto = "/images/icons/defaultDriver.png";
 	}
-	else{
-		$scope.viaje.conductor.userImg = "data:image/png;base64," + viaje.conductor.userImg;
+	else if(!$scope.viaje.conductor.userImg.includes("data:image/png;base64,")){
+		$scope.viaje.conductor.foto = "data:image/png;base64," + viaje.conductor.userImg;
 	}
 
 
 	$scope.viaje.pasajeros.forEach(function(p){
 		if(!p.userImg || p.userImg === "/images/icons/defaultDriver.png"){
-				p.userImg = "/images/icons/defaultDriver.png";
+				p.foto = "/images/icons/defaultDriver.png";
 			}
 			else{
-				p.userImg = "data:image/png;base64," + viaje.conductor.userImg;
+				p.foto = "data:image/png;base64," + p.userImg;
 			}
 	});
 
@@ -30,7 +31,7 @@ myApp.controller('ModalViajeCtrl', function ($scope, $modalInstance, $uibModal, 
 			var retornoForm = data.data;
 
 			if(retornoForm.codigo === '00'){
-				MantenimientoSrv.getUser().then(function(data){
+				/*MantenimientoSrv.getUser().then(function(data){
 
 						$scope.usuario = data.data;
 						if(!data.data.userImg){
@@ -43,15 +44,30 @@ myApp.controller('ModalViajeCtrl', function ($scope, $modalInstance, $uibModal, 
 						
 					},function(err){
 						
-					});
+					});*/
+					var mensajeDTO = {};
+					mensajeDTO.receptor = viaje.conductor;
+					mensajeDTO.receptor.userImg = null;
+					mensajeDTO.emisor = null;			
+					mensajeDTO.texto = "[Automatic Message] Hi, I join to your trip.";
+					mensajeDTO.leido = false;
+					mensajeDTO.fechaHora = new Date;
+
+					MantenimientoSrv.saveMessage(mensajeDTO).then(function(data){
+			          
+			        },function(err){
+			          
+			        });
+					var message = 'You joined correctly';
 				 var modalInstance = $uibModal.open({
 		            animation: true,
 		            templateUrl: '/html/modalInfo.html',
-		            /*resolve: {
-		              viaje: function(){
-		                return viajeObj;
+		            resolve: {
+		              message: function(){
+		                return message;
 		                }
-		            },*/
+		            },
+		            controller: 'modalInfoCtrl',
 		            size: 'sm'
 		          });
 				modalInstance.result.then(function () {
@@ -95,42 +111,15 @@ myApp.controller('ModalViajeCtrl', function ($scope, $modalInstance, $uibModal, 
 	        resolve: {
 	          receptor: function(){
 	            return receptor;
-	            },
-	            usuario: function(){ return usuario}
+	            }
 	        },
 	        controller: 'modalConversacionCtrl',
 	        size: 'md'
 	      });
 		modalInstance.result.then(function () {
-	        MantenimientoSrv.getUser().then(function(data){
-
-						$scope.usuario = data.data;
-						if(!data.data.userImg){
-							$scope.usuario.userImg = "/images/icons/defaultDriver.png";
-						}
-						else{
-							$scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
-						}
-						
-						
-					},function(err){
-						
-					});
+	        
 	      }, function () {
-	        MantenimientoSrv.getUser().then(function(data){
-
-						$scope.usuario = data.data;
-						if(!data.data.userImg){
-							$scope.usuario.userImg = "/images/icons/defaultDriver.png";
-						}
-						else{
-							$scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
-						}
-						
-						
-					},function(err){
-						
-					});
+	      
 	      });
 	} 
 });

@@ -4,7 +4,7 @@ myApp.controller('myTripsCtrl', function ($scope, utils,$uibModal,MantenimientoS
 	$scope.passClass = '';
 	$scope.$parent.addActivo('My Trips');
 
-	/*MantenimientoSrv.getUser().then(function(data){
+	MantenimientoSrv.getUser().then(function(data){
 
 		$scope.usuario = data.data;
 		if(!data.data.userImg){
@@ -14,11 +14,27 @@ myApp.controller('myTripsCtrl', function ($scope, utils,$uibModal,MantenimientoS
 			$scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
 		}
 		
-		
+		$scope.viajes = $scope.usuario.viajes;
+		if($scope.usuario.viajesCreados.length > 0){
+			$scope.viajes = $scope.usuario.viajes.concat($scope.usuario.viajesCreados);
+		}
+
+		for(var i = 0; i < $scope.viajes.length; i++){
+			$scope.viajes[i].hora = '';
+			$scope.viajes[i].fecha = '';
+			$scope.viajes[i].classMinuto = {"color":"red"};
+
+			$scope.viajes[i].hora = utils.horaToStr($scope.viajes[i].fechaHora);
+			$scope.viajes[i].fecha = utils.fechaToStr($scope.viajes[i].fechaHora);
+			if($scope.usuario.viajesCreados.includes($scope.viajes[i])){
+				$scope.viajes[i].classMinuto = {"color":"green"};
+			}
+		}
+		$scope.viajes = $scope.viajes.sort((a,b) => b.fechaHora - a.fechaHora);
 	},function(err){
 		
 	});
-*/
+
 	$scope.changeActiveTab = function(tab){
 		$scope.allClass = '';
 		$scope.driverClass =  '';
@@ -41,23 +57,7 @@ myApp.controller('myTripsCtrl', function ($scope, utils,$uibModal,MantenimientoS
 		}
 	}
 
-	$scope.viajes = $scope.usuario.viajes;
-	if($scope.usuario.viajesCreados.length > 0){
-		$scope.viajes = $scope.usuario.viajes.concat($scope.usuario.viajesCreados);
-	}
-
-	for(var i = 0; i < $scope.viajes.length; i++){
-		$scope.viajes[i].hora = '';
-		$scope.viajes[i].fecha = '';
-		$scope.viajes[i].classMinuto = {"color":"red"};
-
-		$scope.viajes[i].hora = utils.horaToStr($scope.viajes[i].fechaHora);
-		$scope.viajes[i].fecha = utils.fechaToStr($scope.viajes[i].fechaHora);
-		if($scope.usuario.viajesCreados.includes($scope.viajes[i])){
-			$scope.viajes[i].classMinuto = {"color":"green"};
-		}
-	}
-	$scope.viajes = $scope.viajes.sort((a,b) => b.fechaHora - a.fechaHora);
+	
 
 	$scope.detailTrip = function(viajeId){
 		var viajeObj = $scope.viajes.find( viaje => viaje.id === viajeId);

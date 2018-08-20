@@ -177,7 +177,7 @@ public class UserRegistrationController {
     	//mensajes Recibidos
     	List<MensajeDto> misMensajesRecibidos = new ArrayList<MensajeDto>();
     	
-    	for(Mensaje m : u.getMensajesEnviados()) {
+    	for(Mensaje m : u.getMensajesRecibidos()) {
     		UserDto receptor = new UserDto(m.getReceptor().getFirstName(),m.getReceptor().getLastName(), m.getReceptor().getEmail(), m.getReceptor().getUserImg());
     		MensajeDto mensajeDto = new MensajeDto();    		
     		UserDto emisor = new UserDto(m.getEmisor().getFirstName(),m.getEmisor().getLastName(), m.getEmisor().getEmail(), m.getEmisor().getUserImg());

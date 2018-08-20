@@ -16,6 +16,7 @@ myAppIni.controller('PrincipalCtrl',['$scope','$http', '$q','$uibModal', '$log',
 	$scope.gender = 'm';	
 	$scope.listCars = [];
 	$scope.errors = [];
+	$scope.errorsLogin = [];
 	$scope.loading = false;
 	$scope.login = true;
 	var check = true;
@@ -26,6 +27,11 @@ myAppIni.controller('PrincipalCtrl',['$scope','$http', '$q','$uibModal', '$log',
 	    e.preventDefault();
 	  }
 
+	  
+
+		if(location.search.includes('error')){
+			$scope.errorsLogin.push('User/Password incorrect');
+		}
 	//////////validacion dni//////////////////
 	/*
 	 * Funcion para  validar si es NIF
@@ -104,7 +110,7 @@ myAppIni.controller('PrincipalCtrl',['$scope','$http', '$q','$uibModal', '$log',
 		$scope.dni = '';
 		$scope.phone = '';
 		$scope.fBirth = '';
-		$scope.gender = '';
+		$scope.gender = 'm';
 		$scope.userImg = '';
 	}
 
@@ -129,6 +135,7 @@ myAppIni.controller('PrincipalCtrl',['$scope','$http', '$q','$uibModal', '$log',
     });
 
     function validate (input) {
+    	
     	if($(input).attr('name') == 'confirmEmail' ){
         	var email = document.getElementById('email');
         	if($(input).val() !== '' && $(input).val() !== email.value){
@@ -223,6 +230,17 @@ myAppIni.controller('PrincipalCtrl',['$scope','$http', '$q','$uibModal', '$log',
 		check = true;
 		
 		var fd = new FormData();
+
+		if($scope.userImg && $scope.userImg.size > 1008576){
+    		$scope.errors.push("The profile image must be below 1000Kb");
+    		check = false;
+    	}
+    	$scope.listCars.forEach(function(car){
+    		if(car.img && car.img.size > 1008576){
+    			$scope.errors.push("The " + car.model + " picture must be below 1000Kb");
+    			check = false;
+    		}
+    	});
 
 		if(!$scope.userImg){
 			$scope.userImg = 0;

@@ -10,28 +10,28 @@
     <div style="overflow:auto; height: 60%">
       <table>
         <tr style=" background-color: #f3a928;">
-          <th>
+          <th class="col-sm-4" class="col-xs-4">
             Date/Time
           </th>
-          <th>
+          <th class="col-sm-4" class="col-xs-4">
             Name
           </th>
           <!--<th>
              
           </th> -->
-          <th>
+          <th class="col-sm-4" class="col-xs-4">
             Chat
           </th>
 
         </tr>
-      	<tr ng-repeat="chat in chats">
-          <td>
+      	<tr ng-repeat="chat in chats" ng-click="modalMensaje(chat.datosReceptor.email)" style="cursor:pointer; cursor: hand;">
+          <td class="col-sm-4" class="col-xs-4">
             <div class="row">
                 {{chat.fechaHoraStr}}    
             </div>
            
           </td> 
-          <td>
+          <td class="col-sm-4" class="col-xs-4">
              <div class="row">
               {{chat.datosReceptor.firstName}} {{chat.datosReceptor.lastName}} 
             </div>
@@ -49,8 +49,8 @@
       			</div>
       		</td> -->
           <!-- <td>{{viaje.minutos}}</td> -->
-      		<td>
-      			<a href="" ng-click="modalMensaje(chat.datosReceptor.email)">View Chat</a>
+      		<td class="col-sm-4" class="col-xs-4">
+      			<p>{{chat.texto.substr(0,30)}}...</p>
       		</td>
       	</tr>
       </table>

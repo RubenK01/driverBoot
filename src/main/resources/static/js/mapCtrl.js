@@ -119,7 +119,7 @@ myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv','$u
                     infowindow.close();
                 }
                 infoWindow.setPosition(pos);
-                infoWindow.setContent('You are here.');
+                //infoWindow.setContent('You are here.');
                 infoWindow.open(map);
                 map.setCenter(pos);
               });
@@ -158,7 +158,7 @@ myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv','$u
                   console.log("Returned place contains no geometry");
                   return;
                 }
-                var icon = {
+                /*var icon = {
                   url: place.icon,
                   size: new google.maps.Size(71, 71),
                   origin: new google.maps.Point(0, 0),
@@ -172,7 +172,7 @@ myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv','$u
                   icon: icon,
                   title: place.name,
                   position: place.geometry.location
-                }));
+                }));*/
 
                 if (place.geometry.viewport) {
                   // Only geocodes have viewport.
@@ -211,9 +211,11 @@ myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv','$u
               directionsDisplay.setMap(null);
             }));
 
+            var ico = '/images/icons/favicon111.png';
             var marker = new google.maps.Marker({
               position: {lat: parseFloat(viaje.mapa.latOrigen) ,lng: parseFloat(viaje.mapa.lngOrigen) },
               map: map,
+              ico:ico,
               title: 'Origin'
             });
 
@@ -268,7 +270,8 @@ myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv','$u
               viaje: function(){
                 return viajeObj;
                 },
-              modalInfo: false
+              modalInfo: false,
+              usuario: $scope.usuario
             },
             size: 'lg'
           });
@@ -285,8 +288,35 @@ myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv','$u
               },function(err){
                 
               });
+             MantenimientoSrv.getUser().then(function(data){
+
+                $scope.usuario = data.data;
+                if(!data.data.userImg){
+                  $scope.usuario.userImg = "/images/icons/defaultDriver.png";
+                }
+                else{
+                  $scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
+                }
+                
+                
+              },function(err){
+                
+              });
           }, function () {
-            
+            MantenimientoSrv.getUser().then(function(data){
+
+                $scope.usuario = data.data;
+                if(!data.data.userImg){
+                  $scope.usuario.userImg = "/images/icons/defaultDriver.png";
+                }
+                else{
+                  $scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
+                }
+                
+                
+              },function(err){
+                
+              });
           });
       };
   

@@ -45,7 +45,7 @@ public class ViajeServiceImpl implements ViajeService{
     	
     	Coche coche = new Coche();
     	for(Coche c : conductor.getCoches() ) {
-    		if(c.getMatricula() == viaje.getCoche().getMatricula()) {
+    		if(c.getMatricula() == viajeDto.getCoche().getMatricula()) {
     			coche = c;
     		}
     	}
@@ -97,6 +97,7 @@ public class ViajeServiceImpl implements ViajeService{
     		conductor.setLastName(v.getConductor().getLastName());
     		conductor.setUserImg(v.getConductor().getUserImg());
     		conductor.setfBirthDate(v.getConductor().getFechaNacimiento());
+    		conductor.setEmail(v.getConductor().getEmail());
     		viaje.setConductor(conductor);
     		
     		MapaDto mapa = new MapaDto();
@@ -115,6 +116,7 @@ public class ViajeServiceImpl implements ViajeService{
         		p.setLastName(pasajero.getLastName());
         		p.setUserImg(pasajero.getUserImg());
         		p.setfBirthDate(pasajero.getFechaNacimiento());
+        		p.setEmail(pasajero.getEmail());
         		
         		listPasajeros.add(p);
     		}
@@ -143,7 +145,7 @@ public class ViajeServiceImpl implements ViajeService{
 		}
 		else if(viaje.getConductor().equals(me)) {
 			rf.setCodigo("01");
-			rf.setDescripcion("You are trip's driver.");
+			rf.setDescripcion("You are the driver.");
 		}
 		else if((viaje.getPlazas() - viaje.getPasajeros().size()) == 0) {
 			rf.setCodigo("01");

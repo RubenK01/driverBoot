@@ -14,8 +14,8 @@ myApp.controller('inboxCtrl', function ($scope, utils,$uibModal,MantenimientoSrv
 		else{
 			$scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
 		}
-		
-		
+		mensajesToMap();
+		getDatosMuestra();
 	},function(err){
 		
 	});
@@ -39,50 +39,61 @@ myApp.controller('inboxCtrl', function ($scope, utils,$uibModal,MantenimientoSrv
 		}
 	}
 
-	$scope.usuario.mensajesEnviados = $scope.usuario.mensajesEnviados.sort((a,b) => b.fechaHora - a.fechaHora);
-	$scope.usuario.mensajesRecibidos = $scope.usuario.mensajesRecibidos.sort((a,b) => b.fechaHora - a.fechaHora);
+	function mensajesToMap(){
+		$scope.usuario.mensajesEnviados = $scope.usuario.mensajesEnviados.sort((a,b) => b.fechaHora - a.fechaHora);
+		$scope.usuario.mensajesRecibidos = $scope.usuario.mensajesRecibidos.sort((a,b) => b.fechaHora - a.fechaHora);
 
-	$scope.conversacionMap = new Map();
+		$scope.conversacionMap = new Map();
 
-	//pasar mensajes a Map()
-	$scope.usuario.mensajesEnviados.forEach(function(m){
-		m.class = "msj macro text text-l";
-		//m.text = utils.nl2br(m.texto);
-		m.fechaHoraStr = utils.fechaToStr(m.fechaHora) + ' ' + utils.horaToStr(m.fechaHora) ;
-		if($scope.conversacionMap.get(m.receptor.email) == null){
-			var listaMensajes = [];
-			listaMensajes.push(m);
-			$scope.conversacionMap.set(m.receptor.email, listaMensajes);
-		}
-		else
-			$scope.conversacionMap.get(m.receptor.email).push(m);
-	});
-	$scope.usuario.mensajesRecibidos.forEach(function(m){
-		m.class = "msj-rta macro text text-r";
-		m.texto = utils.nl2br(m.texto);
-		m.fechaHoraStr = utils.fechaToStr(m.fechaHora) + ' ' + utils.horaToStr(m.fechaHora) ;
-		if($scope.conversacionMap.get(m.receptor.email) == null){
-			var listaMensajes = [];
-			listaMensajes.push(m);
-			$scope.conversacionMap.set(m.receptor.email, listaMensajes);
-		}
-		else
-			$scope.conversacionMap.get(m.receptor.email).push(m);
-	});
+		//pasar mensajes a Map()
+		$scope.usuario.mensajesEnviados.forEach(function(m){
+			m.class = "msj macro text text-l";
+			//m.texto = utils.nl2br(m.texto);
+			m.fechaHoraStr = utils.fechaToStr(m.fechaHora) + ' ' + utils.horaToStr(m.fechaHora) ;
+			if($scope.conversacionMap.get(m.receptor.email) == null){
+				var listaMensajes = [];
+				listaMensajes.push(m);
+				$scope.conversacionMap.set(m.receptor.email, listaMensajes);
+			}
+			else
+				$scope.conversacionMap.get(m.receptor.email).push(m);
+		});
+		$scope.usuario.mensajesRecibidos.forEach(function(m){
+			m.class = "msj-rta macro text text-r";
+			//m.texto = utils.nl2br(m.texto);
+			m.fechaHoraStr = utils.fechaToStr(m.fechaHora) + ' ' + utils.horaToStr(m.fechaHora) ;
+			if($scope.conversacionMap.get(m.emisor.email) == null){
+				var listaMensajes = [];
+				listaMensajes.push(m);
+				$scope.conversacionMap.set(m.emisor.email, listaMensajes);
+			}
+			else
+				$scope.conversacionMap.get(m.emisor.email).push(m);
+		});
 
-	for (var [key, value] of $scope.conversacionMap) {
-		value[0].fechaHoraStr = utils.fechaToStr(value[0].fechaHora) + ' ' + utils.horaToStr(value[0].fechaHora) ;
-		if($scope.usuario.mensajesEnviados.includes(value[0])){
-					value[0].datosReceptor = {};
-					value[0].datosReceptor = value[0].receptor;
-					$scope.chats.push(value[0]);
-				}
-		else{
-			value[0].datosReceptor = {};
-			value[0].datosReceptor = value[0].emisor;
-			$scope.chats.push(value[0]);
+	}
+
+	
+	
+	function getDatosMuestra(){
+		$scope.chats = []
+		for (var [key, value] of $scope.conversacionMap) {
+			var ultimoItem = $scope.conversacionMap.size-1;
+			value[ultimoItem].fechaHoraStr = utils.fechaToStr(value[ultimoItem].fechaHora) + ' ' + utils.horaToStr(value[ultimoItem].fechaHora) ;
+			if($scope.usuario.mensajesEnviados.includes(value[ultimoItem])){
+						value[ultimoItem].datosReceptor = {};
+						value[ultimoItem].datosReceptor = value[ultimoItem].receptor;
+						$scope.chats.push(value[ultimoItem]);
+					}
+			else{
+				value[ultimoItem].datosReceptor = {};
+				value[ultimoItem].datosReceptor = value[ultimoItem].emisor;
+				$scope.chats.push(value[ultimoItem]);
+			}
 		}
 	}
+	
+	
 
 	$scope.modalMensaje = function(email){
 		var chat = $scope.chats.find(c => c.datosReceptor.email === email);
@@ -93,13 +104,15 @@ myApp.controller('inboxCtrl', function ($scope, utils,$uibModal,MantenimientoSrv
 	        resolve: {
 	          receptor: function(){
 	            return receptor;
-	            },
-	            usuario: function(){ return $scope.usuario}
+	            }
 	        },
 	        controller: 'modalConversacionCtrl',
 	        size: 'md'
 	      });
-		modalInstance.result.then(function () {
+		modalInstance.result.then(function (msg) {
+			$scope.conversacionMap.set(msg.email,msg);
+
+			getDatosMuestra();
 	        MantenimientoSrv.getUser().then(function(data){
 
 						$scope.usuario = data.data;
@@ -115,6 +128,7 @@ myApp.controller('inboxCtrl', function ($scope, utils,$uibModal,MantenimientoSrv
 						
 					});
 	      }, function () {
+	      	
 	        MantenimientoSrv.getUser().then(function(data){
 
 						$scope.usuario = data.data;
@@ -124,8 +138,9 @@ myApp.controller('inboxCtrl', function ($scope, utils,$uibModal,MantenimientoSrv
 						else{
 							$scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
 						}
-						
-						
+						mensajesToMap();
+
+	      				getDatosMuestra();
 					},function(err){
 						
 					});

@@ -1,4 +1,4 @@
-myApp.controller('newTripCtrl',['$scope', 'MantenimientoSrv',function($scope,MantenimientoSrv){
+myApp.controller('newTripCtrl',['$scope', 'MantenimientoSrv', '$uibModal',function($scope,MantenimientoSrv,$uibModal){
 	//variables
 	var map1, infoWindow;
   $scope.errors = []
@@ -117,22 +117,28 @@ myApp.controller('newTripCtrl',['$scope', 'MantenimientoSrv',function($scope,Man
       }
 
       function comprobacionesOK(){
+        $scope.errors = [];
+        var ok = true;
         if(!$scope.date || $scope.date == '' || !$scope.car || $scope.car == '' || 
           !$scope.seats || $scope.seats == ''){
           $scope.errors.push("Fill out all the fields.");
+          ok = false;
         }
         else{
           if($scope.timeTrip == 0 || $scope.originPlaceId == null || $scope.destinationPlaceId == null){
             $scope.errors.push("The Origin/Destination is incorrect.");
+            ok = false;
           }
           if($scope.date <= Date.now() ){
             $scope.errors.push("The date is incorrect.");
+            ok = false;
           }
-          if($scope.seats < 1 || $scope.seats > 7){
-            $scope.errors.push("The numbers of seats must be from 1 to 7.");
+          if($scope.seats < 1 || $scope.seats > 6){
+            $scope.errors.push("The number of seats must be from 1 to 6.");
+            ok = false;
           }
         }
-        
+        return ok;
       }
 
       $scope.addTrip = function(){
@@ -179,7 +185,23 @@ myApp.controller('newTripCtrl',['$scope', 'MantenimientoSrv',function($scope,Man
               
             });
 
-            
+            var message = "You have added a new trip!";
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: '/html/modalInfo.html',
+                resolve: {
+                  message: function(){
+                    return message;
+                    }
+                },
+                controller: 'modalInfoCtrl',
+                size: 'md'
+              });
+                modalInstance.result.then(function () {
+                        
+                      }, function () {
+                        
+                      });
             $scope.loading = false;
           };
 

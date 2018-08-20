@@ -1,3 +1,16 @@
+/*cajas joinTrip modal*/
+.box{
+      background: whitesmoke;
+    border: 2px solid;
+    border-color: #ea9113;
+    padding: 25px;
+    border-radius: 17px 17px 17px 17px;
+}
+/*imagenes*/
+.imgTrip {
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px #999;
+}
 /* Mensajes */ 
 .mytext{
     border:0;padding:10px;background:whitesmoke;
@@ -99,14 +112,16 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
         its content--*/
 }
 .tab_container {  
-  height: auto;
-  overflow:  auto !important;
-  max-height: 90%;
-  border: 1px solid #999;
-  border-top: none;
-  clear: both;
-  float: left; width: 100%;
-  background: #fff;
+    box-shadow: 2px 2px 5px #999;
+    height: auto;
+    overflow: auto !important;
+    max-height: 90%;
+    /* border: 1px solid #999; */
+    border: none !important; 
+    clear: both;
+    float: left;
+    width: 100%;
+    background: #fff;
 }
 .tab_content {
   font-size: 1.2em;
@@ -397,6 +412,14 @@ p {
 	line-height: 1.7;
 	color: #666666;
 	margin: 0px;
+}
+
+pre{
+  font-family: Poppins-Regular;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #666666;
+  margin: 0px;
 }
 
 /*ul, li {

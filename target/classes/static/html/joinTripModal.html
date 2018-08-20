@@ -1,4 +1,8 @@
-<div class="modal-content">
+
+<div class="modal-content"  ng-init="working = true">
+		<div ng-if="!working" style="text-align: center;z-index: 100; width: 100%; height: 100%; position: fixed; background-color: white;">
+					<img src="/images/loading.gif" alt="Loading...">
+		</div>
 		<div class="modal-header">
 		          <h3 class="modal-title">Trip Details</h3>
 		</div>
@@ -11,63 +15,87 @@
 				            </ul>
 			</div>
 			<div class="row" style="padding: 10px">  
-				<h1>DRIVER</h1>	    
-				<img class="img-responsive col-sm-2 col-xs-2"  style="background: white;border: solid;border-color: black;padding: 2px;border-radius: 17px 17px 17px 17px;" ng-src="{{viaje.conductor.userImg}}" alt="Profile Picture">
-				<div class=" col-sm-8 col-xs-8">
+				<h1>DRIVER</h1>	 
+				<div class="box">
 					<div class="row">
-						<label class=" col-sm-4 col-xs-4" style="text-align: right;">Name: </label><span class=" col-sm-8 col-xs-8"> {{viaje.conductor.firstName}} {{viaje.conductor.lastName}}</span>
+						<img class="imgTrip img-responsive col-sm-2 col-xs-2"  ng-src="{{viaje.conductor.foto}}" alt="Profile Picture">
+						<div class=" col-sm-8 col-xs-8">
+							<div class="row">
+								<label class=" col-sm-2 col-xs-2" style="text-align: right;">Name: </label><span class=" col-sm-8 col-xs-8"> {{viaje.conductor.firstName}} {{viaje.conductor.lastName}}</span>
+							</div>
+							<div class="row">
+								<label class=" col-sm-2 col-xs-2" style="text-align: right;">Age: </label><span class=" col-sm-8 col-xs-8"> {{ageConductor}} y/o</span>
+							</div>
+							<div ng-if="modalInfo" class="row">
+								<label class=" col-sm-2 col-xs-2" style="text-align: right;">Phone: </label><span class=" col-sm-8 col-xs-8"> {{viaje.conductor.phone}}</span>
+							</div>
+							<div class="row">
+								<div class="col-sm-1 col-xs-1">							
+								</div>
+								<a class="col-sm-6 col-xs-6" href="" ng-show="viaje.conductor.email != usuario.email" ng-click="modalMensaje(viaje.conductor.email);" name="Send Message"><i style="margin-right: 6px;" class="fa fa-envelope fa-lg" ></i>Message</a>
+							</div>					
+						</div>
+						
+						<img class="img-responsive col-sm-2 col-xs-2"  style="background: white;border: solid;border-color: black;padding: 2px;border-radius: 17px 17px 17px 17px;" ng-src="{{viaje.coche.foto}}" alt="Car Picture">
 					</div>
-					<div class="row">
-						<label class=" col-sm-4 col-xs-4" style="text-align: right;">Age: </label><span class=" col-sm-8 col-xs-8"> {{ageConductor}} y/o</span>
-					</div>
-					<div ng-if="modalInfo" class="row">
-						<label class=" col-sm-4 col-xs-4" style="text-align: right;">Phone: </label><span class=" col-sm-8 col-xs-8"> {{viaje.conductor.phone}}</span>
-					</div>
-					<div class="row">
-						<button class="btn btn-default" ng-click="modalMensaje(viaje.conductor.email);" name="Send Message">Message</button>
-					</div>					
-				</div>
+					
+				</div>   
 				
-				<img class="img-responsive col-sm-2 col-xs-2"  style="background: white;border: solid;border-color: black;padding: 2px;border-radius: 17px 17px 17px 17px;" ng-src="{{viaje.conductor.userImg}}" alt="Profile Picture">
 			</div>
 				<hr class="row" />
 			
 			<div class="row"  style="padding: 10px">
 				<h1>TRIP</h1>
-				<div class="row">
-				<label class=" col-sm-3 col-xs-3" style="text-align: right;">Origin: </label><span class=" col-sm-6 col-xs-6"> {{viaje.mapa.descOrigen}}</span>
+				<div class="box">
+					<div class="row">
+					<label class=" col-sm-3 col-xs-3" style="text-align: right;">Origin: </label><span class=" col-sm-6 col-xs-6"> {{viaje.mapa.descOrigen}}</span>
+					</div>
+					<div class="row">
+						<label class=" col-sm-3 col-xs-3" style="text-align: right;">Destination: </label><span class=" col-sm-6 col-xs-6"> {{viaje.mapa.descDestino}}</span>
+					</div>
+					<div class="row">
+						<label class=" col-sm-3 col-xs-3" style="text-align: right;">Date: </label><span class=" col-sm-6 col-xs-6"> {{viaje.fecha}} </span>
+					</div>
+					<div class="row">
+						<label class=" col-sm-3 col-xs-3" style="text-align: right;">Time: </label><span class=" col-sm-6 col-xs-6"> {{viaje.hora}} </span>
+					</div>
+					<div class="row">	
+						<label class=" col-sm-3 col-xs-3" style="text-align: right;">Avaible Seats: </label><span class=" col-sm-6 col-xs-6"> {{viaje.plazas - viaje.pasajeros.length}} / {{viaje.plazas}}</span>
+					</div>
+					<div class="row">
+						<label class=" col-sm-3 col-xs-3" style="text-align: right;">Duration: </label><span class=" col-sm-6 col-xs-6"> {{viaje.minutos}} min.</span>
+					</div>
 				</div>
-				<div class="row">
-					<label class=" col-sm-3 col-xs-3" style="text-align: right;">Destination: </label><span class=" col-sm-6 col-xs-6"> {{viaje.mapa.descDestino}}</span>
-				</div>
-				<div class="row">
-					<label class=" col-sm-3 col-xs-3" style="text-align: right;">Date: </label><span class=" col-sm-6 col-xs-6"> {{viaje.fecha}} </span>
-				</div>
-				<div class="row">
-					<label class=" col-sm-3 col-xs-3" style="text-align: right;">Time: </label><span class=" col-sm-6 col-xs-6"> {{viaje.hora}} </span>
-				</div>
-				<div class="row">	
-					<label class=" col-sm-3 col-xs-3" style="text-align: right;">Avaible Seats: </label><span class=" col-sm-6 col-xs-6"> {{viaje.plazas - viaje.pasajeros.length}} / {{viaje.plazas}}</span>
-				</div>
-				<div class="row">
-					<label class=" col-sm-3 col-xs-3" style="text-align: right;">Duration: </label><span class=" col-sm-6 col-xs-6"> {{viaje.minutos}} min.</span>
-				</div>
+				
 			</div>
 			<hr class="row" />
 			
 			<div class="row" style="padding: 10px">
 				<h1>PASSENGERS</h1>
-				<div ng-if="viaje.pasajeros.length === 0">
-					<label>There aren´t any passengers yet.</label>
-				</div>
-				<div ng-if="viaje.pasajeros.length > 0">
-					<div ng-repeat="p in viaje.pasajeros">
-						<img class="img-responsive col-sm-2 col-xs-2"  style="background: white;border: solid;border-color: black;padding: 2px;border-radius: 17px 17px 17px 17px;" ng-src="{{p.userImg}}" alt="Profile Picture">
-						<label class=" col-sm-2 col-xs-2" style="text-align: right;">Name: </label><span class=" col-sm-6 col-xs-6"> {{p.firstName}} {{p.lastName}}</span>
-						<div>
-						<button class="btn btn-default" ng-click="modalMensaje(p.email);" name="Send Message">Message</button>
+				<div class="box">
+					<div class="row">
+						<div ng-if="viaje.pasajeros.length === 0">
+						<label>There aren´t any passengers yet.</label>
+						</div>
+						<div ng-if="viaje.pasajeros.length > 0">
+							<div ng-repeat="p in viaje.pasajeros">
+								<img class="imgTrip img-responsive col-sm-2 col-xs-2"  ng-src="{{p.foto}}" alt="Profile Picture">
+								<div class="col-sm-8 col-xs-8">
+									<div class="row">
+										<label class=" col-sm-1 col-xs-2" style="text-align: right;">Name: </label><span class=" col-sm-6 col-xs-6"> {{p.firstName}} {{p.lastName}}</span>
+									</div>
+									<div class="row">
+										<div class="col-sm-1 col-xs-1">							
+										</div>
+										<a class="col-xs-8 col-sm-8" href="" ng-hide="p.email == usuario.email" ng-click="modalMensaje(p.email);" name="Send Message"><i style="margin-right: 6px;" class="fa fa-envelope fa-lg" ></i>Message</a>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+				
 					</div>
-					</div>
+					
 					
 					
 				</div>
