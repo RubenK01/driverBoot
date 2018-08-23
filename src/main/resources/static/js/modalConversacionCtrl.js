@@ -70,10 +70,6 @@ myApp.controller('modalConversacionCtrl', function ($scope, $modalInstance, rece
 			mensajeDTO.leido = false;
 			mensajeDTO.fechaHora = new Date;
 
-
-
-
-
 			MantenimientoSrv.saveMessage(mensajeDTO).then(function(data){
 					$scope.texto = '';
 					mensajeDTO.class = "msj macro text text-l";

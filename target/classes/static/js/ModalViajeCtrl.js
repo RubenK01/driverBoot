@@ -45,6 +45,19 @@ myApp.controller('ModalViajeCtrl', function ($scope, $modalInstance, $uibModal, 
 					},function(err){
 						
 					});*/
+					var mensajeDTO = {};
+					mensajeDTO.receptor = viaje.conductor;
+					mensajeDTO.receptor.userImg = null;
+					mensajeDTO.emisor = null;			
+					mensajeDTO.texto = "[Automatic Message] Hi, I join to your trip.";
+					mensajeDTO.leido = false;
+					mensajeDTO.fechaHora = new Date;
+
+					MantenimientoSrv.saveMessage(mensajeDTO).then(function(data){
+			          
+			        },function(err){
+			          
+			        });
 					var message = 'You joined correctly';
 				 var modalInstance = $uibModal.open({
 		            animation: true,

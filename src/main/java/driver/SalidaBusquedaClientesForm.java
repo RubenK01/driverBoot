@@ -3,6 +3,8 @@ package driver;
 import java.util.ArrayList;
 import java.util.List;
 
+import driver.commons.RetornoForm;
+
 public class SalidaBusquedaClientesForm {
 	
 	RetornoForm retorno;

@@ -1,6 +1,8 @@
 package driver.viaje;
 
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import driver.RetornoForm;
+import driver.commons.RetornoForm;
 import driver.models.Coche;
 import driver.models.Mapa;
 import driver.models.Usuario;
@@ -175,6 +177,56 @@ public class ViajeServiceImpl implements ViajeService{
 		}
 		
 		return rf;
+	}
+
+	@Override
+	public Collection<ViajeDto> getViajesByDate(Date date) {
+		List<Viaje> viajes =  viajeRepository.findViajesByDate(date);
+		
+		List<ViajeDto> misViajes = new ArrayList<ViajeDto>();
+		
+    	for(Viaje v : viajes) {
+    		ViajeDto viaje = new ViajeDto();
+    		
+    		viaje.setId(v.getId());
+    		viaje.setFechaHora(v.getFechaHora());
+    		viaje.setMinutos(v.getMinutos());
+    		viaje.setPlazas(v.getPlazas());
+    		
+    		UserDto conductor = new UserDto();
+    		conductor.setFirstName(v.getConductor().getFirstName());
+    		conductor.setLastName(v.getConductor().getLastName());
+    		conductor.setUserImg(v.getConductor().getUserImg());
+    		conductor.setfBirthDate(v.getConductor().getFechaNacimiento());
+    		conductor.setEmail(v.getConductor().getEmail());
+    		viaje.setConductor(conductor);
+    		
+    		MapaDto mapa = new MapaDto();
+    		mapa.setDescDestino(v.getMapa().getDescDestino());
+    		mapa.setDescOrigen(v.getMapa().getDescOrigen());
+    		mapa.setLatOrigen(String.valueOf(v.getMapa().getLatOrigen()));
+    		mapa.setLatDestino(String.valueOf(v.getMapa().getLatDestino()));
+    		mapa.setLngOrigen(String.valueOf(v.getMapa().getLngOrigen()));
+    		mapa.setLngDestino(String.valueOf(v.getMapa().getLngDestino()));
+    		viaje.setMapa(mapa);
+    		
+    		List<UserDto> listPasajeros = new ArrayList<UserDto>();
+    		for(Usuario pasajero : v.getPasajeros()) {
+    			UserDto p = new UserDto();
+    			p.setFirstName(pasajero.getFirstName());
+        		p.setLastName(pasajero.getLastName());
+        		p.setUserImg(pasajero.getUserImg());
+        		p.setfBirthDate(pasajero.getFechaNacimiento());
+        		p.setEmail(pasajero.getEmail());
+        		
+        		listPasajeros.add(p);
+    		}
+    		viaje.setPasajeros(listPasajeros);
+    		
+    		misViajes.add(viaje);
+    	}
+		
+		return misViajes;
 	}
 
 }

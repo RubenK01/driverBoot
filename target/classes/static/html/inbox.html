@@ -5,55 +5,60 @@
   <li ng-class="driverClass"><a href="" ng-click="changeActiveTab('driver')">I'm a Driver</a></li>
   <li ng-class="passClass"><a href="" ng-click="changeActiveTab('pass')">I'm a passenger</a></li>
 </ul> -->
-<div class="tab_container">
-  <div id="tab1" class="tab_content">
-    <div style="overflow:auto; height: 60%">
-      <table>
-        <tr style=" background-color: #f3a928;">
-          <th class="col-sm-4" class="col-xs-4">
-            Date/Time
-          </th>
-          <th class="col-sm-4" class="col-xs-4">
-            Name
-          </th>
-          <!--<th>
-             
-          </th> -->
-          <th class="col-sm-4" class="col-xs-4">
-            Chat
-          </th>
+<div ng-hide="chats.size > 0">
+  <label>There are not trips yet.</label>
+</div>
+<div ng-if="chats.size > 0">
+  <div class="tab_container">
+    <div id="tab1" class="tab_content">
+      <div style="overflow:auto; height: 60%">
+        <table>
+          <tr style=" background-color: #f3a928;">
+            <th class="col-sm-4" class="col-xs-4">
+              Date/Time
+            </th>
+            <th class="col-sm-4" class="col-xs-4">
+              Name
+            </th>
+            <!--<th>
+               
+            </th> -->
+            <th class="col-sm-4" class="col-xs-4">
+              Chat
+            </th>
 
-        </tr>
-      	<tr ng-repeat="chat in chats" ng-click="modalMensaje(chat.datosReceptor.email)" style="cursor:pointer; cursor: hand;">
-          <td class="col-sm-4" class="col-xs-4">
-            <div class="row">
-                {{chat.fechaHoraStr}}    
-            </div>
-           
-          </td> 
-          <td class="col-sm-4" class="col-xs-4">
-             <div class="row">
-              {{chat.datosReceptor.firstName}} {{chat.datosReceptor.lastName}} 
-            </div>
-          </td>     		
-      		<!-- <td>
-      			<div class="row">
-              <li>
-                {{viaje.mapa.descOrigen}}
-              </li>  				
-      			</div>
-      			<div class="row">
-              <li>
-      				  {{viaje.mapa.descDestino}}
-              </li>
-      			</div>
-      		</td> -->
-          <!-- <td>{{viaje.minutos}}</td> -->
-      		<td class="col-sm-4" class="col-xs-4">
-      			<p>{{chat.texto.substr(0,30)}}...</p>
-      		</td>
-      	</tr>
-      </table>
-     </div>
+          </tr>
+        	<tr ng-repeat="chat in chats" ng-click="modalMensaje(chat.datosReceptor.email)" style="cursor:pointer; cursor: hand;">
+            <td class="col-sm-4" class="col-xs-4">
+              <div class="row">
+                  {{chat.fechaHoraStr}}    
+              </div>
+             
+            </td> 
+            <td class="col-sm-4" class="col-xs-4">
+               <div class="row">
+                {{chat.datosReceptor.firstName}} {{chat.datosReceptor.lastName}} 
+              </div>
+            </td>     		
+        		<!-- <td>
+        			<div class="row">
+                <li>
+                  {{viaje.mapa.descOrigen}}
+                </li>  				
+        			</div>
+        			<div class="row">
+                <li>
+        				  {{viaje.mapa.descDestino}}
+                </li>
+        			</div>
+        		</td> -->
+            <!-- <td>{{viaje.minutos}}</td> -->
+        		<td class="col-sm-4" class="col-xs-4">
+        			<p>{{chat.texto.substr(0,30)}}...</p>
+        		</td>
+        	</tr>
+        </table>
+       </div>
+    </div>
   </div>
 </div>

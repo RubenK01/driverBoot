@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import driver.RetornoForm;
+import driver.commons.RetornoForm;
 
 
 @RestController
@@ -19,6 +19,10 @@ public interface ViajeController {
 	@RequestMapping(value="/getTrips",method = RequestMethod.GET)
     @ResponseBody
     public List<ViajeDto> getTrips(final HttpServletRequest request, HttpServletResponse response);
+	
+	@RequestMapping(value="/getTripsByDate",method = RequestMethod.GET)
+    @ResponseBody
+    public List<ViajeDto> getTripsByDate(@RequestParam(value = "date") String dateJson,final HttpServletRequest request, HttpServletResponse response);
 	
 	@RequestMapping(value="/saveTrip",method = RequestMethod.POST)
     @ResponseBody

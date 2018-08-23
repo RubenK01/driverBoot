@@ -1,6 +1,7 @@
 package driver.viaje;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-import driver.RetornoForm;
 import driver.commons.Constants;
+import driver.commons.RetornoForm;
 
 @RestController
 public class ViajeControllerImp implements ViajeController{
@@ -77,6 +78,21 @@ public class ViajeControllerImp implements ViajeController{
 			e.printStackTrace();
 		}
 		return rf;
+	}
+
+	@Override
+	public List<ViajeDto> getTripsByDate(String dateJson, HttpServletRequest request, HttpServletResponse response) {
+		List<ViajeDto> misViajes = new ArrayList<ViajeDto>();
+		Date date;
+		try {
+			date =Constants.JSON_MAPPER.readValue(dateJson, Date.class);
+			misViajes = (List<ViajeDto>) viajeService.getViajesByDate(date);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}   	
+    	
+		return misViajes;
 	}
 
 }

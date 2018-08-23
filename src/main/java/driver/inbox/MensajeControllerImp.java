@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import driver.RetornoForm;
 import driver.commons.Constants;
+import driver.commons.RetornoForm;
 import driver.viaje.ViajeDto;
 
 @RestController
