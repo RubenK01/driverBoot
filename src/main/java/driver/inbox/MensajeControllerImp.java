@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import driver.commons.Constants;
 import driver.commons.RetornoForm;
-import driver.viaje.ViajeDto;
+import driver.trip.ViajeDto;
 
 @RestController
 public class MensajeControllerImp implements MensajeController{

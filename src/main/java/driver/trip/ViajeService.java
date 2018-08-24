@@ -1,4 +1,4 @@
-package driver.viaje;
+package driver.trip;
 
 import java.sql.Date;
 import java.util.Collection;

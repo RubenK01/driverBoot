@@ -1,4 +1,4 @@
-package driver.viaje;
+package driver.trip;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -47,7 +47,7 @@ public class ViajeServiceImpl implements ViajeService{
     	
     	Coche coche = new Coche();
     	for(Coche c : conductor.getCoches() ) {
-    		if(c.getMatricula() == viajeDto.getCoche().getMatricula()) {
+    		if(c.getMatricula().equalsIgnoreCase(viajeDto.getCoche().getMatricula())) {
     			coche = c;
     		}
     	}
@@ -68,6 +68,8 @@ public class ViajeServiceImpl implements ViajeService{
     	mapa.setLngDestino(Double.valueOf(mapaDto.getLngDestino()));
     	mapa.setLngOrigen(Double.valueOf(mapaDto.getLngOrigen()));
     	mapa.setViaje(viaje);
+    	
+    	viaje.setMapa(mapa);
     	
     	Viaje resul = viajeRepository.save(viaje);
     	

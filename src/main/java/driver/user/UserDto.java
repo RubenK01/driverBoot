@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.*;
 
 import driver.inbox.MensajeDto;
 import driver.models.*;
-import driver.viaje.ViajeDto;
+import driver.trip.ViajeDto;
 
 //@FieldMatch.List({
 //    @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match"),

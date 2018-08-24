@@ -27,7 +27,8 @@ public class Viaje  implements Serializable{
 	@NotNull
 	@ManyToOne
 	private Usuario conductor; 
-	
+	@NotNull
+	@ManyToOne
 	private Coche coche;
 	@NotNull
 	@ManyToMany

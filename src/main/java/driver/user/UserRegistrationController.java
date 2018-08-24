@@ -22,8 +22,8 @@ import org.yaml.snakeyaml.scanner.*;
 import driver.commons.*;
 import driver.inbox.MensajeDto;
 import driver.models.*;
-import driver.viaje.MapaDto;
-import driver.viaje.ViajeDto;
+import driver.trip.MapaDto;
+import driver.trip.ViajeDto;
 
 @RestController
 public class UserRegistrationController {

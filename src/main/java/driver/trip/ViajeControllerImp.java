@@ -1,4 +1,4 @@
-package driver.viaje;
+package driver.trip;
 
 import java.io.IOException;
 import java.sql.Date;
