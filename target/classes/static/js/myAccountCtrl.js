@@ -1,14 +1,26 @@
-myApp.controller('myAccountCtrl', function ($scope,MantenimientoSrv ) {
+myApp.controller('myAccountCtrl', function ($scope,MantenimientoSrv,utils) {
+	$scope.$parent.addActivo('Profile','My Account');
 	MantenimientoSrv.getUser().then(function(data){
 
-		$scope.usuario = data.data;
+		$scope.me = data.data;
 		if(!data.data.userImg){
-			$scope.usuario.userImg = "/images/icons/defaultDriver.png";
+			$scope.me.userImg = "/images/icons/defaultDriver.png";
 		}
 		else{
-			$scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
+			$scope.me.userImg = "data:image/png;base64," + data.data.userImg;
 		}
-		
+
+		$scope.me.coches.forEach(function(coche){
+			if(!coche.foto){
+				coche.foto = "/images/icons/logoNegro.png";
+			}
+			else{
+				coche.foto = "data:image/png;base64," + coche.foto;
+			}
+		});
+
+		$scope.me.fBirthDateStr = utils.fechaToStr($scope.me.fBirthDate);
+		$scope.me.fExpiryDatetr = utils.fechaToStr($scope.me.fExpiryDate);
 		
 	},function(err){
 		

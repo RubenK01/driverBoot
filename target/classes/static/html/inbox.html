@@ -5,10 +5,10 @@
   <li ng-class="driverClass"><a href="" ng-click="changeActiveTab('driver')">I'm a Driver</a></li>
   <li ng-class="passClass"><a href="" ng-click="changeActiveTab('pass')">I'm a passenger</a></li>
 </ul> -->
-<div ng-hide="chats.size > 0">
-  <label>There are not trips yet.</label>
+<div ng-hide="chats.length > 0">
+  <label>There are not messages yet.</label>
 </div>
-<div ng-if="chats.size > 0">
+<div ng-show="chats.length > 0">
   <div class="tab_container">
     <div id="tab1" class="tab_content">
       <div style="overflow:auto; height: 60%">

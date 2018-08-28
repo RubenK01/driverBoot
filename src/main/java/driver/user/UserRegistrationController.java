@@ -54,7 +54,8 @@ public class UserRegistrationController {
     	resul.setLastName(u.getLastName());
     	resul.setPhone(u.getTelefono());
     	resul.setUserImg(u.getUserImg());
-    	resul.setMinutos(u.getMinutos());
+    	int minutos = Utils.getMinutos(u);
+    	resul.setMinutos(minutos);
     	
     	//coches
     	List<CocheDto> misCoches = new ArrayList<CocheDto>();
@@ -78,12 +79,20 @@ public class UserRegistrationController {
     		viaje.setMinutos(v.getMinutos());
     		viaje.setId(v.getId());
     		viaje.setPlazas(v.getPlazas());
+    		
+    		CocheDto coche = new CocheDto();
+    		coche.setColor(v.getCoche().getColor());
+    		coche.setFoto(v.getCoche().getFoto());
+    		coche.setModelo(v.getCoche().getModelo());
+    		viaje.setCoche(coche);
+    		
     		UserDto conductor = new UserDto();
     		conductor.setFirstName(v.getConductor().getFirstName());
     		conductor.setLastName(v.getConductor().getLastName());
     		conductor.setUserImg(v.getConductor().getUserImg());
     		conductor.setEmail(v.getConductor().getEmail());
     		conductor.setPhone(v.getConductor().getTelefono());
+    		conductor.setfBirthDate(v.getConductor().getFechaNacimiento());
     		viaje.setConductor(conductor);
     		
     		MapaDto mapa = new MapaDto();
@@ -98,6 +107,7 @@ public class UserRegistrationController {
         		p.setLastName(pasajero.getLastName());
         		p.setUserImg(pasajero.getUserImg());
         		p.setEmail(pasajero.getEmail());
+        		p.setfBirthDate(pasajero.getFechaNacimiento());
         		
         		listPasajeros.add(p);
     		}
@@ -123,7 +133,14 @@ public class UserRegistrationController {
     		conductor.setUserImg(v.getConductor().getUserImg());
     		conductor.setEmail(v.getConductor().getEmail());
     		conductor.setPhone(v.getConductor().getTelefono());
+    		conductor.setfBirthDate(v.getConductor().getFechaNacimiento());
     		viaje.setConductor(conductor);
+    		
+    		CocheDto coche = new CocheDto();
+    		coche.setColor(v.getCoche().getColor());
+    		coche.setFoto(v.getCoche().getFoto());
+    		coche.setModelo(v.getCoche().getModelo());
+    		viaje.setCoche(coche);
     		
     		MapaDto mapa = new MapaDto();
     		mapa.setDescDestino(v.getMapa().getDescDestino());
@@ -137,6 +154,7 @@ public class UserRegistrationController {
         		p.setLastName(pasajero.getLastName());
         		p.setUserImg(pasajero.getUserImg());
         		p.setEmail(pasajero.getEmail());
+        		p.setfBirthDate(pasajero.getFechaNacimiento());
         		
         		listPasajeros.add(p);
     		}

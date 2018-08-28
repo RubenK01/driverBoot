@@ -1,14 +1,15 @@
 <div style="height: 5%">
 </div>
-<div ng-hide="viajes.size > 0">
+<!-- <div ng-hide="viajes.length > 0">
   <label>There are not trips yet.</label>
-</div>
-<div ng-if="viajes.size > 0">
+</div> -->
+
   <ul class="tabs">
     <li ng-class="allClass"><a href="" ng-click="changeActiveTab('all')">All</a></li>
     <li ng-class="driverClass"><a href="" ng-click="changeActiveTab('driver')">I'm a Driver</a></li>
     <li ng-class="passClass"><a href="" ng-click="changeActiveTab('pass')">I'm a passenger</a></li>
   </ul>
+  <div ng-show="viajes.length > 0">
   <div class="tab_container">
     <div id="tab1" class="tab_content">
       <div style="overflow:auto; height: 60%">
@@ -43,14 +44,20 @@
             </td>      		
         		<td>
         			<div class="row">
-                <li>
-                  {{viaje.mapa.descOrigen}}
-                </li>  				
+                <label>
+                  O: 
+                </label>
+                <span>
+                   {{viaje.mapa.descOrigen}}
+                </span>  				
         			</div>
         			<div class="row">
-                <li>
-        				  {{viaje.mapa.descDestino}}
-                </li>
+                <label>
+                  D: 
+                </label>
+                <span>
+        				   {{viaje.mapa.descDestino}}
+                </span>
         			</div>
         		</td>
             <td ng-style="{{viaje.classMinuto}}">

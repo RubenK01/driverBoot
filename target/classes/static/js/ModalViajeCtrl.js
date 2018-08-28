@@ -1,4 +1,4 @@
-myApp.controller('ModalViajeCtrl', function ($scope, $modalInstance, $uibModal, viajeSrv, viaje, utils, modalInfo, usuario) {
+myApp.controller('ModalViajeCtrl', function ($scope, $modalInstance, $uibModal, viajeSrv, viaje, utils, modalInfo, usuario,MantenimientoSrv) {
 	$scope.viaje = viaje;
 	$scope.modalInfo = modalInfo;
 	$scope.errorsModal = [];
@@ -19,8 +19,16 @@ myApp.controller('ModalViajeCtrl', function ($scope, $modalInstance, $uibModal, 
 			else{
 				p.foto = "data:image/png;base64," + p.userImg;
 			}
+			p.age = utils.calcularEdad(p.fBirthDate);
 	});
 
+	if(!$scope.viaje.coche.foto || $scope.viaje.coche.foto === "/images/icons/defaultDriver.png"){
+		$scope.viaje.coche.fotoShow = "/images/icons/logoNegro.png";
+	}
+	else if(!$scope.viaje.conductor.userImg.includes("data:image/png;base64,")){
+		$scope.viaje.coche.fotoShow = "data:image/png;base64," + viaje.coche.foto;
+	}
+	
 	$scope.ageConductor = utils.calcularEdad(viaje.conductor.fBirthDate);
 	$scope.viaje.fecha = utils.fechaToStr(viaje.fechaHora);
 	$scope.viaje.hora = utils.horaToStr(viaje.fechaHora);

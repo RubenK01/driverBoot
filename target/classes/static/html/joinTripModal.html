@@ -18,8 +18,8 @@
 				<h1>DRIVER</h1>	 
 				<div class="box">
 					<div class="row">
-						<img class="imgTrip img-responsive col-sm-2 col-xs-2"  ng-src="{{viaje.conductor.foto}}" alt="Profile Picture">
-						<div class=" col-sm-8 col-xs-8">
+						<img class="imgTrip img-responsive col-sm-2 col-xs-2" style=" background: white;" ng-src="{{viaje.conductor.foto}}" alt="Profile Picture">
+						<div class=" col-sm-4 col-xs-4">
 							<div class="row">
 								<label class=" col-sm-2 col-xs-2" style="text-align: right;">Name: </label><span class=" col-sm-8 col-xs-8"> {{viaje.conductor.firstName}} {{viaje.conductor.lastName}}</span>
 							</div>
@@ -35,8 +35,26 @@
 								<a class="col-sm-6 col-xs-6" href="" ng-show="viaje.conductor.email != usuario.email" ng-click="modalMensaje(viaje.conductor.email);" name="Send Message"><i style="margin-right: 6px;" class="fa fa-envelope fa-lg" ></i>Message</a>
 							</div>					
 						</div>
-						
-						<img class="img-responsive col-sm-2 col-xs-2"  style="background: white;border: solid;border-color: black;padding: 2px;border-radius: 17px 17px 17px 17px;" ng-src="{{viaje.coche.foto}}" alt="Car Picture">
+						<div class=" col-sm-4 col-xs-4">
+							<div class="row">
+								<label class="col-sm-5 col-xs-5"  style="text-align: right;"> 
+									Car Model:
+								</label>
+								<span class=" col-sm-6 col-xs-6" style="text-align: right;">
+									 {{viaje.coche.modelo}}
+								</span>								
+							</div>
+							<div class="row">
+
+								<label class="col-sm-5 col-xs-5"  style="text-align: right;"> 
+									Car Color:
+								</label>
+								<span class=" col-sm-6 col-xs-6" style="text-align: right;">
+									 {{viaje.coche.color}}
+								</span>								
+							</div>							
+						</div>
+						<img  class="imgTrip img-responsive col-sm-2 col-xs-2" style=" background: white;" ng-src="{{viaje.coche.fotoShow}}" alt="Car Picture">
 					</div>
 					
 				</div>   
@@ -83,6 +101,9 @@
 								<div class="col-sm-8 col-xs-8">
 									<div class="row">
 										<label class=" col-sm-1 col-xs-2" style="text-align: right;">Name: </label><span class=" col-sm-6 col-xs-6"> {{p.firstName}} {{p.lastName}}</span>
+									</div>
+									<div class="row">
+										<label class=" col-sm-1 col-xs-2" style="text-align: right;">Age: </label><span class=" col-sm-6 col-xs-6"> {{p.age}} y/o</span>
 									</div>
 									<div class="row">
 										<div class="col-sm-1 col-xs-1">							

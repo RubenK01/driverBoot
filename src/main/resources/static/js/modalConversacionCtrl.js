@@ -65,6 +65,8 @@ myApp.controller('modalConversacionCtrl', function ($scope, $modalInstance, rece
 			var mensajeDTO = {};
 			mensajeDTO.receptor = receptor;
 			mensajeDTO.receptor.userImg = null;
+			mensajeDTO.receptor.foto = undefined;
+			mensajeDTO.receptor.age = undefined;
 			mensajeDTO.emisor = null;			
 			mensajeDTO.texto = $scope.texto;
 			mensajeDTO.leido = false;

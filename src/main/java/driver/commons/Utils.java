@@ -2,6 +2,9 @@ package driver.commons;
 
 import java.util.*;
 
+import driver.models.Usuario;
+import driver.models.Viaje;
+
 public class Utils {
 	public static <T> List<T> getList(String  url, Class<T> clazz) {
 
@@ -20,5 +23,20 @@ public class Utils {
 //	      logger.error("Error retrieving  " + clazz.getName() + " " + ex.toString());
 //	   }
 	   return data;
+	}
+	
+	public static int getMinutos(Usuario u) {
+		int minutos=u.getMinutos();
+		
+		List<Viaje> misViajes = u.getViajesConducidos();
+		Date hoy = new Date();
+		
+		for(Viaje v : misViajes) {
+			if(v.getFechaHora().after(hoy)) {
+				minutos -= v.getMinutos();
+			}
+		}
+		
+		return minutos;
 	}
 }

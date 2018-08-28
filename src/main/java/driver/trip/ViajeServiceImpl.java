@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import driver.commons.RetornoForm;
+import driver.commons.Utils;
 import driver.models.Coche;
 import driver.models.Mapa;
 import driver.models.Usuario;
@@ -95,6 +96,12 @@ public class ViajeServiceImpl implements ViajeService{
     		viaje.setFechaHora(v.getFechaHora());
     		viaje.setMinutos(v.getMinutos());
     		viaje.setPlazas(v.getPlazas());
+    		CocheDto coche = new CocheDto();
+    		
+    		coche.setColor(v.getCoche().getColor());
+    		coche.setFoto(v.getCoche().getFoto());
+    		coche.setModelo(v.getCoche().getModelo());
+    		viaje.setCoche(coche);
     		
     		UserDto conductor = new UserDto();
     		conductor.setFirstName(v.getConductor().getFirstName());
@@ -142,6 +149,7 @@ public class ViajeServiceImpl implements ViajeService{
     	Usuario me = userService.findByEmail(name);
 		
 		Viaje viaje = viajeRepository.findOne(id);
+		int misMinutos = Utils.getMinutos(me);
 		
 		if(viaje.getPasajeros().contains(me)) {
 			rf.setCodigo("01");
@@ -155,7 +163,7 @@ public class ViajeServiceImpl implements ViajeService{
 			rf.setCodigo("01");
 			rf.setDescripcion("There are not enough seats.");
 		}
-		else if(viaje.getMinutos() > me.getMinutos()) {
+		else if(viaje.getMinutos() > misMinutos) {
 			rf.setCodigo("01");
 			rf.setDescripcion("You need more minutes for this trip.");
 		} 

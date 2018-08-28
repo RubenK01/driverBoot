@@ -78,17 +78,17 @@ myApp.controller('inboxCtrl', function ($scope, utils,$uibModal,MantenimientoSrv
 	function getDatosMuestra(){
 		$scope.chats = []
 		for (var [key, value] of $scope.conversacionMap) {
-			var ultimoItem = $scope.conversacionMap.size-1;
-			value[ultimoItem].fechaHoraStr = utils.fechaToStr(value[ultimoItem].fechaHora) + ' ' + utils.horaToStr(value[ultimoItem].fechaHora) ;
-			if($scope.usuario.mensajesEnviados.includes(value[ultimoItem])){
-						value[ultimoItem].datosReceptor = {};
-						value[ultimoItem].datosReceptor = value[ultimoItem].receptor;
-						$scope.chats.push(value[ultimoItem]);
+			//var ultimoItem = $scope.conversacionMap.size-1;
+			value[0].fechaHoraStr = utils.fechaToStr(value[0].fechaHora) + ' ' + utils.horaToStr(value[0].fechaHora) ;
+			if($scope.usuario.mensajesEnviados.includes(value[0])){
+						value[0].datosReceptor = {};
+						value[0].datosReceptor = value[0].receptor;
+						$scope.chats.push(value[0]);
 					}
 			else{
-				value[ultimoItem].datosReceptor = {};
-				value[ultimoItem].datosReceptor = value[ultimoItem].emisor;
-				$scope.chats.push(value[ultimoItem]);
+				value[0].datosReceptor = {};
+				value[0].datosReceptor = value[0].emisor;
+				$scope.chats.push(value[0]);
 			}
 		}
 	}

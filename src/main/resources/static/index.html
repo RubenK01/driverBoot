@@ -17,6 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
@@ -94,8 +95,16 @@
 				 </div>
 			</div>
 			<div class="col-sm-10 col-xs-12" style="height: 100%;overflow: auto;">
-							  			
+				
+				<div class="col-sm-2 col-xs-2" style="float: right;text-align: center;padding-top: 10px;color: whitesmoke;margin-right: 10px;background: #27ae60;border-radius: 0px 0px 15px 15px;box-shadow: 4px 4px 7px #999;">
+					<h1><i class="fas fa-clock"></i> {{usuario.minutos}}</h1>
+					<h2>min</h2>
+				</div>					
+			
+			
 				<div ng-view style="padding: 0px;height: 100%; top:5px; bottom:5px;"></div> 
+			
+				
 			</div>
 		</div>
 		

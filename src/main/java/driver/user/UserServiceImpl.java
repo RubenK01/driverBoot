@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
         user.setRoles(Arrays.asList(new Role("ROLE_USER")));
         user.setActivo(true);
         user.setFechaAlta(new Date());
-        user.setMinutos(15);
+        user.setMinutos(30);
         user.setTelefono(registration.getPhone());
         user.setSexo(registration.getGender().charAt(0));
         

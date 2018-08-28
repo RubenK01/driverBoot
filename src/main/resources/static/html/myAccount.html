@@ -1,3 +1,56 @@
-<div>
-	Minutos: <label>{{usuario.minutos}}</label>
+<h1>My Account</h1>
+<div style=" margin-top: 5px;" class="box">
+	
+	<div class="row">
+		<img class="imgTrip img-responsive col-sm-2 col-xs-2" style=" background: white;"  ng-src="{{me.userImg}}" alt="Profile Picture">
+		<div class=" col-sm-10 col-xs-10">
+			<div class="row">
+				<label class=" col-sm-2 col-xs-2" style="text-align: right;">First Name: </label><span class=" col-sm-8 col-xs-8"> {{me.firstName}}</span>
+			</div>
+			<div class="row">
+				<label class=" col-sm-2 col-xs-2" style="text-align: right;">Last Name: </label><span class=" col-sm-8 col-xs-8"> {{me.lastName}}</span>
+			</div>			
+			<div class="row">
+				<label class=" col-sm-2 col-xs-2" style="text-align: right;">Email: </label><span class=" col-sm-8 col-xs-8"> {{me.email}}</span>
+			</div>
+			<div class="row">
+				<label class=" col-sm-2 col-xs-2" style="text-align: right;">Birth Date: </label><span class=" col-sm-8 col-xs-8"> {{me.fBirthDateStr}}</span>
+			</div>
+			<div class="row">
+				<label class=" col-sm-2 col-xs-2" style="text-align: right;">Expiry Date: </label><span class=" col-sm-8 col-xs-8"> {{me.fExpiryDatetr}}</span>
+			</div>
+			<div class="row">
+				<label class=" col-sm-2 col-xs-2" style="text-align: right;">Dni: </label><span class=" col-sm-8 col-xs-8"> {{me.dni.toUpperCase();}}</span>
+			</div>
+			<div class="row">
+				<label class=" col-sm-2 col-xs-2" style="text-align: right;">Phone: </label><span class=" col-sm-8 col-xs-8"> {{me.phone}}</span>
+			</div>
+			<!-- <div class="row">
+				<div class="col-sm-1 col-xs-1">							
+				</div>
+				<a class="col-sm-6 col-xs-6" href="" ng-show="viaje.conductor.email != usuario.email" ng-click="modalMensaje(viaje.conductor.email);" name="Send Message"><i style="margin-right: 6px;" class="fa fa-envelope fa-lg" ></i>Message</a>
+			</div>		 -->			
+		</div>
+	</div>
 </div>
+<h1>My Cars</h1>
+<div  style=" margin-top: 5px;"  class="box">
+ 	<div ng-repeat="coche in me.coches">
+ 		<div class="row">
+			<img class="imgTrip img-responsive col-sm-2 col-xs-2" style=" background: white;"  ng-src="{{coche.foto}}" alt="Car Picture">
+			<div class=" col-sm-10 col-xs-10">
+				<div class="row">
+					<label class=" col-sm-2 col-xs-2" style="text-align: right;">Car Model: </label><span class=" col-sm-8 col-xs-8"> {{coche.modelo}}</span>
+				</div>
+				<div class="row">
+					<label class=" col-sm-2 col-xs-2" style="text-align: right;">Car Color: </label><span class=" col-sm-8 col-xs-8"> {{coche.color}}</span>
+				</div>			
+				<div class="row">
+					<label class=" col-sm-2 col-xs-2" style="text-align: right;">Car Registration: </label><span class=" col-sm-8 col-xs-8"> {{coche.matricula}}</span>
+				</div>	
+			</div>
+		</div>
+ 	</div>
+	
+	
+</div>  
