@@ -8,6 +8,10 @@ import javax.validation.constraints.*;
 @Entity(name = "Mapa")
 @Table(name = "Mapa")
 public class Mapa  implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6803545848736383107L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;

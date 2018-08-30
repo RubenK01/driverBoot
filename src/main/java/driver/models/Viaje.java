@@ -9,6 +9,10 @@ import javax.validation.constraints.*;
 @Entity(name = "Viaje")
 @Table(name = "Viaje")
 public class Viaje  implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2577224146585650357L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;

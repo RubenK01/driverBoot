@@ -2,8 +2,6 @@ package driver.inbox;
 
 import java.util.Date;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import driver.user.UserDto;
 
 public class MensajeDto {
