@@ -7,7 +7,6 @@ import javax.persistence.*;
 import org.hibernate.validator.constraints.*;
 
 import driver.inbox.MensajeDto;
-import driver.models.*;
 import driver.trip.ViajeDto;
 
 //@FieldMatch.List({

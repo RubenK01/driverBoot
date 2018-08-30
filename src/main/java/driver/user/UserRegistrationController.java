@@ -1,23 +1,16 @@
 package driver.user;
 
 import java.io.*;
-import java.sql.*;
 import java.util.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
-import javax.validation.*;
 
-import org.hibernate.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.*;
 import org.springframework.ui.*;
-import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.*;
-import org.yaml.snakeyaml.scanner.*;
 
 import driver.commons.*;
 import driver.inbox.MensajeDto;
@@ -238,10 +231,9 @@ public class UserRegistrationController {
     	RetornoForm salida = new RetornoForm();
 
     	UserDto userDto;
-    	//ObjectMapper J_MAPPER = new ObjectMapper();
+
 		try {
 			userDto = Constants.JSON_MAPPER.readValue(userJSON, UserDto.class);
-			//Blob blob = Hibernate.createBlob(file.getInputStream());
 			
 			
 			Usuario existing = userService.findByEmail(userDto.getEmail());
@@ -250,12 +242,7 @@ public class UserRegistrationController {
 	        	salida.setDescripcion("Incorreco");
 	        	salida.setCodigo("01");
 	        	return salida;
-	            //result.rejectValue("email", null, "There is already an account registered with that email");
 	        }
-
-//	        if (result.hasErrors()){
-//	            return "redirect:/signUp.html?error";
-//	        }
 	        
 	        if(file.length == 1 && file[0] == 48) {
 	        	userDto.setUserImg(null);
