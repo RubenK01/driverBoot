@@ -59,6 +59,45 @@ myApp.factory('MantenimientoSrv',['$http','$q',function($http,$q){
 
 	}
 
+	function getViajesByDate(date){
+		var deferred = $q.defer();
+		var promise = deferred.promise;
+
+		var fd = new FormData();
+
+		var dateJson = angular.toJson(date);
+
+		fd.append('dateJson', dateJson);
+
+		function success(data){
+			var viajes = data.data;
+
+			viajes.forEach(function(viaje){
+				viaje.fechaHora = new Date(viaje.fechaHora);
+			});
+	    	
+
+        	deferred.resolve(viajes);
+	    };
+
+	    function error(data){
+
+	        deferred.reject(data);
+	    };
+
+
+	    $http({
+	            url: '/getTripsByDate',
+	            method: 'POST',
+	            data: fd, 
+	            headers: {'Content-Type': undefined},
+	            transformRequest: angular.identity
+	        }).then(success , error);
+
+	    return promise;
+
+	}
+
 	function saveViaje(viajeDTO){
 		var deferred = $q.defer();
 		var promise = deferred.promise;
@@ -124,6 +163,7 @@ myApp.factory('MantenimientoSrv',['$http','$q',function($http,$q){
 	
 	return {
 		getViajes:getViajes,
+		getViajesByDate:getViajesByDate,
 		getUser:getUser,
 		saveViaje:saveViaje,
 		saveMessage:saveMessage

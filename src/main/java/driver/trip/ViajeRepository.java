@@ -14,6 +14,6 @@ public interface ViajeRepository extends JpaRepository<Viaje, Long>{
 	@Query("select v from Viaje v where v.fechaHora > NOW()")
 	public List<Viaje> findViajes();
 	
-	@Query("select v from Viaje v where v.fechaHora = :date")
+	@Query("select v from Viaje v where date(v.fechaHora) = :date")
 	public List<Viaje> findViajesByDate(@Param("date") Date date);
 }

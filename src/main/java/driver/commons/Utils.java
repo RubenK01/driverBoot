@@ -33,7 +33,7 @@ public class Utils {
 		
 		for(Viaje v : misViajes) {
 			if(v.getFechaHora().after(hoy)) {
-				minutos -= v.getMinutos();
+				minutos -= v.getMinutos()* v.getPasajeros().size();
 			}
 		}
 		

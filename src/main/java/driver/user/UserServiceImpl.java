@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.bcrypt.*;
 import org.springframework.stereotype.*;
 
+import driver.commons.Constants;
 import driver.models.*;
 
 @Service
@@ -52,7 +53,7 @@ public class UserServiceImpl implements UserService {
         user.setRoles(Arrays.asList(new Role("ROLE_USER")));
         user.setActivo(true);
         user.setFechaAlta(new Date());
-        user.setMinutos(30);
+        user.setMinutos(Constants.MINUTOS_REGISTRO);
         user.setTelefono(registration.getPhone());
         user.setSexo(registration.getGender().charAt(0));
         

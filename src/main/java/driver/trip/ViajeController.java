@@ -20,9 +20,9 @@ public interface ViajeController {
     @ResponseBody
     public List<ViajeDto> getTrips(final HttpServletRequest request, HttpServletResponse response);
 	
-	@RequestMapping(value="/getTripsByDate",method = RequestMethod.GET)
+	@RequestMapping(value="/getTripsByDate",method = RequestMethod.POST)
     @ResponseBody
-    public List<ViajeDto> getTripsByDate(@RequestParam(value = "date") String dateJson,final HttpServletRequest request, HttpServletResponse response);
+    public List<ViajeDto> getTripsByDate(@RequestParam(value = "dateJson") String dateJson,final HttpServletRequest request, HttpServletResponse response);
 	
 	@RequestMapping(value="/saveTrip",method = RequestMethod.POST)
     @ResponseBody

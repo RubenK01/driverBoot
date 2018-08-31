@@ -5,6 +5,7 @@ myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv','$u
         var markers = [];
         var directionsService = new google.maps.DirectionsService, directionsDisplay = new google.maps.DirectionsRenderer;
         $scope.viajes = [];
+        $scope.error = '';
         $scope.$parent.addActivo('Map')
 
         $scope.angularOk = function(){
@@ -12,16 +13,49 @@ myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv','$u
         };
         var madrid = {lat: 40.41672271132239, lng: -3.703230192680735 };
 
-        MantenimientoSrv.getViajes().then(function(data){
+        function cargaViajes(){
+          MantenimientoSrv.getViajes().then(function(data){
 
-          $scope.viajes = data;
+            $scope.viajes = data;
 
-          loadMarkers();
-          
-          
-        },function(err){
-          
-        });
+            loadMarkers();
+            
+            
+          },function(err){
+            
+          });
+        }
+
+        cargaViajes();
+
+        $scope.searchByDate = function(){
+          if(!$scope.dateSearch || $scope.dateSearch == ''){
+            $scope.error = '';
+            cargaViajes();
+            initMap();
+          }
+          else if($scope.dateSearch < Date.now()){
+            $scope.error = 'You can not search past trips';
+          }
+          else{
+            $scope.error = '';
+            cargaViajesByDate($scope.dateSearch);
+            initMap();
+          }
+        }
+
+        function cargaViajesByDate(date){
+          MantenimientoSrv.getViajesByDate(date).then(function(data){
+
+            $scope.viajes = data;
+
+            loadMarkers();
+            
+            
+          },function(err){
+            
+          });
+        }
 
         // Initialize and add the map
         function initMap() {
@@ -45,9 +79,9 @@ myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv','$u
                 if (infowindow) {
                     infowindow.close();
                 }
-                infoWindow.setPosition(pos);
+                //infoWindow.setPosition(pos);
                 //infoWindow.setContent('You are here.');
-                infoWindow.open(map);
+                //infoWindow.open(map);
                 map.setCenter(pos);
               });
             }  

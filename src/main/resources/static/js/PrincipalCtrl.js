@@ -1,17 +1,10 @@
 
 
-//var myAppIni = angular.module('DriverIni',['restPruebaApp', 'ngRoute','ngAnimate','ui.bootstrap', 'ngMap', 'google-maps']);
 var myAppIni = angular.module('DriverIni',['ngMask', 'ngAnimate', 'ui.bootstrap']);
 
-
-//myAppIni.controller('PrincipalCtrl',['$scope','$http','mantenimientoSrv',function($scope,$http,mantenimientoSrv){
 myAppIni.controller('PrincipalCtrl',['$scope','$http', '$q','$uibModal', '$log','$window', function($scope,$http, $q,$uibModal, $log, $window){
 	
-	
-//	var $ctrl = this;
-//	$ctrl.items = ['item1', 'item2', 'item3'];
-//	
-	
+
 	//Variables
 	$scope.gender = 'm';	
 	$scope.listCars = [];
@@ -375,38 +368,7 @@ myAppIni.controller('PrincipalCtrl',['$scope','$http', '$q','$uibModal', '$log',
 	      $log.info('Modal dismissed at: ' + new Date());
 	    });
 	};
-	
-		  
-/*	function loginAuto(){
-		var f = {};
-		var link = '/login';
-		var deferred = $q.defer();
-		
-		function success(data)
-		{
-			var da = data;
-			deferred.resolve(da);
-		}
-		function error(data)
-		{
-			var da = data;
-			deferred.reject(da);
-		}
-		
-		f.username = $scope.email;
-		f.password = $scope.password;
-		
-		var fJSON = angular.toJson(f);
-		
-		$http({
-			url: link,
-			method: 'POST',
-			data : f,
-			headers: {'Content-Type': undefined},
-			transformRequest: angular.identity
-		}).then(success , error);
-			
-	} */
+
 	
 	function getImg(file){
 		 reader.onloadend = function () {
@@ -487,20 +449,6 @@ myAppIni.controller('ModalInstanceCtrl', function ($scope, $modalInstance, lista
 	  };
 });
 
-
-//myAppIni.config(function($routeProvider) {
-//    $routeProvider
-//    .when("/", {
-//        templateUrl :"html/loginForm.html"
-//    })
-//    .when("/signUp", {
-//        templateUrl :"html/signUpForm.html"
-//    })
-//    .when("/menu", {
-//        templateUrl :"html/menu.html"
-//    })
-//});
-
 myAppIni.directive("fileModel",function() {
 	return {
 		restrict: 'EA',
@@ -527,8 +475,6 @@ myAppIni.directive("fileread", [function () {
             element.bind("change", function (changeEvent) {
                 scope.$apply(function () {
                     scope.fileread = changeEvent.target.files[0];
-                    // or all selected files:
-                    // scope.fileread = changeEvent.target.files;
                 });
             });
         }

@@ -23,11 +23,10 @@ public class Coche implements Serializable {
 	private String modelo;
 	@NotNull
 	private String color;
-	
-//	@ManyToOne
-//    @JoinColumn(referencedColumnName = "id", nullable=false)
+
 	@ManyToOne
 	private Usuario conductor;
+	
 	/**
 	 * @param foto
 	 * @param sexo

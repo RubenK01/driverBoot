@@ -227,12 +227,15 @@ public class UserRegistrationController {
     @RequestMapping(value="/registration",method = RequestMethod.POST)
     @ResponseBody
     public RetornoForm registerUserAccount(@RequestParam(value = "form") String userJSON
-    		, @RequestPart(value = "file") byte[]  file , @RequestParam(value = "formCars") String listCarJSON , final HttpServletRequest request, HttpServletResponse response){
+    		, @RequestPart(value = "file") byte[]  file , @RequestParam(value = "formCars") String listCarJSON , 
+    		final HttpServletRequest request, HttpServletResponse response){
+    	
     	RetornoForm salida = new RetornoForm();
 
     	UserDto userDto;
 
 		try {
+			
 			userDto = Constants.JSON_MAPPER.readValue(userJSON, UserDto.class);
 			
 			
@@ -275,11 +278,6 @@ public class UserRegistrationController {
 						e.printStackTrace();
 					}
 
-//	        	try {
-//	        		//listCars.get(i).setFoto( request.getPart("imgCars" + i) );
-//				} catch (ServletException e) {
-//					e.printStackTrace();
-//				}
 	        }
 	        	        
 	        userDto.setCoches(listCars);
@@ -297,40 +295,6 @@ public class UserRegistrationController {
 			return salida;
 		}
 		
-    	
-        
-        
-        //hacer POST a login
-//        try {
-//        	
-//			response.sendRedirect("/");
-//			//response.add
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-        //return "redirect:/#/menu";
         return salida;
     }
-//    @RequestMapping(value="/saveTrip",method = RequestMethod.POST)
-//    @ResponseBody
-//    public RetornoForm saveTrip(ViajeDto viajeDto)  {
-//		RetornoForm retorno = new RetornoForm();
-//		
-//		Viaje viaje = new Viaje();
-//		
-//		viaje.setFechaHora(viajeDto.getFechaHora());
-//		viaje.setMinutos(viajeDto.getMinutos());
-//		viaje.setPlazas(viajeDto.getPlazas());
-//		
-//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//    	
-//    	String name = auth.getName();
-//
-//    	Usuario conductor = userService.findByEmail(name);
-//    	
-//    	viaje.setConductor(conductor);
-//    	
-//		return retorno;
-//	}
 }

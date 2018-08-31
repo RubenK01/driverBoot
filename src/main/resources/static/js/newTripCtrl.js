@@ -25,9 +25,9 @@ myApp.controller('newTripCtrl',['$scope', 'MantenimientoSrv', '$uibModal',functi
                   lng: position.coords.longitude
                 };
 
-                infoWindow.setPosition(pos);
+                /*infoWindow.setPosition(pos);
                 infoWindow.setContent('You are here.');
-                infoWindow.open(map1);
+                infoWindow.open(map1);*/
                 map1.setCenter(pos);
               });
             }  
@@ -195,7 +195,7 @@ myApp.controller('newTripCtrl',['$scope', 'MantenimientoSrv', '$uibModal',functi
                     }
                 },
                 controller: 'modalInfoCtrl',
-                size: 'md'
+                size: 'sm'
               });
                 modalInstance.result.then(function () {
                         

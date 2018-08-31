@@ -81,7 +81,7 @@ public class ViajeControllerImp implements ViajeController{
 	}
 
 	@Override
-	public List<ViajeDto> getTripsByDate(String dateJson, HttpServletRequest request, HttpServletResponse response) {
+	public List<ViajeDto> getTripsByDate(@RequestParam(value = "dateJson") String dateJson, HttpServletRequest request, HttpServletResponse response) {
 		List<ViajeDto> misViajes = new ArrayList<ViajeDto>();
 		Date date;
 		try {

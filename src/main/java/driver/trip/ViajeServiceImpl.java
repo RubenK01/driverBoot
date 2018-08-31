@@ -202,6 +202,12 @@ public class ViajeServiceImpl implements ViajeService{
     		viaje.setFechaHora(v.getFechaHora());
     		viaje.setMinutos(v.getMinutos());
     		viaje.setPlazas(v.getPlazas());
+    		CocheDto coche = new CocheDto();
+    		
+    		coche.setColor(v.getCoche().getColor());
+    		coche.setFoto(v.getCoche().getFoto());
+    		coche.setModelo(v.getCoche().getModelo());
+    		viaje.setCoche(coche);
     		
     		UserDto conductor = new UserDto();
     		conductor.setFirstName(v.getConductor().getFirstName());
