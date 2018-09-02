@@ -79,7 +79,9 @@ myApp.controller('inboxCtrl', function ($scope, utils,$uibModal,MantenimientoSrv
 		$scope.chats = []
 		for (var [key, value] of $scope.conversacionMap) {
 			//var ultimoItem = $scope.conversacionMap.size-1;
+			value = value.sort((a,b) => b.fechaHora - a.fechaHora);
 			value[0].fechaHoraStr = utils.fechaToStr(value[0].fechaHora) + ' ' + utils.horaToStr(value[0].fechaHora) ;
+			value[0].class = {"background":"rgb(226, 226, 226)","border": "1px solid rgba(0, 0, 0, 0.43)","border-left": "hidden","border-right": "hidden"};
 			if($scope.usuario.mensajesEnviados.includes(value[0])){
 						value[0].datosReceptor = {};
 						value[0].datosReceptor = value[0].receptor;
@@ -88,6 +90,9 @@ myApp.controller('inboxCtrl', function ($scope, utils,$uibModal,MantenimientoSrv
 			else{
 				value[0].datosReceptor = {};
 				value[0].datosReceptor = value[0].emisor;
+				if(!value[0].leido){
+					value[0].class = {"background":"white","border": "1px solid rgba(0, 0, 0, 0.43)", "font-weight":"bold","border-left": "hidden","border-right": "hidden"};
+				}
 				$scope.chats.push(value[0]);
 			}
 		}

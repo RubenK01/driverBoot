@@ -28,14 +28,14 @@
             </th>
 
           </tr>
-        	<tr ng-repeat="chat in chats" ng-click="modalMensaje(chat.datosReceptor.email)" style="cursor:pointer; cursor: hand;">
-            <td class="col-sm-4" class="col-xs-4">
+        	<tr ng-repeat="chat in chats" ng-style="{{chat.class}}" ng-click="modalMensaje(chat.datosReceptor.email)" style="cursor:pointer; cursor: hand;">
+            <td class="col-sm-4 col-xs-4" style="padding-left: 26px;">
               <div class="row">
                   {{chat.fechaHoraStr}}    
               </div>
              
             </td> 
-            <td class="col-sm-4" class="col-xs-4">
+            <td class="col-sm-4 col-xs-4">
                <div class="row">
                 {{chat.datosReceptor.firstName}} {{chat.datosReceptor.lastName}} 
               </div>
@@ -53,7 +53,7 @@
         			</div>
         		</td> -->
             <!-- <td>{{viaje.minutos}}</td> -->
-        		<td class="col-sm-4" class="col-xs-4">
+        		<td class="col-sm-4 col-xs-4">
         			<p>{{chat.texto.substr(0,30)}}...</p>
         		</td>
         	</tr>

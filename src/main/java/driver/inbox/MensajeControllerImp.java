@@ -40,4 +40,21 @@ public class MensajeControllerImp implements MensajeController{
 		return rf;
 	}
 
+	@Override
+	public void mensajeLeido(@RequestParam(value = "emailJson") String email, HttpServletRequest request, HttpServletResponse response) {
+		
+		String emailStr = "";
+		
+		try {
+			emailStr = Constants.JSON_MAPPER.readValue(email, String.class);
+			mensajeSrv.marcaLeido(emailStr);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+
+	}
+
 }

@@ -259,6 +259,8 @@ myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv','$u
                   $scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
                 }
                 
+                //enviar evento para cambiar minutos
+                $scope.$emit('minutos', $scope.usuario.minutos);
                 
               },function(err){
                 

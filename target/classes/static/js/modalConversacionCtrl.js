@@ -5,6 +5,8 @@ myApp.controller('modalConversacionCtrl', function ($scope, $modalInstance, rece
 	$scope.texto = '';
 	$scope.messages = [];
 
+	MantenimientoSrv.messageRead(receptor.email);
+
 	MantenimientoSrv.getUser().then(function(data){
 
 		$scope.usuario = data.data;

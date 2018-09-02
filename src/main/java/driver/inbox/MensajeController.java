@@ -16,4 +16,8 @@ public interface MensajeController {
 	@RequestMapping(value="/saveMessage",method = RequestMethod.POST)
     @ResponseBody
     public RetornoForm saveMensaje(@RequestParam(value = "mensajeJson") String mensajeJson, final HttpServletRequest request, HttpServletResponse response) ;
+	
+	@RequestMapping(value="/messageRead",method = RequestMethod.POST)
+    @ResponseBody
+    public void mensajeLeido(@RequestParam(value = "emailJson") String email, final HttpServletRequest request, HttpServletResponse response) ;
 }

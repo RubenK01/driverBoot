@@ -1,6 +1,6 @@
 <div class="modal-content">
 		<div class="modal-header" style=" background-color: whitesmoke;">
-		          <h3 class="modal-title">{{receptor.firstName}} {{receptor.lastName}}</h3>
+		          <h3 class="modal-title"><i class="far fa-comments"></i>  {{receptor.firstName}} {{receptor.lastName}}</h3>
 		</div>
 		<div class="modal-body" style="background-color: #9fe89f;">
 			<div id="divConScroll" style="height: 279px;overflow: auto;padding: 9px">
@@ -8,7 +8,11 @@
 					<div ng-class="message.class">
 						<div>
 							<p style="white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -o-pre-wrap;">{{message.texto}}</p>				
-							<p><small>{{message.fechaHoraStr}}</small></p>
+							<div>
+								<small>{{message.fechaHoraStr}}
+								<div ng-if="message.leido && usuario.email == message.emisor.email" style="float:right;"><i class="fas fa-check"></i></div>
+								</small> 
+							</div>
 						</div>
 						
 					</div>

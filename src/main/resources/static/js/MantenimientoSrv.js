@@ -159,6 +159,38 @@ myApp.factory('MantenimientoSrv',['$http','$q',function($http,$q){
 		return promise;
 	}
 	
+	function messageRead(emailReceptor){
+		var deferred = $q.defer();
+		var promise = deferred.promise;
+
+		var fd = new FormData();
+
+		var emailJson = angular.toJson(emailReceptor);
+
+		fd.append('emailJson', emailJson);
+
+		function success(data){
+			
+        	deferred.resolve();
+	    };
+
+	    function error(data){
+
+	        deferred.reject(data);
+	    };
+
+
+	    $http({
+	            url: '/messageRead',
+	            method: 'POST',
+	            data: fd ,
+	            headers: {'Content-Type': undefined},
+	            transformRequest: angular.identity
+	        }).then(success , error);
+
+	    return promise;
+
+	}
 	
 	
 	return {
@@ -166,6 +198,7 @@ myApp.factory('MantenimientoSrv',['$http','$q',function($http,$q){
 		getViajesByDate:getViajesByDate,
 		getUser:getUser,
 		saveViaje:saveViaje,
-		saveMessage:saveMessage
+		saveMessage:saveMessage,
+		messageRead:messageRead
 	}
 }]);

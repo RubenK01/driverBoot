@@ -24,6 +24,13 @@ myApp.controller('myTripsCtrl', function ($scope, utils,$uibModal,MantenimientoS
 			$scope.viajes[i].fecha = '';
 			$scope.viajes[i].classMinuto = {"color":"red"};
 
+			if($scope.viajes[i].fechaHora < Date.now()){
+				$scope.viajes[i].classRow = {"background":"rgb(226, 226, 226)","border": "1px solid rgba(0, 0, 0, 0.43)","border-left": "hidden","border-right": "hidden"};
+			}
+			else{
+				$scope.viajes[i].classRow = {"background":"white","border": "1px solid rgba(0, 0, 0, 0.43)","border-left": "hidden","border-right": "hidden"};
+			}
+
 			$scope.viajes[i].hora = utils.horaToStr($scope.viajes[i].fechaHora);
 			$scope.viajes[i].fecha = utils.fechaToStr($scope.viajes[i].fechaHora);
 			if($scope.usuario.viajesCreados.includes($scope.viajes[i])){

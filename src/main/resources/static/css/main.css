@@ -54,7 +54,7 @@
     border-width: 0 13px 13px 0;
     border-color: transparent #ffffff transparent transparent;            
 }
-.msj-rta:after{
+/*.msj-rta:after{
     width: 0;
     height: 0;
     content:"";
@@ -64,7 +64,7 @@
     border-style: solid;
     border-width: 13px 13px 0 0;
     border-color: whitesmoke transparent transparent transparent;           
-}  
+} */ 
 
 /* */
 /* CSS Tabs jQuery */

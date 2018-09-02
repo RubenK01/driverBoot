@@ -39,4 +39,22 @@ public class MensajeServiceImp implements MensajeService{
 		return mensajeRepository.save(mensaje);
 	}
 
+	@Override
+	public void marcaLeido(String email) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	
+    	String name = auth.getName();
+
+    	Usuario me = userService.findByEmail(name);
+    	
+    	for(Mensaje m : me.getMensajesRecibidos()) {
+    		if(m.getEmisor().getEmail().equalsIgnoreCase(email) && !m.getLeido()) {
+    			m.setLeido(true);
+    			
+    			mensajeRepository.save(m);
+    		}
+    	}
+		
+	}
+
 }
