@@ -34,12 +34,12 @@
     margin-top:5px;width:85%;border-radius:5px;padding:5px;display:flex;
 }
 .msj-rta{
-   word-break: break-all;
+   /*word-break: break-all;*/
     word-wrap: break-word;
     float:right;background:whitesmoke;
 }
 .msj{
-   word-break: break-all;
+   /*word-break: break-all;*/
  word-wrap: break-word;
     float:left;background:white;
 }
@@ -186,6 +186,14 @@ th, td {
 }
 
 tr:nth-child(even){background-color: #f2f2f2}
+
+/*tr:hover{
+   box-shadow: 3px 2px 1px #999;
+   border: 1px solid #080808 !important;
+  
+
+}*/
+
 /* Footer */
 section {
     padding: 60px 0;

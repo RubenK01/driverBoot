@@ -5,7 +5,7 @@ myApp.controller('inboxCtrl', function ($scope, utils,$uibModal,MantenimientoSrv
 	$scope.chats = [];
 	$scope.$parent.addActivo('Inbox');
 
-	MantenimientoSrv.getUser().then(function(data){
+	MantenimientoSrv.getUser($scope).then(function(data){
 
 		$scope.usuario = data.data;
 		if(!data.data.userImg){
@@ -96,6 +96,7 @@ myApp.controller('inboxCtrl', function ($scope, utils,$uibModal,MantenimientoSrv
 				$scope.chats.push(value[0]);
 			}
 		}
+		$scope.chats = $scope.chats.sort((a,b) => b.fechaHora - a.fechaHora);
 	}
 	
 	
@@ -115,10 +116,10 @@ myApp.controller('inboxCtrl', function ($scope, utils,$uibModal,MantenimientoSrv
 	        size: 'md'
 	      });
 		modalInstance.result.then(function (msg) {
-			$scope.conversacionMap.set(msg.email,msg);
+			/*$scope.conversacionMap.set(msg.email,msg);
 
-			getDatosMuestra();
-	        MantenimientoSrv.getUser().then(function(data){
+			getDatosMuestra();*/
+	        MantenimientoSrv.getUser($scope).then(function(data){
 
 						$scope.usuario = data.data;
 						if(!data.data.userImg){
@@ -128,13 +129,15 @@ myApp.controller('inboxCtrl', function ($scope, utils,$uibModal,MantenimientoSrv
 							$scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
 						}
 						
-						
+						mensajesToMap();
+
+	      				getDatosMuestra();
 					},function(err){
 						
 					});
 	      }, function () {
 	      	
-	        MantenimientoSrv.getUser().then(function(data){
+	        MantenimientoSrv.getUser($scope).then(function(data){
 
 						$scope.usuario = data.data;
 						if(!data.data.userImg){

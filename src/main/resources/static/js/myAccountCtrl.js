@@ -1,6 +1,6 @@
 myApp.controller('myAccountCtrl', function ($scope,MantenimientoSrv,utils) {
 	$scope.$parent.addActivo('Profile','My Account');
-	MantenimientoSrv.getUser().then(function(data){
+	MantenimientoSrv.getUser($scope).then(function(data){
 
 		$scope.me = data.data;
 		if(!data.data.userImg){

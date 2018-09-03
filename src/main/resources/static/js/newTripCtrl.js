@@ -170,7 +170,7 @@ myApp.controller('newTripCtrl',['$scope', 'MantenimientoSrv', '$uibModal',functi
 
           function success(data){
             limpiaDatos();
-            MantenimientoSrv.getUser().then(function(data){
+            MantenimientoSrv.getUser($scope).then(function(data){
 
               $scope.usuario = data.data;
               if(!data.data.userImg){

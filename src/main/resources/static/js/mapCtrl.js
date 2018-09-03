@@ -249,7 +249,7 @@ myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv','$u
               },function(err){
                 
               });
-             MantenimientoSrv.getUser().then(function(data){
+             MantenimientoSrv.getUser($scope).then(function(data){
 
                 $scope.usuario = data.data;
                 if(!data.data.userImg){
@@ -266,7 +266,7 @@ myApp.controller('mapCtrl', ['$scope','$compile', '$http','MantenimientoSrv','$u
                 
               });
           }, function () {
-            MantenimientoSrv.getUser().then(function(data){
+            MantenimientoSrv.getUser($scope).then(function(data){
 
                 $scope.usuario = data.data;
                 if(!data.data.userImg){

@@ -39,7 +39,7 @@ myApp.controller('ModalViajeCtrl', function ($scope, $modalInstance, $uibModal, 
 			var retornoForm = data.data;
 
 			if(retornoForm.codigo === '00'){
-				/*MantenimientoSrv.getUser().then(function(data){
+				/*MantenimientoSrv.getUser($scope).then(function(data){
 
 						$scope.usuario = data.data;
 						if(!data.data.userImg){

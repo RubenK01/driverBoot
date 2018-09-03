@@ -76,6 +76,7 @@
 								<li ng-if="!item.submenu" ng-class="item.style" ng-click="addActivo(item.name)">
 								  <a style="width: 100%;" href="{{item.url}}">
 									<i style="margin-right: 6px;" ng-class="item.ico"></i> {{ item.name }}
+									<i ng-if="item.name == 'Inbox' && newMessages" style="color:#d19b3d;" class="fas fa-circle"></i>
 								  </a>
 								</li>
 

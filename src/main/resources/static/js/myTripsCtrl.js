@@ -4,7 +4,7 @@ myApp.controller('myTripsCtrl', function ($scope, utils,$uibModal,MantenimientoS
 	$scope.passClass = '';
 	$scope.$parent.addActivo('My Trips');
 
-	MantenimientoSrv.getUser().then(function(data){
+	MantenimientoSrv.getUser($scope).then(function(data){
 
 		$scope.usuario = data.data;
 		if(!data.data.userImg){

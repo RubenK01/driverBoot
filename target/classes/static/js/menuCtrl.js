@@ -1,5 +1,6 @@
 
 myApp.controller('menuCtrl',['$scope','MantenimientoSrv',function($scope,MantenimientoSrv){
+	$scope.newMessages = false;
 	$scope.pestaniasMenu = [
 					{name: 'Map', url: '/#/', style: 'active', ico: 'fa fa-globe fa-lg '},
 					{name: 'New Trip', url: '/#/newTrip', style: '', ico: 'fa fa-map-marker fa-lg'},
@@ -11,7 +12,7 @@ myApp.controller('menuCtrl',['$scope','MantenimientoSrv',function($scope,Manteni
 
 	$scope.usuario = {};
 
-	MantenimientoSrv.getUser().then(function(data){
+	MantenimientoSrv.getUser($scope).then(function(data){
 
 		$scope.usuario = data.data;
 		if(!data.data.userImg){
@@ -21,6 +22,11 @@ myApp.controller('menuCtrl',['$scope','MantenimientoSrv',function($scope,Manteni
 			$scope.usuario.userImg = "data:image/png;base64," + data.data.userImg;
 		}
 		
+		$scope.usuario.mensajesRecibidos.forEach(function(m){
+			if(!m.leido){
+				$scope.newMessages = true;
+			}
+		});
 		
 	},function(err){
 		
@@ -29,6 +35,11 @@ myApp.controller('menuCtrl',['$scope','MantenimientoSrv',function($scope,Manteni
 	//recoger evento si se cambian minutos (al hacer join)
 	$scope.$on('minutos', function(evt, min){
 		$scope.usuario.minutos = min;
+	});
+
+	//recoger evento si se reciben o se leen mensajes
+	$scope.$on('mensajes', function(evt, newMessages){
+		$scope.newMessages = newMessages;
 	});
 	
 	$scope.addActivo = function(name, subName){

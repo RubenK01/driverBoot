@@ -3,12 +3,22 @@ myApp.factory('MantenimientoSrv',['$http','$q',function($http,$q){
 
 	
 	
-	function getUser(){
+	function getUser(scope){
 		var deferred = $q.defer();
 		var promise = deferred.promise;
+		var newMessages = false;
 
 		function success(data){
-        deferred.resolve(data);
+			//comprueba nuevos mensajes
+			data.data.mensajesRecibidos.forEach(function(m){
+				if(!m.leido){
+					newMessages = true;
+				}
+			});
+			//emite evento hacia el padre MenuCtrl para mostrar nuevos mensajes
+			scope.$emit('mensajes', newMessages);
+
+        	deferred.resolve(data);
 	    };
 
 	    function error(data){

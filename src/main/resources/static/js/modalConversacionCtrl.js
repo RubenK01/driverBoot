@@ -7,7 +7,7 @@ myApp.controller('modalConversacionCtrl', function ($scope, $modalInstance, rece
 
 	MantenimientoSrv.messageRead(receptor.email);
 
-	MantenimientoSrv.getUser().then(function(data){
+	MantenimientoSrv.getUser($scope).then(function(data){
 
 		$scope.usuario = data.data;
 		if(!data.data.userImg){
