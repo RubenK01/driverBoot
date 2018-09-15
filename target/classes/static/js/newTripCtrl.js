@@ -159,10 +159,11 @@ myApp.controller('newTripCtrl',['$scope', 'MantenimientoSrv', '$uibModal',functi
           var mapaDTO = {};
           mapaDTO.descOrigen = $scope.origin;
           mapaDTO.descDestino = $scope.destination;
-          mapaDTO.latOrigen = $scope.latOrigen ;
-          mapaDTO.lngOrigen =$scope.lngOrigen ;
+          mapaDTO.latOrigen = $scope.latOrigen;
+          mapaDTO.lngOrigen =$scope.lngOrigen;
           mapaDTO.latDestino = $scope.latDestino;
           mapaDTO.lngDestino = $scope.lngDestino;
+          
           viajeDTO.mapa = mapaDTO;
           viajeDTO.pasajeros = [];
           viajeDTO.conductor = null;
@@ -225,6 +226,10 @@ myApp.controller('newTripCtrl',['$scope', 'MantenimientoSrv', '$uibModal',functi
         $scope.date = '';
         $scope.car = '';
         $scope.seats = '';
+        $scope.latOrigen
+        $scope.lngOrigen = '';
+        $scope.latDestino = '';
+        $scope.lngDestino = '';
       }   
 
 }]);

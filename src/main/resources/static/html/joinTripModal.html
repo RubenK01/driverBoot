@@ -90,20 +90,20 @@
 			
 			<div class="row" style="padding: 10px">
 				<h1>PASSENGERS</h1>
-				<div class="box">
+				<div class="box" style="padding: 40px;">
 					<div class="row">
 						<div ng-if="viaje.pasajeros.length === 0">
 						<label>There aren´t any passengers.</label>
 						</div>
 						<div ng-if="viaje.pasajeros.length > 0">
-							<div ng-repeat="p in viaje.pasajeros">
-								<img class="imgTrip img-responsive col-sm-2 col-xs-2"  ng-src="{{p.foto}}" alt="Profile Picture">
+							<div class="row box" style="margin-top: 10px;" ng-repeat="p in viaje.pasajeros">
+								<img class="imgTrip img-responsive col-sm-2 col-xs-2" style=" background: white;" ng-src="{{p.foto}}" alt="Profile Picture">
 								<div class="col-sm-8 col-xs-8">
 									<div class="row">
-										<label class=" col-sm-1 col-xs-2" style="text-align: right;">Name: </label><span class=" col-sm-6 col-xs-6"> {{p.firstName}} {{p.lastName}}</span>
+										<label class=" col-sm-3 col-xs-3" style="text-align: right;">Name: </label><span class=" col-sm-6 col-xs-6"> {{p.firstName}} {{p.lastName}}</span>
 									</div>
 									<div class="row">
-										<label class=" col-sm-1 col-xs-2" style="text-align: right;">Age: </label><span class=" col-sm-6 col-xs-6"> {{p.age}} y/o</span>
+										<label class=" col-sm-3 col-xs-3" style="text-align: right;">Age: </label><span class=" col-sm-6 col-xs-6"> {{p.age}} y/o</span>
 									</div>
 									<div class="row">
 										<div class="col-sm-1 col-xs-1">							
@@ -111,7 +111,7 @@
 										<a class="col-xs-8 col-sm-8" href="" ng-hide="p.email == usuario.email" ng-click="modalMensaje(p.email);" name="Send Message"><i style="margin-right: 6px;" class="fa fa-envelope fa-lg" ></i>Message</a>
 									</div>
 								</div>
-								
+								<br><br>
 							</div>
 						</div>
 				
